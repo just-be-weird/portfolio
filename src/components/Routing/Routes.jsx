@@ -4,7 +4,8 @@ import About from '../Container/Layout/About';
 import Experience from '../Container/Layout/Experience';
 import InfinityStones from '../Container/Layout/InfinityStones';
 import Projects from '../Container/Layout/Projects';
-
+import Contact from '../Container/Layout/Contact';
+import NotFound from '../NotFound/NotFound'
 
 export default function Routes() {
     return (
@@ -14,7 +15,8 @@ export default function Routes() {
                 <Route exact path='/experience' component={Experience} />
                 <Route exact path='/stones' component={InfinityStones} />
                 <Route exact path='/projects' component={Projects} />
-                {/* <Route component={NotFound} /> */}
+                <Route exact path='/contact' component={Contact} />
+                <Route component={NotFound} />
             </Switch>
         </div>
     )

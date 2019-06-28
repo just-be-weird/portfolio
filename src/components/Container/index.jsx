@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import GlobalNavigation from '../GlobalNavigation/GlobalNavigation'
 import LandingPage from '../Landingpage/LandingPage';
 import Routes from '../Routing/Routes'
+import SocialAction from '../Socials/SocialAction'
 
 
 export default function index() {
@@ -15,6 +16,7 @@ export default function index() {
                         <Route exact path='/' component={LandingPage} />
                         <Route component={Routes} />
                     </Switch>
+                    <SocialAction />
                 </header>
 
             </Router>
