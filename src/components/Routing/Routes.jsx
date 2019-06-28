@@ -11,7 +11,7 @@ export default function Routes() {
     return (
         <div className="container">
             <Switch>
-                 <Route exact path='/about' component={About} />
+                <Route exact path='/about' component={About} />
                 <Route exact path='/experience' component={Experience} />
                 <Route exact path='/stones' component={InfinityStones} />
                 <Route exact path='/projects' component={Projects} />

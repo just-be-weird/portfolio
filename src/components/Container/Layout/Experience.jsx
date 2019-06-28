@@ -8,18 +8,18 @@ export default function Experience() {
         <div className="section-experience-selector">
             <ul className="section-experience-selector-tab">
                 <li className="active">
-                    <button role="tab" aria-selected="true" aria-controls="tab0" id="tab0" tabindex="0"
+                    <button role="tab" aria-selected="true" aria-controls="tab0" id="tab0" tabIndex="0"
                         className=""><span>Mikado</span>
                     </button>
                 </li>
                 <li>
-                    <button role="tab" aria-selected="true" aria-controls="tab1" id="tab1" tabindex="1"
+                    <button role="tab" aria-selected="true" aria-controls="tab1" id="tab1" tabIndex="1"
                         className="jobs__Tab-sc-13kygjg-3 duHgEH"><span>Adapty Inc</span>
                     </button>
                 </li>
             </ul>
             <div className="section-experience-selector-job-desc">
-                <div id="job0" className="active" role="tabpanel" tabindex="0" aria-labelledby="job0"
+                <div id="job0" className="active" role="tabpanel" tabIndex="0" aria-labelledby="job0"
                     aria-hidden="false">
                     <h4 className="job__title">
                         <span>Software Engineer</span>
@@ -64,7 +64,7 @@ export default function Experience() {
                         </ul>
                     </div>
                 </div>
-                <div id="job1" role="tabpanel" tabindex="1" aria-labelledby="job1" aria-hidden="false" className="">
+                <div id="job1" role="tabpanel" tabIndex="1" aria-labelledby="job1" aria-hidden="false" className="">
                     <h4 className="job__title"><span>Java Programmer Trainee</span><span
                             className=""><span>&nbsp;@&nbsp;</span><a
                                 href="https://www.linkedin.com/in/sanjay-makhija-6475a410/" target="_blank"

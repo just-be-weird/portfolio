@@ -1,7 +1,29 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function GlobalNavigation() {
+    useEffect(() => {
+        if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            let scrollDirection = 0;
+            window.addEventListener('scroll', (e) => {
+                let winTop = window.scrollY,
+                    global__nav = document.getElementById("global__nav");
+                if (winTop > scrollDirection) {
+                    if (winTop > global__nav.scrollHeight + 10) {
+                        global__nav.classList.add("sticky");
+                    } else {
+                        global__nav.classList.remove("sticky");
+                        scrollDirection = window.scrollY;
+                    }
+                } else {
+                    global__nav.classList.remove("sticky");
+                    scrollDirection = window.scrollY;
+                    return false;
+                }
+                scrollDirection = winTop;
+            })
+        }
+    }, [])
     return (
         <Fragment>
             <input type="checkbox" name="navi-toggle" className="navigation__checkbox" id="navi-toggle" />
@@ -9,7 +31,7 @@ export default function GlobalNavigation() {
                 <span className="navigation__icon">&nbsp;</span>
             </label>
             <div className="navigation__background">&nbsp;</div>
-            <nav className="navigation navigation__nav">
+            <nav className="navigation navigation__nav" id='global__nav'>
                 <div className="row">
                     <svg className="just-be-weird-logo">
                         <use xlinkHref={"/assets/img/sprite.svg#icon-flickr4"}></use>

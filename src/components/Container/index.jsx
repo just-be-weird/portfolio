@@ -20,7 +20,6 @@ export default function index() {
                     <SocialAction />
                     <MultiActions />
                 </header>
-
             </Router>
         </Fragment>
     )
