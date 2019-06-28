@@ -1,7 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import Tooltip from "../UI/Tooltip/Tooltip";
 
 export default function SocialAction() {
+  const [email, setEmailCopyState] = useState({
+    email: 'abhi.chandresh@gmail.com',
+    msg: 'Copy Email😊'
+  });
+
+  const copyEmailHandler = async (e) => {
+    if (navigator.clipboard) {
+      await navigator.clipboard.writeText(email.email ? email.email : 'Invalid data');
+      setEmailCopyState({ msg: 'Copied!😊' });
+    } else {
+      let inp = document.createElement("INPUT");
+      inp.value = "abhi.chandresh@gmail.com";
+      document.body.appendChild(inp);
+      inp.select();
+      document.execCommand("copy");
+      document.body.removeChild(inp);
+      setEmailCopyState({ msg: 'Copied!😊' });
+    }
+  }
+
+  const outToolTip = (c) => {
+    setEmailCopyState({ msg: 'Copy Email😊' });
+  }
+
   return (
     <section className="section-sidebar">
       <ul className="section-sidebar__container">
@@ -30,11 +54,11 @@ export default function SocialAction() {
           </a>
         </li>
         <li className="section-sidebar__item">
-          <Tooltip id={"copy-email"}>
+          <Tooltip id={"copy-email"} actionMsg={email.msg} >
             <button
               className="section-sidebar__anchor"
-              onclick="copyTextTo_CB()"
-              onmouseout="outToolTip()"
+              onClick={copyEmailHandler}
+              onMouseOut={outToolTip}
             >
               <svg className="section-sidebar__icon section-sidebar__icon--envelope">
                 <use xlinkHref="/assets/img/sprite.svg#icon-envelope" />

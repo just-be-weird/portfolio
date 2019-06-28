@@ -4,6 +4,7 @@ import GlobalNavigation from '../GlobalNavigation/GlobalNavigation'
 import LandingPage from '../Landingpage/LandingPage';
 import Routes from '../Routing/Routes'
 import SocialAction from '../Socials/SocialAction'
+import MultiActions from '../MultiActions/MultiActions'
 
 
 export default function index() {
@@ -17,6 +18,7 @@ export default function index() {
                         <Route component={Routes} />
                     </Switch>
                     <SocialAction />
+                    <MultiActions />
                 </header>
 
             </Router>
