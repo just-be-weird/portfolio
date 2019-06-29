@@ -53,7 +53,7 @@ export default function GlobalNavigation() {
                             <Link className="navigation__link main-nav-box__experience"
                                 to="/experience">Experience</Link>
                         </li>
-                        <li className="navigation__item main-nav-box__infinite">
+                        <li className="navigation__item main-nav-box__infinite" onClick={e => clickHandler(e)}>
                             <Link className="navigation__link main-nav-box__infinite" to="/stones">
                                 <svg className="main-nav-box__infinite-icon">
                                     <use xlinkHref="/assets/img/sprite.svg#icon-infinite"></use>

@@ -308,8 +308,6 @@ button {
   border: none;
   background: transparent; }
 
-.btn {
-  /* .header__text-box .btn--white { */ }
   .btn--white {
     background-color: #0046bb;
     color: #ffffff; }
@@ -900,8 +898,8 @@ button {
       line-height: 20px; }
 
 .section-wrapper {
-  -webkit-transform: skewY(7deg);
-  transform: skewY(7deg); }
+  z-index: 1;
+  position: relative; }
 
 .rainbow-anm, .anm:hover, .section-sidebar:hover:after, .section-sidebar:hover:before, .section-multi-action:hover:after, .section-multi-action:hover:before, .footer__link:hover::after, .footer__link:active::after, .just-be-weird-logo, .footer__logo-box {
   background: linear-gradient(270deg, #0600ff, #00ffdf, #45ff00, #fffa00, #ff9400, #ff0200);
@@ -1289,7 +1287,9 @@ header {
 nav {
   background-color: rgba(255, 255, 255, 0.98);
   -webkit-box-shadow: 0 0.2rem 0.2rem #efefef;
-  box-shadow: 0 0.2rem 0.2rem #efefef; }
+  box-shadow: 0 0.2rem 0.2rem #efefef; 
+  z-index: 3;
+  position: relative;  }
   nav .row {
     margin: 0 0 0 20rem; }
   @media (max-width: 56.25em) {
@@ -1390,12 +1390,8 @@ li.main-nav-box__infinite {
     padding-left: 3.3rem; }
 
 .section-about {
-  -webkit-transform: skewY(-7deg);
-  transform: skewY(-7deg);
-  background-color: #f2f2f2;
-  height: 100vh;
-  text-align: justify;
-  margin-top: 10rem; }
+  z-index: 1;
+  text-align: justify; }
   @media (max-width: 56.25em) {
     .section-about {
       padding: 0 0 10rem;
@@ -1408,7 +1404,7 @@ li.main-nav-box__infinite {
 
 .section-experience {
   height: 100vh;
-  margin: 10rem 20rem 15rem; }
+  margin: 2rem 20rem 15rem; }
   @media (max-width: 56.25em) {
     .section-experience {
       margin: 0;
@@ -1491,12 +1487,6 @@ li.main-nav-box__infinite {
   .section-experience .cta-container {
     margin: 46px 0 0rem 0; }
 
-.section-stones {
-  -webkit-transform: skewY(-7deg);
-  transform: skewY(-7deg);
-  background-color: #f2f2f2;
-  height: 100vh;
-  margin-top: 8rem; }
   .section-stones > .row {
     padding-top: 8rem; }
   .section-stones > .row--2 {
@@ -1513,12 +1503,34 @@ li.main-nav-box__infinite {
     .section-projects {
       height: auto; } }
 
-.section-contact {
-  -webkit-transform: skewY(-7deg);
-  transform: skewY(-7deg);
-  background-color: #f2f2f2;
-  margin-top: 9rem;
-  height: 80vh; }
+.section-about,
+.section-contact,
+.section-projects,
+.section-stones {
+  padding-top: 2rem;
+  height: 100vh; }
+  .section-about::after,
+  .section-contact::after,
+  .section-projects::after,
+  .section-stones::after {
+    -webkit-transform: skewY(-7deg);
+    transform: skewY(-7deg) translateY(13rem);
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 80vh;
+    display: block;
+    width: 100%;
+    background-color: #f2f2f2;
+  }
+  @media (max-width: 56.25em) {
+    .section-about::after,
+    .section-contact::after,
+    .section-projects::after,
+    .section-stones::after {
+      content: none
+    }
+  }
 
 .long-copy {
   font-size: 2.2rem;
