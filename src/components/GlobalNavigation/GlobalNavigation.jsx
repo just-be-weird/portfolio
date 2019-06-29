@@ -24,6 +24,12 @@ export default function GlobalNavigation() {
             })
         }
     }, [])
+
+    const clickHandler = e => {
+        e.preventDefault();
+        document.getElementById("navi-toggle").checked = false;
+    }
+
     return (
         <Fragment>
             <input type="checkbox" name="navi-toggle" className="navigation__checkbox" id="navi-toggle" />
@@ -37,13 +43,13 @@ export default function GlobalNavigation() {
                         <use xlinkHref={"/assets/img/sprite.svg#icon-flickr4"}></use>
                     </svg>
                     <ul className="main-nav navigation__list js--main-nav">
-                        <li className="navigation__item">
+                        <li className="navigation__item" onClick={e => clickHandler(e)}>
                             <Link className="navigation__link" to="/">Home</Link>
                         </li>
-                        <li className="navigation__item">
+                        <li className="navigation__item" onClick={e => clickHandler(e)}>
                             <Link className="navigation__link" to="/about">About</Link>
                         </li>
-                        <li className="navigation__item">
+                        <li className="navigation__item" onClick={e => clickHandler(e)}>
                             <Link className="navigation__link main-nav-box__experience"
                                 to="/experience">Experience</Link>
                         </li>
@@ -54,10 +60,10 @@ export default function GlobalNavigation() {
                                 </svg>
                                 Stones</Link>
                         </li>
-                        <li className="navigation__item">
+                        <li className="navigation__item" onClick={e => clickHandler(e)}>
                             <Link className="navigation__link" to="/projects">Projects</Link>
                         </li>
-                        <li className="navigation__item">
+                        <li className="navigation__item" onClick={e => clickHandler(e)}>
                             <Link className="navigation__link" to="/contact">Contact</Link>
                         </li>
                     </ul>
