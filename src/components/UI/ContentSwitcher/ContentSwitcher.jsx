@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import classes from './_contentswitcher.module.scss'
+import classes from '../../Sass/main.module.scss'
 import SwitcherContet from './SwitcherContent/SwitcherContet';
 
 export default function ContentSwitcher({ data }) {

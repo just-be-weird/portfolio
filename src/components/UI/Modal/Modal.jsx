@@ -1,6 +1,6 @@
 import React from 'react'
 import Backdrop from '../Backdrop/Backdrop'
-import classes from './_modal.module.scss'
+import classes from '../../Sass/main.module.scss'
 
 export default function Modal({
     id = '',
@@ -22,8 +22,8 @@ export default function Modal({
                 </div>
                 <div className={classes.popup__right}>
                     <button className={classes.popup__close} onClick={hideModal}>&times;</button>
-                    <h2 className="heading-secondary  u-margin-bottom-small">{projectName}</h2>
-                    <h3 className="heading-tertiary u-margin-bottom-small">&ndash; {details} &ndash;</h3>
+                    <h2 className={classes["heading-secondary"]+" "+classes["u-margin-bottom-small"]}>{projectName}</h2>
+                    <h3 className={classes["heading-tertiary"]+" "+classes["u-margin-bottom-small"]}>&ndash; {details} &ndash;</h3>
                     <p className={classes.popup__text}>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, odit dolorum? Quae voluptas
                         recusandae eaque harum soluta? Dolorem, amet ut. Lorem ipsum dolor sit amet consectetur
@@ -31,7 +31,7 @@ export default function Modal({
                         asperiores quibusdam adipisci maxime dolor facilis iste rerum dolorem in quia
                         necessitatibus.
                         </p>
-                    <a href="/#" className="btn btn--green">Visit Now</a>
+                    <a href="/#" className={classes["btn"]+" "+classes["btn--green"]}>Visit Now</a>
                 </div>
             </div>
         </Backdrop>

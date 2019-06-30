@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from './_switcher.module.scss'
+import classes from '../../../Sass/main.module.scss'
 
 export default function SwitcherContet({ experience, defaults }) {
     const payload = experience.length > 0 ? experience : defaults;
@@ -7,7 +7,8 @@ export default function SwitcherContet({ experience, defaults }) {
 
     const currentExp = (
         payload && payload.map(exp => (
-            <div key={`job${exp.index}+${exp.id}`}
+            <div className={classes["job__content"]}
+                key={`job${exp.index}+${exp.id}`}
                 id={`job${exp.index}`}
                 role="tabpanel" tabIndex={`${exp.index}`}
                 aria-labelledby={`job${exp.index}`}

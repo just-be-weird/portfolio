@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import Modal from '../../UI/Modal/Modal';
 import Card from '../../UI/Card/Card';
+import classes from '../../Sass/main.module.scss'
 
 export default function Projects() {
     const [mstate, setMstate] = useState(false);
@@ -74,9 +75,9 @@ export default function Projects() {
     ];
 
     const jsx = (data.length > 0 && data.map((row, index) => (
-        <div key={index} className="row">
+        <div key={index} className={classes["row"]}>
             {row.map(project => (
-                <div key={project.id} className="col-1-of-3">
+                <div key={project.id} className={classes["col-1-of-3"]}>
                     <Card {...project} clicked={clickHandler} />
                 </div>
             ))}
@@ -86,12 +87,12 @@ export default function Projects() {
 
     return (
         <Fragment>
-            <section className="section-projects">
-                <div className="section-wrapper" id="projects">
-                    <h2 className="section-title">Projects</h2>
+            <section className={classes["section-projects"]}>
+                <div className={classes["section-wrapper"]} id="projects">
+                    <h2 className={classes["section-title"]}>Projects</h2>
                     {jsx}
-                    <div className="cta-container">
-                        <a className="btn btn--white btn--animated" href="#contact">Contact</a>
+                    <div className={classes["cta-container"]}>
+                        <a className={classes["btn"]+" "+classes["btn--white"]+" "+classes["btn--animated"]} href="#contact">Contact</a>
                     </div>
                 </div>
             </section>
