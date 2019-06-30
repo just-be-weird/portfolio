@@ -1,6 +1,6 @@
 .section-experience {
-    height: 100vh;
-    margin: 2rem 20rem 15rem;
+    // height: 100vh;
+    margin: 2rem 20rem 8rem;
     @include respond(tab-port) {
         margin: 0;
         padding: 8rem 0 20rem;
@@ -22,7 +22,7 @@
             li {
                 border-left: 2px solid $color-grey-dark-3;
                 list-style: none;
-                padding-left: .1rem;
+                padding-left: 0.1rem;
                 margin: 0 4rem 0 0;
                 @include respond(tab-port) {
                     margin: 0 auto;
@@ -67,6 +67,9 @@
                 .job__title {
                     @include respond(tab-port) {
                         text-align: center;
+                        display: flex;
+                        flex-direction: column;
+                        margin-top: 4rem;
                     }
                     span {
                         font-size: 1.6rem;

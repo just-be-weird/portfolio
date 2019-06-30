@@ -166,6 +166,9 @@
 nav {
     .row {
         margin: 0 0 0 20rem;
+        @include respond(tab-port) {
+            margin: 0 auto;
+        }
     }
     background-color: rgba(255, 255, 255, 0.98);
     -webkit-box-shadow: 0 0.2rem 0.2rem $color-medium-grey;
@@ -239,37 +242,17 @@ nav {
 .main-nav-box {
     &__infinite {
         padding-left: 3.5rem !important;
+        margin-left: -1.5rem !important;
         &-icon {
             height: 3rem;
             width: 3rem;
-            left: 0;
+            left: 1.8rem;
             position: absolute;
             @include respond(tab-port) {
                 top: 1.4rem;
             }
         }
     }
-}
-
-/* Mobile navi */
-.mobile-nav-icon {
-    float: right;
-    margin-top: 30px;
-    cursor: pointer;
-    display: none;
-}
-
-.mobile-nav-icon i {
-    font-size: 200%;
-    color: $color-white;
-}
-
-/* Sticky navi */
-
-.sticky .main-nav {
-    // margin: 1.4rem;
-}
-.sticky .just-be-weird-logo {
 }
 
 .sticky {

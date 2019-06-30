@@ -38,12 +38,12 @@ export default function GlobalNavigation() {
                 <span className={classes["navigation__icon"]}>&nbsp;</span>
             </label>
             <div className={classes["navigation__background"]}>&nbsp;</div>
-            <nav className={classes["navigation"]+" "+["navigation__nav"]} id='global__nav'>
+            <nav className={classes["navigation"]+" "+classes["navigation__nav"]} id='global__nav'>
                 <div className={classes["row"]}>
                     <svg className={classes["just-be-weird-logo"]}>
                         <use xlinkHref={"/assets/img/sprite.svg#icon-flickr4"}></use>
                     </svg>
-                    <ul className={classes["main-nav"]+" "+["navigation__list"]}>
+                    <ul className={classes["main-nav"]+" "+classes["navigation__list"]}>
                         <li className={classes["navigation__item"]} onClick={e => clickHandler(e)}>
                             <Link className={classes["navigation__link"]} to="/">Home</Link>
                         </li>
@@ -54,8 +54,8 @@ export default function GlobalNavigation() {
                             <Link className={classes["navigation__link"]+" "+["main-nav-box__experience"]}
                                 to="/experience">Experience</Link>
                         </li>
-                        <li className={classes["navigation__item"]+" "+["main-nav-box__infinite"]} onClick={e => clickHandler(e)}>
-                            <Link className={classes["navigation__link"]+" "+["main-nav-box__infinite"]} to="/stones">
+                        <li className={classes["navigation__item"]+" "+classes["main-nav-box__infinite"]} onClick={e => clickHandler(e)}>
+                            <Link className={classes["navigation__link"]+" "+classes["main-nav-box__infinite"]} to="/stones">
                                 <svg className={classes["main-nav-box__infinite-icon"]}>
                                     <use xlinkHref="/assets/img/sprite.svg#icon-infinite"></use>
                                 </svg>

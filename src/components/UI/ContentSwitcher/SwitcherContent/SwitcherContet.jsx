@@ -3,7 +3,6 @@ import classes from '../../../Sass/main.module.scss'
 
 export default function SwitcherContet({ experience, defaults }) {
     const payload = experience.length > 0 ? experience : defaults;
-    console.log(classes)
 
     const currentExp = (
         payload && payload.map(exp => (
