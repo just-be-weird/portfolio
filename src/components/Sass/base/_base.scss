@@ -1,0 +1,45 @@
+/* -- Reset -- */
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+    -webkit-box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+/* -- everything related to font should be part of body not * -- */
+html {
+    /* to set rem as unit*/
+    font-size: 62.5%;
+
+    @include respond(tab-landscape) {// width < 1200px??
+        font-size: 56.25%; //I want 1 rem = 9px, which i can get by doing, 9/16 = 56.25%
+    }
+    @include respond(tab-port) {// width < 900px??
+        font-size: 50%; // I want 1 rem = 8px, which i can get by doing, 8/16 = 50%
+    }
+    @include respond(big-desktop) {
+        font-size: 75%; //I want 1 rem = 12px, which i can get by doing, 8/16 = 50%
+    }
+}
+
+body {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    /* Its better practice to keep it on body then inherit to all by using universal selector @line16
+        
+        ---- As box-sizing property is not inherited itself --------
+        
+        so by doing this we are forcing to all the elemets to inherit it whatever is set on body
+    */
+
+    @include respond(tab-port) {// width < 900px??
+        padding: 0;
+    }
+}
+
+
+[class^="section-"] {
+    outline: none;
+}

@@ -1,0 +1,82 @@
+@mixin clearfix {
+    &:after {
+        clear: both;
+        content: '';
+        display: table;
+    }
+}
+
+@mixin absCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*
+
+//Media Queries Manager
+    0-600px     Phone
+    600-900px   Tablet Portrait
+    900-1200px  Tablet Landscape
+    1200-1800px Desktop styles
+    1800> *     Big Desktops
+
+    Definition:
+
+    @mixin respond-phone {
+        @media (max-width: 600px) {
+            @content
+        }
+    }
+
+    Usage:
+
+    @include respond-phone {
+        styles..
+    }
+
+    ----Breakpoint argument choices ----
+    *phone
+    *tab-port
+    *tab-landscape
+    *big-desktop
+    
+    ----Order in which we target mediaqueries----
+    Base + typography
+                    > General Layout + grid
+                                        > Page Layout
+                                                > Components
+
+
+*/
+
+// 1em =16px
+
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone {
+        @media (max-width: 37.5em ) { @content }; //600px
+    }
+    
+    @if $breakpoint == tab-port {
+        @media (max-width: 56.25em ) { @content };//900px
+    }
+    
+    @if $breakpoint == tab-landscape {
+        @media (max-width: 75em) { @content };//till 1200 not above //1200px
+    }
+
+    @if $breakpoint == big-desktop {
+        @media (min-width: 112.5em ) { @content };//above 1800 not below  //1800px
+    }
+}
+
+/*
+    usage of above:
+    @include respond(phone) {
+        styles
+    }
+
+    Always put larger one before smaller one
+*/
+
