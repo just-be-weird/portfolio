@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import classes from '../Sass/main.module.scss';
 
 export default function GlobalNavigation() {
     useEffect(() => {
@@ -32,42 +33,41 @@ export default function GlobalNavigation() {
 
     return (
         <Fragment>
-            <input type="checkbox" name="navi-toggle" className="navigation__checkbox" id="navi-toggle" />
-            <label htmlFor="navi-toggle" className="navigation__button">
-                <span className="navigation__icon">&nbsp;</span>
+            <input type="checkbox" name="navi-toggle" className={classes["navigation__checkbox"]} id="navi-toggle" />
+            <label htmlFor="navi-toggle" className={classes["navigation__button"]}>
+                <span className={classes["navigation__icon"]}>&nbsp;</span>
             </label>
-            <div className="navigation__background">&nbsp;</div>
-            <nav className="navigation navigation__nav" id='global__nav'>
-                <div className="row">
-                    <svg className="just-be-weird-logo">
+            <div className={classes["navigation__background"]}>&nbsp;</div>
+            <nav className={classes["navigation"]+" "+["navigation__nav"]} id='global__nav'>
+                <div className={classes["row"]}>
+                    <svg className={classes["just-be-weird-logo"]}>
                         <use xlinkHref={"/assets/img/sprite.svg#icon-flickr4"}></use>
                     </svg>
-                    <ul className="main-nav navigation__list js--main-nav">
-                        <li className="navigation__item" onClick={e => clickHandler(e)}>
-                            <Link className="navigation__link" to="/">Home</Link>
+                    <ul className={classes["main-nav"]+" "+["navigation__list"]}>
+                        <li className={classes["navigation__item"]} onClick={e => clickHandler(e)}>
+                            <Link className={classes["navigation__link"]} to="/">Home</Link>
                         </li>
-                        <li className="navigation__item" onClick={e => clickHandler(e)}>
-                            <Link className="navigation__link" to="/about">About</Link>
+                        <li className={classes["navigation__item"]} onClick={e => clickHandler(e)}>
+                            <Link className={classes["navigation__link"]} to="/about">About</Link>
                         </li>
-                        <li className="navigation__item" onClick={e => clickHandler(e)}>
-                            <Link className="navigation__link main-nav-box__experience"
+                        <li className={classes["navigation__item"]} onClick={e => clickHandler(e)}>
+                            <Link className={classes["navigation__link"]+" "+["main-nav-box__experience"]}
                                 to="/experience">Experience</Link>
                         </li>
-                        <li className="navigation__item main-nav-box__infinite" onClick={e => clickHandler(e)}>
-                            <Link className="navigation__link main-nav-box__infinite" to="/stones">
-                                <svg className="main-nav-box__infinite-icon">
+                        <li className={classes["navigation__item"]+" "+["main-nav-box__infinite"]} onClick={e => clickHandler(e)}>
+                            <Link className={classes["navigation__link"]+" "+["main-nav-box__infinite"]} to="/stones">
+                                <svg className={classes["main-nav-box__infinite-icon"]}>
                                     <use xlinkHref="/assets/img/sprite.svg#icon-infinite"></use>
                                 </svg>
                                 Stones</Link>
                         </li>
-                        <li className="navigation__item" onClick={e => clickHandler(e)}>
-                            <Link className="navigation__link" to="/projects">Projects</Link>
+                        <li className={classes["navigation__item"]} onClick={e => clickHandler(e)}>
+                            <Link className={classes["navigation__link"]} to="/projects">Projects</Link>
                         </li>
-                        <li className="navigation__item" onClick={e => clickHandler(e)}>
-                            <Link className="navigation__link" to="/contact">Contact</Link>
+                        <li className={classes["navigation__item"]} onClick={e => clickHandler(e)}>
+                            <Link className={classes["navigation__link"]} to="/contact">Contact</Link>
                         </li>
                     </ul>
-                    <a href='/#' className="mobile-nav-icon js--nav-icon"><i className="ion-ios-menu"></i></a>
                 </div>
             </nav>
         </Fragment>

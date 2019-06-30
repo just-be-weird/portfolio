@@ -12,13 +12,13 @@ export default function Contact() {
         </p>
         <div className="cta-container">
           <a
-            className="btn btn--white btn--animated js--scroll-to-plans"
+            className="btn btn--white btn--animated"
             href="mailto:abhi.chandresh@gmail.com"
           >
             Say Hi <span role="img" aria-label='hi-gesture'> 👋</span>
           </a>
           <a
-            className="btn btn--white btn--animated btn-resume js--scroll-to-plans"
+            className="btn btn--white btn--animated btn-resume"
             target="_blank"
             href="public/assets/docs/AbhishekPrajpati_Resume_2019_06.pdf"
           >

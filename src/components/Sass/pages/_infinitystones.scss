@@ -1,0 +1,10 @@
+.section-stones {
+    height: 100vh;
+    margin-top: 2rem;
+    & > .row {
+        margin-top: 8rem;
+    }
+    @include respond(tab-port) {
+        height: auto;
+    }
+}

@@ -1,0 +1,61 @@
+.section-experience-selector-job-desc {
+    div[id^="job"] {
+        ul {
+            list-style: none;
+            counter-reset: section;
+            li {
+                position: relative;
+            }
+        }
+    }
+}
+.experience-box__icon {
+    position: absolute;
+    height: 2rem;
+    width: 2rem;
+    left: 3.5rem;
+    top: 3.2rem;
+}
+
+.job__title {
+    span {
+        font-size: 1.6rem;
+        @media (max-width: 56.25em) {
+            font-size: 2.6rem;
+        }
+    }
+    @media (max-width: 56.25em) {
+        text-align: center;
+    }
+}
+.job__span {
+    font-size: 1.2rem;
+    color: #777777;
+    @media (max-width: 56.25em) {
+        text-align: center;
+        font-size: 1.6rem;
+    }
+}
+.section-experience-selector-job-desc div[id^="job"] .ul-selector li {
+    padding: 2rem 3rem;
+    font-size: 1.6rem;
+    position: relative;
+    padding: 2.5rem 10rem;
+}
+@media (max-width: 56.25em) {
+    .ul-selector li {
+        svg {
+            top: 3rem;
+            left: 3rem;
+        }
+        p {
+            font-size: 2rem;
+        }
+    }
+}
+.job__company a {
+    font-size: 2.6rem;
+    @media (max-width: 56.25em) {
+        font-size: 3.6rem;
+    }
+}

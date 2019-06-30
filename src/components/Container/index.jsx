@@ -5,13 +5,14 @@ import LandingPage from '../Landingpage/LandingPage';
 import Routes from '../Routing/Routes'
 import SocialAction from '../Socials/SocialAction'
 import MultiActions from '../MultiActions/MultiActions'
+import classes from '../Sass/main.module.scss'
 
 
 export default function index() {
     return (
         <Fragment>
             <Router>
-                <header id="home">
+                <header className={classes['section-header']} id="home">
                     <GlobalNavigation />
                     <Switch>
                         <Route exact path='/' component={LandingPage} />

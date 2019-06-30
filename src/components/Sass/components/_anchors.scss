@@ -1,0 +1,20 @@
+/* ----- LINKS ----- */
+
+a {
+
+    &:link,
+    &:visited {
+        // border-bottom: 1px solid $color-black;
+        // color: $color-black;
+        font-size: 1.8rem;
+        // padding-bottom: .2rem;
+        text-decoration: none;
+        -webkit-transition: border-bottom .2s, color .2s;
+        transition: border-bottom .2s, color .2s;
+    }
+    
+    &:hover,
+    &:active {
+        border-bottom: 2px solid $color-black;
+    }
+}

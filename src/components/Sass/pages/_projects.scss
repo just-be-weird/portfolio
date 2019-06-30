@@ -1,0 +1,7 @@
+.section-projects {
+    margin-top: 20rem;
+    height: 100vh;
+    @include respond(tab-port) {
+        height: auto;
+    }
+}

@@ -1,0 +1,126 @@
+/* -- Buttons -- */
+
+button {
+    border: none;
+    background: transparent;
+}
+.btn {
+    &--white {
+        background-color: $color-dark-blue;
+        color: $color-white;
+        
+        &:after {
+            background-color: $color-dark-blue;
+        }
+    }
+
+    &--green {
+        background-color:$color-primary;
+        color: $color-white !important;
+        
+        &:after {
+            background-color: $color-primary;
+        }
+    }
+    &-resume {
+        margin: 6rem 0 0 10rem;
+        @include respond(tab-port) {
+            margin: 6rem 0 0 0rem;
+        }
+    }
+    
+    &,
+    &:link,
+    &:visited {
+        border-radius: 10rem;
+        /*for making round btn*/
+        display: inline-block;
+        /*Height weight property works now*/
+        font-size: $default-font-size;
+        padding: 1.5rem 4rem;
+        position: relative;
+        text-decoration: none;
+        text-transform: uppercase;
+        -webkit-transition: all .2s;
+        transition: all .2s;
+
+        // change for <button>
+        border: none;
+        cursor: pointer;
+    }
+    
+    &:hover {
+        -webkit-box-shadow: 0 1.4rem 2rem rgba(0, 0, 0, .2);
+        box-shadow: 0 1.4rem 2rem rgba(0, 0, 0, .2);
+        -webkit-transform: translateY(-.3rem);
+        transform: translateY(-.3rem);
+
+        &::after {
+            opacity: 0;
+        -webkit-transform: scaleX(1.4) scaleY(1.6);
+        transform: scaleX(1.4) scaleY(1.6);
+        }
+    }
+    
+    &:active,
+    :focus {
+        outline: none;
+        -webkit-transform: translateY(-.1rem);
+        transform: translateY(-.1rem);
+        -webkit-box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+        box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+    }
+    
+    &:after {
+        /*make a element like btn and put it behind btn*/
+        content: "";
+        /*to make it appear without this prop Selem won't appear*/
+        border-radius: 10rem;
+        display: inline-block;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        -webkit-transition: all .4s;
+        transition: all .4s;
+        width: 100%;
+        z-index: -1;
+    }
+    
+    /* .header__text-box .btn--white { */
+    &--animated {
+        -webkit-animation: moveUpFromBottom 1s ease-out .75s;
+        animation: moveUpFromBottom 1s ease-out .75s;
+        -webkit-animation-fill-mode: backwards;
+        animation-fill-mode: backwards;
+        /*to use 0% animation state*/
+        /* animation-name: moveUpFromBottom;
+        animation-duration: 1s;
+        animation-timing-function: ease-out; */
+    }
+}
+
+.btn-text {
+    &:link,
+    &:visited {
+        border-bottom: .1rem solid $color-primary;
+        color: $color-primary;
+        display: inline-block;
+        font-size: $default-font-size;
+        padding: .3rem;
+        text-decoration: none;
+        transition: all .2s;
+    }
+    
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black, .15);
+        transform: translateY(-.2rem);
+    }
+    
+    &:active {
+        box-shadow: 0 1rem 2rem rgba($color-black, .15);
+        transform: translateY(0);
+    }
+}

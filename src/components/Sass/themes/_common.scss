@@ -1,0 +1,88 @@
+.ul_list {
+    list-style: none;
+    counter-reset: section;
+    li {
+        position: relative;
+        svg {
+            position: absolute;
+            height: 2rem;
+            left: -3rem;
+            top: 2.5rem;
+        }
+        &.stones-box__list-item::before {
+            content: "▹";
+            position: absolute;
+            left: 0px;
+            color: rgb(100, 255, 218);
+            line-height: 20px;
+        }
+    }
+}
+
+
+.rainbow-anm {
+    background: linear-gradient(270deg, #0600ff, #00ffdf, #45ff00, #fffa00, #ff9400, #ff0200);
+    background-size: 1200% 1200%;
+    -webkit-animation: rainbow-effect 2s ease infinite;
+    -moz-animation: rainbow-effect 2s ease infinite;
+    animation: rainbow-effect 2s ease infinite;
+
+    @-webkit-keyframes rainbow-effect {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+    @-moz-keyframes rainbow-effect {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+    @keyframes rainbow-effect {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+}
+.grd-color {
+    background: -webkit-gradient(linear,left top,right top,from(#ff8a00),to(#da1b60)) left 
+    bottom
+    transparent    
+    no-repeat;
+    background: linear-gradient(to right,#ff8a00,#da1b60) left 
+    bottom
+    transparent    
+    no-repeat;
+}
+
+.highlight {
+    @extend .grd-color;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    text-shadow: none;
+}
+
+.grd-border-btm {
+    @extend .grd-color;
+    background-size: 100% 3px;
+}

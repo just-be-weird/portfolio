@@ -1,0 +1,119 @@
+// /* -- Header -- */
+
+.section-header {
+    height: 100vh;
+}
+.cta-container {
+    text-align: center;
+}
+
+.hero-text-box {
+    background: linear-gradient(to left bottom, #b3e8fd, #03a9f4);
+    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.42);
+    padding: 5rem;
+    border-radius: 2rem;
+    left: 50%;
+    margin: 4rem 0 0 0;
+    top: 50%;
+    position: absolute;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 114rem;
+
+    @include respond(tab-landscape) {
+        width:95rem;
+        height: 75vh;
+        margin: 0;
+        padding: 10rem;
+    }
+    @include respond(phone) {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        padding: 8rem 0rem;
+    }
+
+    a.btn--white {
+        font-size: 2rem;
+        margin: 8rem 0 0 0;
+        text-align: center;
+        color: $color-white;
+    }
+    &-container {
+        position: relative;
+        background: white;
+        padding: 0 2rem 3rem;
+        width: 80%;
+        margin: 0 auto;
+        border-radius: 5rem;
+        border-top-left-radius: 0;
+
+        @include respond(tab-landscape) {
+            width: 90%;
+        }
+        @include respond(phone) {
+            width: 85%;
+        }
+
+
+        p {
+            padding: 0px 2rem 1rem;
+        }
+        &:before {
+            content: '';
+            top: 0rem;
+            left: -2rem;
+            content: '';
+            background: #ffffff;
+            height: 2rem;
+            display: inline-block;
+            width: 2rem;
+            position: absolute;
+            border-bottom-left-radius: 100%;
+        }
+    }
+}
+
+.just-be-weird {
+    &-logo {
+        @extend .rainbow-anm;
+        height: 3.8rem;
+        border-radius: 50%;
+        position: absolute;
+        top: 0.2rem;
+        left: 10rem;
+        // background: #0db7ff;
+        width: 3.8rem;
+        @include respond(tab-landscape) {
+            left: 8rem;
+        }
+        @include respond(phone) {
+            left: 2rem;
+            top: 2rem;
+        }
+    }
+    &-black-logo {
+        display: none;
+    }
+}
+.section-hero-container {
+    &--image {
+        position: absolute;
+        top: 10%;
+        right: 20%;
+        width: 15rem;
+        height: 15rem;
+        float: left;
+        margin-top: 10rem;
+        transform: translateX(-3rem);
+        overflow: hidden;
+        border-radius: 10%;
+
+        &__img {
+            height: 100%;
+            transform: translate(2rem, 2rem) scale(1.4);
+            backface-visibility: hidden;
+            transition: all 0.5s;
+        }
+    }
+}

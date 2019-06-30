@@ -6,10 +6,11 @@ import InfinityStones from '../Container/Layout/InfinityStones';
 import Projects from '../Container/Layout/Projects';
 import Contact from '../Container/Layout/Contact';
 import NotFound from '../NotFound/NotFound'
+import classes from '../Sass/main.module.scss'
 
 export default function Routes() {
     return (
-        <div className="container">
+        <div className={classes.container}>
             <Switch>
                 <Route exact path='/about' component={About} />
                 <Route exact path='/experience' component={Experience} />
