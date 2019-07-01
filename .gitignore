@@ -1,3 +1,8 @@
+.firebaserc*
+firebase.json
+database.rules.json
+.firebase
+
 # Logs
 logs
 *.log
