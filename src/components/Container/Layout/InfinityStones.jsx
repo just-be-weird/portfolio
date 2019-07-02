@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import classes from '../../Sass/main.module.scss'
 
 
@@ -100,6 +101,9 @@ export default function InfinityStones() {
             <div className={classes["section-wrapper"]} id="stones">
                 <h2 className={classes["section-title"]}>My Infinity Stones</h2>
                 {jsx}
+                <div className={classes["cta-container"]}>
+                    <Link className={classes["btn"] + " " + classes["btn--white"] + " " + classes["btn--animated"]} to="/projects">Projects</Link>
+                </div>
             </div>
         </section>
     )

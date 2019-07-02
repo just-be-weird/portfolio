@@ -30,7 +30,66 @@ export default function GlobalNavigation() {
         e.preventDefault();
         document.getElementById("navi-toggle").checked = false;
     }
+    const data = [
+        {
+            id: "home",
+            nav_title: "Home",
+            nav_to: "/",
+            nav_class: "",
+            svg: false
+        }
+        , {
+            id: "about",
+            nav_title: "About",
+            nav_to: "/about",
+            nav_class: "",
+            svg: false
+        }
+        , {
+            id: "experience",
+            nav_title: "Experience",
+            nav_class: "",
+            nav_to: "/experience",
+            svg: false
+        }
+        , {
+            id: "stones",
+            nav_title: "Stones",
+            nav_to: "/stones",
+            nav_class: "main-nav-box__infinite",
+            svg: true,
+            svg_icon: "/assets/img/sprite.svg#icon-infinite"
+        }
+        , {
+            id: "projects",
+            nav_title: "Projects",
+            nav_to: "/projects",
+            svg: false,
+            nav_class: ""
+        }
+        , {
+            id: "contact",
+            nav_title: "Contact",
+            nav_to: "/contact",
+            nav_class: ""
+        }
+    ];
 
+    const jsx = (
+        data.length > 0 && data.map(nav_item => (
+            <li key={nav_item.id} className={classes["navigation__item"] + (nav_item.nav_class.length > 0 ? " " + classes[nav_item.nav_class] : "")} onClick={e => clickHandler(e)}>
+                <Link className={classes["navigation__link"] + (nav_item.nav_class.length > 0 ? " " + classes[nav_item.nav_class] : "")} to={nav_item.nav_to}>
+                    {
+                        nav_item.svg && (
+                            <svg className={classes[`${nav_item.nav_class}-icon`]}>
+                                <use xlinkHref={nav_item.svg_icon}></use>
+                            </svg>)
+                    }
+
+                    {nav_item.nav_title}</Link>
+            </li>
+        ))
+    )
     return (
         <Fragment>
             <input type="checkbox" name="navi-toggle" className={classes["navigation__checkbox"]} id="navi-toggle" />
@@ -38,35 +97,13 @@ export default function GlobalNavigation() {
                 <span className={classes["navigation__icon"]}>&nbsp;</span>
             </label>
             <div className={classes["navigation__background"]}>&nbsp;</div>
-            <nav className={classes["navigation"]+" "+classes["navigation__nav"]} id='global__nav'>
+            <nav className={classes["navigation"] + " " + classes["navigation__nav"]} id='global__nav'>
                 <div className={classes["row"]}>
                     <svg className={classes["just-be-weird-logo"]}>
                         <use xlinkHref={"/assets/img/sprite.svg#icon-flickr4"}></use>
                     </svg>
-                    <ul className={classes["main-nav"]+" "+classes["navigation__list"]}>
-                        <li className={classes["navigation__item"]} onClick={e => clickHandler(e)}>
-                            <Link className={classes["navigation__link"]} to="/">Home</Link>
-                        </li>
-                        <li className={classes["navigation__item"]} onClick={e => clickHandler(e)}>
-                            <Link className={classes["navigation__link"]} to="/about">About</Link>
-                        </li>
-                        <li className={classes["navigation__item"]} onClick={e => clickHandler(e)}>
-                            <Link className={classes["navigation__link"]+" "+["main-nav-box__experience"]}
-                                to="/experience">Experience</Link>
-                        </li>
-                        <li className={classes["navigation__item"]+" "+classes["main-nav-box__infinite"]} onClick={e => clickHandler(e)}>
-                            <Link className={classes["navigation__link"]+" "+classes["main-nav-box__infinite"]} to="/stones">
-                                <svg className={classes["main-nav-box__infinite-icon"]}>
-                                    <use xlinkHref="/assets/img/sprite.svg#icon-infinite"></use>
-                                </svg>
-                                Stones</Link>
-                        </li>
-                        <li className={classes["navigation__item"]} onClick={e => clickHandler(e)}>
-                            <Link className={classes["navigation__link"]} to="/projects">Projects</Link>
-                        </li>
-                        <li className={classes["navigation__item"]} onClick={e => clickHandler(e)}>
-                            <Link className={classes["navigation__link"]} to="/contact">Contact</Link>
-                        </li>
+                    <ul className={classes["main-nav"] + " " + classes["navigation__list"]}>
+                        {jsx}
                     </ul>
                 </div>
             </nav>

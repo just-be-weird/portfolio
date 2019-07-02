@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import classes from '../../Sass/main.module.scss'
 
 
 export default function About() {
     return (
-        <section className={classes["section-about"]+" "+classes["container"]}>
+        <section className={classes["section-about"] + " " + classes["container"]}>
             <div className={classes["section-wrapper"]} id="about">
                 <h2 className={classes["section-title"]}>About Me</h2>
                 <p className={classes["long-copy"]}>
@@ -27,7 +28,7 @@ export default function About() {
 
                     </p>
                 <div className={classes["cta-container"]}>
-                    <a className={classes["btn"]+" "+classes["btn--white"]+" "+classes["btn--animated"]} href="#experience">Experience</a>
+                    <Link className={classes["btn"] + " " + classes["btn--white"] + " " + classes["btn--animated"]} to="/experience">Experience</Link>
                 </div>
             </div>
         </section>
