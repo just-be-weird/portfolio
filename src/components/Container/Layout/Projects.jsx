@@ -46,7 +46,7 @@ export default function Projects() {
         [
             {
                 id: "socialbird",
-                card_no: 3,
+                card_no: 2,
                 project_name: "Social Bird",
                 project_highlights: [
                     "React| Redux",
@@ -55,17 +55,17 @@ export default function Projects() {
             },
             {
                 id: "jbwportfolio",
-                card_no: 1,
+                card_no: 3,
                 project_name: "JustBeWeird Portfolio",
                 project_highlights: [
-                    "Netsuite | Aconcagua",
-                    "BackboneJS | jQuery"
+                    "React | Redux",
+                    "Firebase | Node"
                 ]
             }
             , {
                 id: "othr",
                 project_name: "Other Featured",
-                card_no: 2,
+                card_no: 1,
                 project_highlights: [
                     "React | Netlify",
                     "CSS3 | GithubPages"
