@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import classes from '../../Sass/main.module.scss'
 
 export default function Footer() {
@@ -13,10 +14,10 @@ export default function Footer() {
                 <div className={classes["col-1-of-2"]}>
                     <div className={classes["footer__navigation"]}>
                         <ul className={classes["footer__list"]}>
-                            <li className={classes["footer__item"]}><a href="#home" className={classes["footer__link"]}>Home</a></li>
-                            <li className={classes["footer__item"]}><a href="#about" className={classes["footer__link"]}>about</a></li>
-                            <li className={classes["footer__item"]}><a href="#experience" className={classes["footer__link"]}>Experience</a></li>
-                            <li className={classes["footer__item"]}><a href="#projects" className={classes["footer__link"]}>Projects</a></li>
+                            <li className={classes["footer__item"]}><Link to="/" className={classes["footer__link"]}>Home</Link></li>
+                            <li className={classes["footer__item"]}><Link to="/about" className={classes["footer__link"]}>about</Link></li>
+                            <li className={classes["footer__item"]}><Link to="/experience" className={classes["footer__link"]}>Experience</Link></li>
+                            <li className={classes["footer__item"]}><Link to="/projects" className={classes["footer__link"]}>Projects</Link></li>
                         </ul>
                     </div>
                 </div>

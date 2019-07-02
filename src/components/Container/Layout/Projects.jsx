@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react'
+import { Link } from 'react-router-dom'
 import Modal from '../../UI/Modal/Modal';
 import Card from '../../UI/Card/Card';
 import classes from '../../Sass/main.module.scss'
@@ -46,26 +47,29 @@ export default function Projects() {
         [
             {
                 id: "socialbird",
-                card_no: 3,
+                card_no: 2,
                 project_name: "Social Bird",
                 project_highlights: [
-                    "React| Redux",
-                    "Firebase &verbar; Heroku"
-                ]
+                    "React | Redux",
+                    "Firebase | Heroku"
+                ],
+                project_data: {
+                    url: "https://salty-lake-94720.herokuapp.com/"
+                } 
             },
             {
                 id: "jbwportfolio",
-                card_no: 1,
+                card_no: 3,
                 project_name: "JustBeWeird Portfolio",
                 project_highlights: [
-                    "Netsuite | Aconcagua",
-                    "BackboneJS | jQuery"
+                    "React | Redux",
+                    "Firebase | Node"
                 ]
             }
             , {
                 id: "othr",
                 project_name: "Other Featured",
-                card_no: 2,
+                card_no: 1,
                 project_highlights: [
                     "React | Netlify",
                     "CSS3 | GithubPages"
@@ -92,7 +96,7 @@ export default function Projects() {
                     <h2 className={classes["section-title"]}>Projects</h2>
                     {jsx}
                     <div className={classes["cta-container"]}>
-                        <a className={classes["btn"]+" "+classes["btn--white"]+" "+classes["btn--animated"]} href="#contact">Contact</a>
+                        <Link className={classes["btn"]+" "+classes["btn--white"]+" "+classes["btn--animated"]} to="/contact">Contact</Link>
                     </div>
                 </div>
             </section>
