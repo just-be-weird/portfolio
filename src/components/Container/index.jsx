@@ -7,6 +7,7 @@ import SocialAction from '../Socials/SocialAction'
 import MultiActions from '../MultiActions/MultiActions'
 import classes from '../Sass/main.module.scss'
 import Footer from './Layout/Footer';
+import Loader from '../UI/Loader/Loader';
 
 
 export default function index() {
@@ -22,6 +23,7 @@ export default function index() {
                 </Switch>
                 <MultiActions />
                 <SocialAction />
+                {/* <Loader /> */}
                 <Footer />
             </Router>
         </Fragment>

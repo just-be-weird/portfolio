@@ -1,9 +1,17 @@
 import React from 'react'
 import Container from './components/Container'
 
+//Redux
+import { Provider } from 'react-redux'
+import store from './store'
+import  './components/Firebase/Firebase'
+
+
 const App = () => {
   return (
-    <Container />
+    <Provider store={store}>
+      <Container />
+    </Provider>
   )
 }
 

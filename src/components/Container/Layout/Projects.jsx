@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react'
+import { Link } from 'react-router-dom'
 import Modal from '../../UI/Modal/Modal';
 import Card from '../../UI/Card/Card';
 import classes from '../../Sass/main.module.scss'
@@ -49,9 +50,12 @@ export default function Projects() {
                 card_no: 2,
                 project_name: "Social Bird",
                 project_highlights: [
-                    "React| Redux",
-                    "Firebase &verbar; Heroku"
-                ]
+                    "React | Redux",
+                    "Firebase | Heroku"
+                ],
+                project_data: {
+                    url: "https://salty-lake-94720.herokuapp.com/"
+                } 
             },
             {
                 id: "jbwportfolio",
@@ -92,7 +96,7 @@ export default function Projects() {
                     <h2 className={classes["section-title"]}>Projects</h2>
                     {jsx}
                     <div className={classes["cta-container"]}>
-                        <a className={classes["btn"]+" "+classes["btn--white"]+" "+classes["btn--animated"]} href="#contact">Contact</a>
+                        <Link className={classes["btn"]+" "+classes["btn--white"]+" "+classes["btn--animated"]} to="/contact">Contact</Link>
                     </div>
                 </div>
             </section>
