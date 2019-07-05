@@ -1,5 +1,5 @@
 const express = require("express");
-const connectedToDB = require("./config/db");
+// const connectedToDB = require("./config/db");
 const path = require("path");
 
 //Server Basic config
@@ -8,13 +8,13 @@ const app = express();
 app.use(express.json({ extended: false }));
 
 //Connect to Database
-connectedToDB();
+// connectedToDB();
 
 //Define Backend api
 // app.use("/api/auth", require("../routes/api/auth"));
 // app.use("/api/posts", require("./routes/api/posts"));
 // app.use("/api/profile", require("./routes/api/profile"));
-// app.use("/api/users", require("./routes/api/users"));
+app.use("/api/users", require("./routes/api/users"));
 
 //server static assets in production
 if (process.env.NODE_ENV == "production") {
