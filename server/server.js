@@ -17,7 +17,7 @@ app.use(express.json({ extended: false }));
 app.use("/api/users", require("./routes/api/users"));
 
 //server static assets in production
-if (process.env.NODE_ENV == "production") {
+if (process.env.NODE_ENV === "production") {
     //set static folder
     app.use(express.static("build"));
 

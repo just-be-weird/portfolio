@@ -8,8 +8,6 @@
     }
     .long-copy {
         margin-bottom: 14rem;
-        @include respond(tab-port) {
-            margin: 0 auto 8rem;
-        }
+        margin-top: 20rem;
     }
 }

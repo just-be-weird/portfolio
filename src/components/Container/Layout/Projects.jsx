@@ -96,11 +96,22 @@ export default function Projects() {
                     <h2 className={classes["section-title"]}>Projects</h2>
                     {jsx}
                     <div className={classes["cta-container"]}>
-                        <Link className={classes["btn"]+" "+classes["btn--white"]+" "+classes["btn--animated"]} to="/contact">Contact</Link>
+                        <Link className={classes["btn"]+" "+classes["btn--blue"]+" "+classes["btn--animated"]} to="/contact">Contact</Link>
                     </div>
                 </div>
             </section>
-            <Modal id='poroject' modalState={mstate} hideModal={hideModalHandler} />
+            <Modal id='poroject' modalState={mstate} hideModal={hideModalHandler}>
+                <h2 className={classes["heading-secondary"]+" "+classes["u-margin-bottom-small"]}>projectNam</h2>
+                    <h3 className={classes["heading-tertiary"]+" "+classes["u-margin-bottom-small"]}>&ndash; details &ndash;</h3>
+                    <p className={classes.popup__text}>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, odit dolorum? Quae voluptas
+                        recusandae eaque harum soluta? Dolorem, amet ut. Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Rem neque similique, laudantium blanditiis odit harum inventore,
+                        asperiores quibusdam adipisci maxime dolor facilis iste rerum dolorem in quia
+                        necessitatibus.
+                        </p>
+                    <a href="/#" className={classes["btn"]+" "+classes["btn--green"]}>Visit Now</a>
+            </Modal>
         </Fragment>
     )
 }

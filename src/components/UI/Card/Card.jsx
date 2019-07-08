@@ -25,7 +25,7 @@ export default function Card({ clicked, id, project_name, card_no, project_highl
                 </div>
                 <div className={classes["card__side"] + " " + classes["card__side--back"] + " " + classes[`card__side--back-${card_no}`]}>
                     <div className={classes["card__cta"]}>
-                        <button className={classes["btn"] + " " + classes["btn--white"] + " " + classes["popup__open"]} onClick={clicked}>View Details</button>
+                        <button className={classes["btn"] + " " + classes["btn--blue"]} onClick={clicked}>View Details</button>
                     </div>
                 </div>
             </div>

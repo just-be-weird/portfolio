@@ -13,6 +13,12 @@
     transform: translate(-50%, -50%);
 }
 
+$mq-mobile-portrait		: 414px !default;
+$mq-mobile-landscape	: 480px !default;
+$mq-tablet-portrait		: 768px !default;
+$mq-tablet-landscape	: 1024px !default;
+$mq-desktop				: 1382px !default;
+
 /*
 
 //Media Queries Manager
@@ -64,6 +70,14 @@
     
     @if $breakpoint == tab-landscape {
         @media (max-width: 75em) { @content };//till 1200 not above //1200px
+    }
+
+    @if $breakpoint == desktop-only {
+        @media (min-width: 75em) { @content };//till 1200 not above //1200px
+    }
+
+    @if $breakpoint == mobile-landscape-n-up {
+        @media only screen and (min-width : $mq-mobile-portrait + 1) and (max-width : $mq-tablet-portrait){ @content };//till 1200 not above //1200px
     }
 
     @if $breakpoint == big-desktop {

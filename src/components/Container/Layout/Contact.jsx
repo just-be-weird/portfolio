@@ -13,13 +13,13 @@ export default function Contact() {
         </p>
         <div className={classes["cta-container"]}>
           <a
-            className={classes["btn"]+" "+classes["btn--white"]}
+            className={classes["btn"]+" "+classes["btn--blue"]}
             href="mailto:abhi.chandresh@gmail.com"
           >
             Say Hi <span role="img" aria-label='hi-gesture'> 👋</span>
           </a>
           <a
-            className={classes["btn"]+" "+classes["btn--white"]+" "+classes["btn-resume"]}
+            className={classes["btn"]+" "+classes["btn--blue"]+" "+classes["btn-resume"]}
             target="_blank"
             href="public/assets/docs/AbhishekPrajpati_Resume_2019_06.pdf"
           >

@@ -6,19 +6,19 @@ button {
     background: transparent;
 }
 .btn {
-    &--white {
+    &--blue {
         background-color: $color-dark-blue;
         color: $color-white;
-        
+
         &:after {
             background-color: $color-dark-blue;
         }
     }
 
     &--green {
-        background-color:$color-primary;
+        background-color: $color-primary;
         color: $color-white !important;
-        
+
         &:after {
             background-color: $color-primary;
         }
@@ -29,7 +29,7 @@ button {
             margin: 6rem 0 0 0rem;
         }
     }
-    
+
     &,
     &:link,
     &:visited {
@@ -42,36 +42,36 @@ button {
         position: relative;
         text-decoration: none;
         text-transform: uppercase;
-        -webkit-transition: all .2s;
-        transition: all .2s;
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
 
         // change for <button>
         border: none;
         cursor: pointer;
     }
-    
+
     &:hover {
-        -webkit-box-shadow: 0 1.4rem 2rem rgba(0, 0, 0, .2);
-        box-shadow: 0 1.4rem 2rem rgba(0, 0, 0, .2);
-        -webkit-transform: translateY(-.3rem);
-        transform: translateY(-.3rem);
+        -webkit-box-shadow: 0 1.4rem 2rem rgba(0, 0, 0, 0.2);
+        box-shadow: 0 1.4rem 2rem rgba(0, 0, 0, 0.2);
+        -webkit-transform: translateY(-0.3rem);
+        transform: translateY(-0.3rem);
 
         &::after {
             opacity: 0;
-        -webkit-transform: scaleX(1.4) scaleY(1.6);
-        transform: scaleX(1.4) scaleY(1.6);
+            -webkit-transform: scaleX(1.4) scaleY(1.6);
+            transform: scaleX(1.4) scaleY(1.6);
         }
     }
-    
+
     &:active,
     :focus {
         outline: none;
-        -webkit-transform: translateY(-.1rem);
-        transform: translateY(-.1rem);
-        -webkit-box-shadow: 0 .5rem 1rem rgba($color-black, .2);
-        box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+        -webkit-transform: translateY(-0.1rem);
+        transform: translateY(-0.1rem);
+        -webkit-box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+        box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
     }
-    
+
     &:after {
         /*make a element like btn and put it behind btn*/
         content: "";
@@ -82,16 +82,16 @@ button {
         left: 0;
         position: absolute;
         top: 0;
-        -webkit-transition: all .4s;
-        transition: all .4s;
+        -webkit-transition: all 0.4s;
+        transition: all 0.4s;
         width: 100%;
         z-index: -1;
     }
-    
-    /* .header__text-box .btn--white { */
+
+    /* .header__text-box .btn--blue { */
     &--animated {
-        -webkit-animation: moveUpFromBottom 1s ease-out .75s;
-        animation: moveUpFromBottom 1s ease-out .75s;
+        -webkit-animation: moveUpFromBottom 1s ease-out 0.75s;
+        animation: moveUpFromBottom 1s ease-out 0.75s;
         -webkit-animation-fill-mode: backwards;
         animation-fill-mode: backwards;
         /*to use 0% animation state*/
@@ -104,24 +104,151 @@ button {
 .btn-text {
     &:link,
     &:visited {
-        border-bottom: .1rem solid $color-primary;
+        border-bottom: 0.1rem solid $color-primary;
         color: $color-primary;
         display: inline-block;
         font-size: $default-font-size;
-        padding: .3rem;
+        padding: 0.3rem;
         text-decoration: none;
-        transition: all .2s;
+        transition: all 0.2s;
     }
-    
+
     &:hover {
         background-color: $color-primary;
         color: $color-white;
-        box-shadow: 0 1rem 2rem rgba($color-black, .15);
-        transform: translateY(-.2rem);
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
+        transform: translateY(-0.2rem);
+    }
+
+    &:active {
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
+        transform: translateY(0);
+    }
+}
+// General Inputs
+
+.custom_input {
+    &__group {
+        &:not(:last-child) {
+            margin-bottom: 2rem;
+        }
     }
     
-    &:active {
-        box-shadow: 0 1rem 2rem rgba($color-black, .15);
-        transform: translateY(0);
+
+    &__input {
+        background-color: #f3f3f3;
+        border: none;
+        border-bottom: 3px solid transparent;
+        border-radius: .2rem;
+        display: block;
+        margin: 0 auto;
+        font-family: inherit;
+        font-size: 1.5rem;
+        padding: 1.5rem 2rem;
+        transition: all .3s;
+        margin: 0 auto;
+        width: 80%;
+        text-overflow: ellipsis;
+        
+        @include respond(tab-port) {
+            width:100%;
+        }
+        @include respond(mobile-landscape-n-up) {
+            width: 50%;
+        }
+        
+        &:focus {
+            border-bottom: 3px solid $color-primary;
+            box-shadow: 0 1rem 2rem rgba($color-black, .1);
+            outline: none;
+            
+            &:invalid {
+                border-bottom: 3px solid $color-secondary-dark;
+            }
+        }
+
+        &::-webkit-input-placeholder {
+            color: $color-grey-dark-2; 
+        }
+    }
+
+    &__label {
+        display: block;
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-left: 5rem;
+        margin-top: 1rem;
+        transition: all .3s;
+        @include respond(tab-port) {
+            margin-left: 2rem;
+            margin-top: 0.7rem;
+        }
+    }
+
+    &__input:placeholder-shown + &__label {
+        opacity: 0;
+        visibility: hidden;//visibility doesn't work wothout opacity
+        transform: translateY(-4rem);
+    }
+}
+
+// Radio Inputs
+.radio {
+    &__group {
+        text-align: center;
+        width: 60%;
+        margin: -16px 5.6rem 2rem;
+        @include respond(tab-port) {
+            text-align: initial;
+        }
+        
+        @include respond(tab-port) {
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+        @include respond(mobile-landscape-n-up) {
+            text-align: center;
+            margin: -1.6rem 0 2rem;
+        }
+    }
+    &__input {
+        display: none;
+    }
+
+    &__label {
+        cursor: pointer;
+        font-size: $default-font-size;
+        padding-left: 2.5rem;
+        position: relative;
+    }
+
+    &__button {
+        border: 3px solid $color-dark-blue;
+        border-radius: 50%;
+        display: inline-block;
+        height: 2rem;
+        left: 0;
+        position: absolute;
+        top: 1px;
+        width: 2rem;
+
+        &::after {
+            background-color: $color-dark-blue;
+            border-radius: 50%;
+            content: "";
+            display: block;
+            height: 0.8rem;
+            left: 50%;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s;
+            width: 0.8rem;
+        }
+    }
+
+    &__input:checked ~ &__label &__button::after {
+        opacity: 1;
     }
 }

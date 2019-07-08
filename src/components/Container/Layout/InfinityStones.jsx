@@ -102,7 +102,7 @@ export default function InfinityStones() {
                 <h2 className={classes["section-title"]}>My Infinity Stones</h2>
                 {jsx}
                 <div className={classes["cta-container"]}>
-                    <Link className={classes["btn"] + " " + classes["btn--white"] + " " + classes["btn--animated"]} to="/projects">Projects</Link>
+                    <Link className={classes["btn"] + " " + classes["btn--blue"] + " " + classes["btn--animated"]} to="/projects">Projects</Link>
                 </div>
             </div>
         </section>

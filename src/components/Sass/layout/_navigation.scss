@@ -49,6 +49,25 @@
             top: 3.5rem;
             right: 3.5rem;
         }
+        &_image {
+            @include respond(mobile-landscape-n-up) {
+                right: 0;
+                width: 45% !important;
+            }
+            @include respond(tab-port) {
+                width: 100%;
+                z-index: -1;
+                position: absolute;
+                bottom: 0
+            }
+            @include respond(desktop-only) {
+                top: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                height: 100vh;
+            }
+        }
     }
 
     @include respond(tab-port) {
@@ -80,21 +99,7 @@
     &__link {
         &:link,
         &:visited {
-            background-image: linear-gradient(
-                120deg,
-                transparent 0%,
-                transparent 50%,
-                $color-white 50%
-            );
-            background-size: 230%;
-            font-size: 3rem;
-            color: $color-white;
             display: inline-block;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
             span {
                 margin-right: 1.5rem;
                 display: inline-block;
@@ -178,6 +183,21 @@ nav {
         -webkit-box-shadow: none;
         box-shadow: none;
     }
+    // &.landing-page {
+    //     background-color: transparent;
+    //     -webkit-box-shadow: none;
+    //     box-shadow: none;
+    //     .main-nav {
+    //         & li a:link,
+    //         & li a:visited { 
+    //             color: $color-white;
+    //         }
+    //         &-box__infinite-icon {
+    //             fill: currentColor;
+    //             color: $color-white;
+    //         }
+    //     }
+    // }
 }
 .main-nav {
     float: right;

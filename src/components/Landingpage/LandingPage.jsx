@@ -1,22 +1,55 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import classes from '../Sass/main.module.scss'
+import CustomInput from '../UI/InputButtons/CustomInput';
+
 
 const LandingPage = () => (
-    <div className={classes.landingPage}>
-        <div className={classes["hero-text-box"] + " " + classes["heading-primary"]}>
-            <h2 className={classes["heading-primary"] + " " + classes["heading-primary--sub"]}>Hi my name is,</h2>
-            <div className={classes["hero-text-box-container"]}>
-                <h1 className={classes["heading-primary"] + " " + classes["heading-primary--main"]}> <span className={classes["highlight"]}>Abhishek P.</span> </h1>
-                <p className={classes["heading-secondary"]}>A passionate software engineer based in Mumbai, India<br />
-                    – I create high-quality websites and digital applications <br /> with knowledge and passion.
-                    </p>
-            </div>
-            <div className={classes["cta-container"]}>
-                <Link className={classes["btn"] + " " + classes["btn--white"] + " " + classes["btn--animated"]} to="/about">Show me more</Link>
+    <Fragment>
+        <img className={classes.navigation__background_image} src="/assets/img/landing_page.svg" alt="LandingPage" />
+        <div className={classes["login"]}>
+            <div className={classes["login__form"]}>
+                <form action="#" className={classes["form"]}>
+                    <div className={classes["u-margin-bottom-medium"]+ " " + classes["form__des"]}>
+                        <h2 className={classes["heading-secondary"]}> Create your own<br /> <span className={classes.highlight}> customized portfolio.</span></h2>
+                    </div>
+                    {/* <CustomInput
+                        iptype="text"
+                        ipid="name"
+                        htmlFor="name"
+                        placeholderVal={"Full Name"}
+                        labelName="Full Name"
+                        isRquired={true}
+                    /> */}
+                    <CustomInput
+                        iptype="email"
+                        ipid="email"
+                        htmlFor="user-email"
+                        placeholderVal={"Email"}
+                        labelName="Email"
+                        isRquired={true}
+                    />
+                    <CustomInput
+                        iptype="password"
+                        ipid="password"
+                        htmlFor="user-password"
+                        placeholderVal={"Password"}
+                        labelName="Password"
+                        isRquired={true}
+                    />
+                    <CustomInput
+                        iptype="radio"
+                        ipid="register"
+                        htmlFor="register-now"
+                        labelName="Need an account? Sign Up"
+                    />
+                    <div className={classes["form__group"]}>
+                        <button className={classes["btn"] + " " + classes["btn--blue"]}> Log In </button>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
+    </Fragment>
 )
 
 export default LandingPage;

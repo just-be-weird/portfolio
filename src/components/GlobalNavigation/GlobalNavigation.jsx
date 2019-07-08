@@ -97,7 +97,7 @@ export default function GlobalNavigation() {
                 <span className={classes["navigation__icon"]}>&nbsp;</span>
             </label>
             <div className={classes["navigation__background"]}>&nbsp;</div>
-            <nav className={classes["navigation"] + " " + classes["navigation__nav"]} id='global__nav'>
+            <nav className={classes["navigation"] + " " + classes["navigation__nav"] + " " + classes['landing-page']} id='global__nav'>
                 <div className={classes["row"]}>
                     <svg className={classes["just-be-weird-logo"]}>
                         <use xlinkHref={"/assets/img/sprite.svg#icon-flickr4"}></use>

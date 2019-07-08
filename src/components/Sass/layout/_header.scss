@@ -1,7 +1,8 @@
 // /* -- Header -- */
 
-.landingPage {
-    height: 100vh;
+header {
+    position: relative;
+    z-index: 1;
 }
 .cta-container {
     text-align: center;
@@ -12,28 +13,22 @@
     box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.42);
     padding: 5rem;
     border-radius: 2rem;
-    left: 50%;
-    margin: 4rem 0 0 0;
-    top: 50%;
-    position: absolute;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    margin: 0 auto;
     width: 114rem;
-
+    
     @include respond(tab-landscape) {
         width:95rem;
-        height: 75vh;
         margin: 0;
         padding: 10rem;
     }
     @include respond(phone) {
         width: 100%;
-        height: 100vh;
+        height: auto;
         border-radius: 0;
         padding: 8rem 0rem;
     }
 
-    a.btn--white {
+    a.btn--blue {
         font-size: 2rem;
         margin: 8rem 0 0 0;
         text-align: center;
@@ -45,6 +40,7 @@
         padding: 0 2rem 3rem;
         width: 80%;
         margin: 0 auto;
+        margin-bottom: 4rem;
         border-radius: 5rem;
         border-top-left-radius: 0;
 

@@ -7,7 +7,18 @@ export default function About() {
     return (
         <section className={classes["section-about"] + " " + classes["container"]}>
             <div className={classes["section-wrapper"]} id="about">
-                <h2 className={classes["section-title"]}>About Me</h2>
+                <div>
+                    <h2 className={classes["section-title"]}>About Me</h2>
+                    <div className={classes["hero-text-box"] + " " + classes["heading-primary"]}>
+                        <h2 className={classes["heading-primary"] + " " + classes["heading-primary--sub"]}>Hi my name is,</h2>
+                        <div className={classes["hero-text-box-container"]}>
+                            <h1 className={classes["heading-primary"] + " " + classes["heading-primary--main"]}> <span className={classes["highlight"]}>Abhishek P.</span> </h1>
+                            <p className={classes["heading-secondary"]}>A passionate software engineer based in Mumbai, India<br />
+                                – I create high-quality websites and digital applications <br /> with knowledge and passion.
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 <p className={classes["long-copy"]}>
                     I`m a <span className={classes["highlight"]}>fullstack developer</span> at Adapty Inc
                         <br /> With my knowledge in both frontend & backend,
@@ -28,7 +39,7 @@ export default function About() {
 
                     </p>
                 <div className={classes["cta-container"]}>
-                    <Link className={classes["btn"] + " " + classes["btn--white"] + " " + classes["btn--animated"]} to="/experience">Experience</Link>
+                    <Link className={classes["btn"] + " " + classes["btn--blue"] + " " + classes["btn--animated"]} to="/experience">Experience</Link>
                 </div>
             </div>
         </section>
