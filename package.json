@@ -22,6 +22,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "nodemon server/server",
+    "firebase:backend": ". ./firebase.ini.defaults.sh && firebase serve --only functions",
     "dev": "concurrently \"npm run server\" \"npm run start\""
   },
   "eslintConfig": {

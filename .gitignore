@@ -3,6 +3,8 @@ firebase.json
 database.rules.json
 .firebase
 
+notebook-portfolio-6238e4ee3fc8.json
+firebase.ini.defaults.sh
 # Logs
 logs
 *.log
