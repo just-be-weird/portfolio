@@ -1,7 +1,7 @@
 const { admin, db } = require("../Util/admin");
 const firebase = require("firebase");
 const config = require("../../src/components/Firebase/Firebase.config");
-const { validateSignUpData, validateLoginData } = require("../Util/validators");
+const { validateSignUpData, validateLoginData, reduceUserDetails } = require("../Util/validators");
 
 // Initialize the default app
 firebase.initializeApp(config);
@@ -87,6 +87,70 @@ exports.loginUser = async (req, res) => {
     }
 };
 
+//add user details
+exports.addUserDetails = async (req, res) => {
+    let userDetails = reduceUserDetails(req.body);
+    try {
+        const data = await db.doc(`/users/${req.user.handle}`)
+          .update(userDetails);
+
+        return res.json({ message: 'Details added successfully' });
+    } catch(err) {
+      console.error(err);
+      return res.status(500).json({ error: err.code });
+    }
+};
+
+//Get own user Details
+exports.getAuthenticatedUser = async (req, res) => {
+    let userData = {};
+    const doc = await db.doc(`/users/${req.user.handle}`).get();
+
+    try {
+        if (doc.exists) {
+            userData.credentials = doc.data();
+    
+            const likes = await db
+              .collection('likes')
+              .where('userHandle', '==', req.user.handle).get();
+    
+            if (likes) {
+                userData.likes = [];
+                likes.forEach((like) => {
+                  userData.likes.push(like.data());
+                });
+    
+                const notifications = await db
+                  .collection('notifications')
+                  .where('recipient', '==', req.user.handle)
+                  .orderBy('createdAt', 'desc')
+                  .limit(10)
+                  .get();
+
+                if (notifications) {
+                    userData.notifications = [];
+                    notifications.forEach((notification) => {
+                        userData.notifications.push({
+                            recipient: notification.data().recipient,
+                            sender: notification.data().sender,
+                            createdAt: notification.data().createdAt,
+                            screamId: notification.data().screamId,
+                            type: notification.data().type,
+                            read: notification.data().read,
+                            notificationId: notification.id
+                        });
+                    });
+                    return res.json(userData);
+                }
+            }
+        }
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: err.code });
+    }
+};
+
+//Upload image for user profile
 exports.uploadImage = async (req, res) => {
     const BusBoy = require('busboy');
     const path = require('path');

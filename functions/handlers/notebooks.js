@@ -29,3 +29,35 @@ exports.createOneNotebook = async (request, response) => {
     const data = await db.collection("notebooks").add(notebook);
     response.json({ msg: `document ${data.id} created.` });
 };
+
+exports.getNoteBook = async (req, res) => {
+    try {
+        let notebookData = {};
+        const notebook = await db
+            .doc(`/notebooks/${req.params.notebookId}`)
+            .get();
+
+        if (!notebook.exists) {
+            return res.status(404).json({ error: "Notebook not found" });
+        }
+
+        notebookData = notebook.data();
+        notebookData.notebookId = notebook.id;
+
+        const comments = await db
+            .collection("comments")
+            .orderBy("createdAt", "desc")
+            .where("notebookId", "==", req.params.notebookId)
+            .get();
+
+        notebookData.comments = [];
+        comments.forEach(comment => {
+            notebookData.comments.push(comment.data());
+        });
+        return res.json(notebookData);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: err.code });
+    }
+};
