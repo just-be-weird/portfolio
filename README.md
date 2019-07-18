@@ -1,11 +1,11 @@
 
 ## You can view the project live on
 
-Deployed on [Firebase]<https://tinyurl.com/react-portfolio>
+Deployed on [<https://tinyurl.com/react-portfolio>]
 
 ## Creator
 
-- Abhishek Prajapati - [MitHipster](https://github.com/just-be-weird)
+- [Abhishek Prajapati](https://github.com/just-be-weird)
 
 ### Installing
 
