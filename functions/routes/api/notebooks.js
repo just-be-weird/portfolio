@@ -1,4 +1,4 @@
-const { db } = require("../Util/admin");
+const { db } = require("../../Util/admin");
 
 exports.getAllNoteBooks = async (req, res) => {
     const data = await db
