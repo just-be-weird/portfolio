@@ -1,10 +1,18 @@
+const { Auth } = require("../../Util/Auth");
 const { db } = require("../../Util/admin");
+const express = require("express");
+const router = express.Router();
 
-exports.getAllNoteBooks = async (req, res) => {
+
+//@route    GET /notebooks
+//@desc     Gett all the notebooks
+//@access   Public
+router.get('/', async (req, res) => {
     const data = await db
         .collection("notebooks")
         .orderBy("createdAt", "desc")
         .get();
+
     let notebooks = [];
     if (data) {
         data.forEach(doc => {
@@ -15,12 +23,16 @@ exports.getAllNoteBooks = async (req, res) => {
                 createdAt: doc.data().createdAt,
             });
         });
-        res.json(notebooks);
-        // response.status(400).json({msg: "Error at get request."});
+        return res.json(notebooks);
     }
-};
+    res.status(400).json({msg: "Error at get request."});
+});
 
-exports.createOneNotebook = async (request, response) => {
+
+//@route    POST /notebook
+//@desc     create a notebook for logged in user
+//@access   Private
+router.post('/', Auth, async (request, response) => {
     let notebook = {
         body: request.body.body,
         createdAt: new Date().toISOString(),
@@ -28,9 +40,13 @@ exports.createOneNotebook = async (request, response) => {
     };
     const data = await db.collection("notebooks").add(notebook);
     response.json({ msg: `document ${data.id} created.` });
-};
+});
 
-exports.getNoteBook = async (req, res) => {
+
+//@route    GET /notebook/:notebookId
+//@desc     Get a notebook for logged in user by ID
+//@access   Private
+router.get('/:notebookId', async (req, res) => {
     try {
         let notebookData = {};
         const notebook = await db
@@ -38,7 +54,7 @@ exports.getNoteBook = async (req, res) => {
             .get();
 
         if (!notebook.exists) {
-            return res.status(404).json({ error: "Notebook not found" });
+            return res.status(404).json({ error: "Notebook not found." });
         }
 
         notebookData = notebook.data();
@@ -60,4 +76,6 @@ exports.getNoteBook = async (req, res) => {
         console.error(err);
         res.status(500).json({ error: err.code });
     }
-};
+});
+
+module.exports = router;

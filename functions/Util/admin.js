@@ -16,4 +16,4 @@ const firebaseInstance = firebase.initializeApp({
     appId: config.portfolio.app_id,
 });
 
-module.exports = { admin, db, firebaseInstance };
+module.exports = { admin, db, firebaseInstance, config };

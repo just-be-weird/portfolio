@@ -26,7 +26,8 @@ Next, to run the source version of the application locally using Node and Expres
 
     3. Once done run `firebase functions:config:get > .runtimeconfig.json` to verify the values by opening this file in functions dir.
 
-    4.run `npm i firebase-functions` inside functions dir
+    4. run `npm i firebase-functions` inside functions dir
+    
     5. Now we can get the values of required by 
     `const firebase = require("firebase");
     const functions = require("firebase-functions");
