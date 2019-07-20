@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Auth } = require("../../Util/Auth");
-const { admin, db, firebaseInstance, config } = require("../../Util/admin");
+const { admin, db, config } = require("../../Util/admin");
 const { reduceUserDetails } = require("../../Util/validators");
 
 //@route    POST /user/add-details
@@ -146,6 +146,10 @@ router.post("/image/uploads", Auth, async (req, res) => {
         imageToBeUploaded = { filepath, mimetype };
         //create this file on filesys
         file.pipe(fs.createWriteStream(filepath));
+
+        return res
+            .status(400)
+            .json({ error: "Wrong file type selected for upload." });
     });
 
     busboy.on("finish", async () => {
