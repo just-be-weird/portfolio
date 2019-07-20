@@ -16,10 +16,13 @@ router.get("/all", async (req, res) => {
         if (data) {
             data.forEach(doc => {
                 notebooks.push({
-                    userId: doc.id,
+                    notebookId: doc.id,
                     body: doc.data().body,
                     userHandle: doc.data().userHandle,
                     createdAt: doc.data().createdAt,
+                    commentCount: doc.data().commentCount,
+                    likeCount: doc.data().likeCount,
+                    userImage: doc.data().userImage
                 });
             });
             return res.json(notebooks);
@@ -28,6 +31,7 @@ router.get("/all", async (req, res) => {
         console.error(err);
         res.status(400).json({ msg: "Error at get request." });
     }
+    return res.status(404).json({ error: "No notebooks found." });
 });
 
 //@route    POST /notebook
@@ -54,28 +58,27 @@ router.get("/:notebookId", async (req, res) => {
             .doc(`/notebooks/${req.params.notebookId}`)
             .get();
 
-        if (!notebook.exists) {
-            return res.status(404).json({ error: "Notebook not found." });
+        if (notebook.exists) {
+            notebookData = notebook.data();
+            notebookData.notebookId = notebook.id;
+
+            const comments = await db
+                .collection("comments")
+                .orderBy("createdAt", "desc")
+                .where("notebookId", "==", req.params.notebookId)
+                .get();
+
+            notebookData.comments = [];
+            comments.forEach(comment => {
+                notebookData.comments.push(comment.data());
+            });
+            return res.json(notebookData);
         }
-
-        notebookData = notebook.data();
-        notebookData.notebookId = notebook.id;
-
-        const comments = await db
-            .collection("comments")
-            .orderBy("createdAt", "desc")
-            .where("notebookId", "==", req.params.notebookId)
-            .get();
-
-        notebookData.comments = [];
-        comments.forEach(comment => {
-            notebookData.comments.push(comment.data());
-        });
-        return res.json(notebookData);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: err.code });
     }
+    return res.status(404).json({ error: "Notebook not found." });
 });
 
 //@route    POST /notebook/:notebookId/comment
@@ -83,7 +86,7 @@ router.get("/:notebookId", async (req, res) => {
 //@access   Protected
 router.post("/:notebookId/comment", Auth, async (req, res) => {
     if (req.body.body.trim() === "")
-        return res.status(400).json({ error: "Must not be empty." });
+        return res.status(400).json({ comment: "Must not be empty." });
 
     const newComment = {
         body: req.body.body,
@@ -96,18 +99,18 @@ router.post("/:notebookId/comment", Auth, async (req, res) => {
         const notebook = await db
             .doc(`/notebooks/${req.params.notebookId}`)
             .get();
-        if (!notebook.exists) {
-            return res.status(404).json({ error: "Notebook not found." });
+        if (notebook.exists) {
+            await notebook.ref.update({
+                commentCount: notebook.data().commentCount + 1,
+            });
+            await db.collection("comments").add(newComment);
+            return res.status(201).json(newComment);
         }
-        await notebook.ref.update({
-            commentCount: notebook.data().commentCount + 1,
-        });
-        await db.collection("comments").add(newComment);
-        res.status(201).json(newComment);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Something went wrong!" });
     }
+    return res.status(404).json({ error: "Notebook not found." });
 });
 
 //@route    GET /notebook/:notebookId/like
@@ -146,11 +149,11 @@ router.get("/:notebookId/like", Auth, async (req, res) => {
                     .json({ error: "Notebook already liked." });
             }
         }
-        return res.status(404).json({ error: "Notebook not found." });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Something went wrong!" });
     }
+    return res.status(404).json({ error: "Notebook not found." });
 });
 
 //@route    GET /notebook/:notebookId/unlike
@@ -185,11 +188,11 @@ router.get("/:notebookId/unlike", Auth, async (req, res) => {
                 return res.json(notebookData);
             }
         }
-        return res.status(404).json({ error: "Notebook not found." });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Something went wrong!" });
     }
+    return res.status(404).json({ error: "Notebook not found." });
 });
 
 //@route    DELETE /notebook/:notebookId
@@ -208,11 +211,11 @@ router.delete("/:notebookId", Auth, async (req, res) => {
             await notebookDocument.delete();
             return res.status(200).json({ message: "Notebook deleted." });
         }
-        return res.status(404).json({ error: "Notebook not found." });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Something went wrong!" });
     }
+    return res.status(404).json({ error: "Notebook not found." });
 });
 
 module.exports = router;

@@ -32,7 +32,10 @@ exports.createNotificationOnLike = functions
             .doc(`/notebooks/${snapshot.data().notebookId}`)
             .get();
         try {
-            if (notebook.exists) {
+            if (
+                notebook.exists &&
+                notebook.data().userHandle !== snapshot.data().userHandle
+            ) {
                 await db.doc(`/notifications/${snapshot.id}`).set({
                     createdAt: new Date().toISOString(),
                     recipient: notebook.data().userHandle,
@@ -70,7 +73,11 @@ exports.createNotificationOnComment = functions
             .doc(`/notebooks/${snapshot.data().notebookId}`)
             .get();
         try {
-            if (notebook.exists) {
+            //to avoid creating notifications for self actions
+            if (
+                notebook.exists &&
+                notebook.data().userHandle !== snapshot.data().userHandle
+            ) {
                 await db.doc(`/notifications/${snapshot.id}`).set({
                     createdAt: new Date().toISOString(),
                     recipient: notebook.data().userHandle,
@@ -85,4 +92,69 @@ exports.createNotificationOnComment = functions
             console.error(err);
             return;
         }
+    });
+
+exports.onUserImageChange = functions
+    .region("asia-east2")
+    .firestore.document("/users/{userId}")
+    .onUpdate(async change => {
+        // console.log(change.before.data());
+        // console.log(change.after.data());
+        if (change.before.data().imageUrl !== change.after.data().imageUrl) {
+            // console.log("image has changed");
+            const batch = db.batch();
+            const userNotebook = await db
+                .collection("notebooks")
+                .where("userHandle", "==", change.before.data().handle)
+                .get();
+
+            userNotebook.forEach(notebook => {
+                const notebookOld = db.doc(`/notebooks/${notebook.id}`);
+                batch.update(notebookOld, {
+                    userImage: change.after.data().imageUrl,
+                });
+            });
+            return batch.commit();
+        } else return true;
+    });
+
+exports.onNotebookDelete = functions
+    .region("asia-east2")
+    .firestore.document("/notebooks/{notebookId}")
+    .onDelete(async (snapshot, context) => {
+        try {
+            const notebookId = context.params.notebookId;
+            const batch = db.batch();
+            const comments = await db
+                .collection("comments")
+                .where("notebookId", "==", notebookId)
+                .get();
+
+            comments.forEach(comment => {
+                batch.delete(db.doc(`/comments/${comment.id}`));
+            });
+
+            const likes = await db
+                .collection("likes")
+                .where("notebookId", "==", notebookId)
+                .get();
+
+            likes.forEach(like => {
+                batch.delete(db.doc(`/likes/${like.id}`));
+            });
+
+            const notifications = await db
+                .collection("notifications")
+                .where("notebookId", "==", notebookId)
+                .get();
+
+            notifications.forEach(notification => {
+                batch.delete(db.doc(`/notifications/${notification.id}`));
+            });
+            
+            return batch.commit();
+        } catch (err) {
+            console.error(err);
+        }
+        return true;
     });

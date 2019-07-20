@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const { admin, db, firebaseInstance, config } = require("../../Util/admin");
-const { validateSignUpData, validateLoginData, reduceUserDetails } = require("../../Util/validators");
-
+const {
+    validateSignUpData,
+    validateLoginData,
+    reduceUserDetails,
+} = require("../../Util/validators");
 
 //@route    POST auth/login
 //@desc     Login and get auth token
@@ -12,15 +15,15 @@ router.post("/login", async (req, res) => {
         email: req.body.email,
         password: req.body.password,
     };
-    
+
     try {
         const { valid, errors } = validateLoginData(user);
         if (!valid) return res.status(400).json(errors);
-        
+
         const data = await firebaseInstance
-        .auth()
-        .signInWithEmailAndPassword(user.email, user.password);
-        
+            .auth()
+            .signInWithEmailAndPassword(user.email, user.password);
+
         const token = await data.user.getIdToken();
         if (token) {
             return res.status(200).json({ token });
@@ -29,18 +32,17 @@ router.post("/login", async (req, res) => {
         console.error(err);
         if (err.code === "auth/wrong-password") {
             return res
-            .status(403) //unauthorized
-            .json({ general: "Incorrect credentials, Please try again." });
+                .status(403) //unauthorized
+                .json({ general: "Incorrect credentials, Please try again." });
         }
         return res.status(500).json({ error: err.code });
     }
 });
 
-
 //@route    POST auth/signup
 //@desc     Signup and set user details in "users" collection
 //@access   Public
-router.post('/signup',async (req, res) => {
+router.post("/signup", async (req, res) => {
     const newUser = {
         email: req.body.email,
         password: req.body.password,
@@ -89,7 +91,9 @@ router.post('/signup',async (req, res) => {
                 .status(400)
                 .json({ handle: "This email is already in use" });
         }
-        return res.status(500).json({ error: err.code });
+        return res
+            .status(500)
+            .json({ general: "Something went wrong, Please try again." });
     }
 });
 
