@@ -1,10 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { admin, db, firebaseInstance, config } = require("../../Util/admin");
+const { db, firebaseInstance, config } = require("../../Util/admin");
 const {
     validateSignUpData,
     validateLoginData,
-    reduceUserDetails,
 } = require("../../Util/validators");
 
 //@route    POST auth/login
@@ -37,6 +36,9 @@ router.post("/login", async (req, res) => {
         }
         return res.status(500).json({ error: err.code });
     }
+    return res
+        .status(403) //unauthorized
+        .json({ general: "Incorrect credentials, Please try again." });
 });
 
 //@route    POST auth/signup
@@ -95,6 +97,7 @@ router.post("/signup", async (req, res) => {
             .status(500)
             .json({ general: "Something went wrong, Please try again." });
     }
+    return res.status(400).json({ handle: "This email is already in use" });
 });
 
 module.exports = router;
