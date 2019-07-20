@@ -8,7 +8,8 @@ export default function CustomInput({
     ipname = "default",
     labelName = "No data provided",
     placeholderVal = "No placeholder",
-    isRquired= false
+    isRquired= false,
+    onSelected
 }) {
     let classHolder = iptype && iptype !== "radio" ? "custom_input" : "radio";
     return (
@@ -17,6 +18,7 @@ export default function CustomInput({
                 name={ipname}
                 placeholder={placeholderVal}
                 required={isRquired}
+                onChange={onSelected}
 
             />
             <label htmlFor={ipid} className={classes[classHolder + "__label"]}>

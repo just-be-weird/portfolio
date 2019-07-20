@@ -24,6 +24,7 @@ exports.Auth = async (req, res, next) => {
                 .get();
             if (data) {
                 req.user.handle = data.docs[0].data().handle;
+                req.user.imageUrl = data.docs[0].data().imageUrl;
                 return next();
             }
         }
