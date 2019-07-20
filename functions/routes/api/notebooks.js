@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
 
 //@route    POST /notebook
 //@desc     create a notebook for logged in user
-//@access   Private
+//@access   Protected
 router.post("/", Auth, async (request, response) => {
     let notebook = {
         body: request.body.body,
@@ -42,7 +42,7 @@ router.post("/", Auth, async (request, response) => {
 
 //@route    GET /notebook/:notebookId
 //@desc     Get a notebook for logged in user by ID
-//@access   Private
+//@access   Protected
 router.get("/:notebookId", async (req, res) => {
     try {
         let notebookData = {};
@@ -77,7 +77,7 @@ router.get("/:notebookId", async (req, res) => {
 
 //@route    POST /notebook/:notebookId/comment
 //@desc     Add a comment on notebook for logged in user by ID
-//@access   Private
+//@access   Protected
 router.post("/:notebookId/comment", Auth, async (req, res) => {
     if (req.body.body.trim() === "")
         return res.status(400).json({ error: "Must not be empty." });
@@ -96,6 +96,9 @@ router.post("/:notebookId/comment", Auth, async (req, res) => {
         if (!notebook.exists) {
             return res.status(404).json({ error: "Notebook not found." });
         }
+        await notebook.ref.update({
+            commentCount: notebook.data().commentCount + 1,
+        });
         await db.collection("comments").add(newComment);
         res.status(201).json(newComment);
     } catch (err) {
@@ -106,9 +109,8 @@ router.post("/:notebookId/comment", Auth, async (req, res) => {
 
 //@route    GET /notebook/:notebookId/like
 //@desc     Add a comment on notebook for logged in user by ID
-//@access   Private
+//@access   Protected
 router.get("/:notebookId/like", Auth, async (req, res) => {
-    console.log("<<", );
     try {
         const likeDocument = await db
             .collection("likes")
@@ -150,7 +152,7 @@ router.get("/:notebookId/like", Auth, async (req, res) => {
 
 //@route    GET /notebook/:notebookId/unlike
 //@desc     Add a comment on notebook for logged in user by ID
-//@access   Private
+//@access   Protected
 router.get("/:notebookId/unlike", Auth, async (req, res) => {
     try {
         const likeDocument = await db
@@ -179,6 +181,29 @@ router.get("/:notebookId/unlike", Auth, async (req, res) => {
 
                 return res.json(notebookData);
             }
+        }
+        return res.status(404).json({ error: "Notebook not found." });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Something went wrong!" });
+    }
+});
+
+//@route    DELETE /notebook/:notebookId
+//@desc     Delete a notebook from a notebook
+//@access   Protected
+router.delete("/:notebookId", Auth, async (req, res) => {
+    try {
+        const notebookDocument = await db.doc(
+            `/notebooks/${req.params.notebookId}`
+        );
+        const notebook = await notebookDocument.get();
+        if (notebook.exists) {
+            if (notebook.data().userHandle !== req.user.handle) {
+                return res.status(403).json({ error: "Not Authorized." });
+            }
+            await notebookDocument.delete();
+            return res.status(200).json({ message: "Notebook deleted." });
         }
         return res.status(404).json({ error: "Notebook not found." });
     } catch (err) {

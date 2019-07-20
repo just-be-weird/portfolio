@@ -6,7 +6,7 @@ const { reduceUserDetails } = require("../../Util/validators");
 
 //@route    POST /user/add-details
 //@desc     Add user details
-//@access   Private
+//@access   Protected
 router.post('/add-details', Auth, async (req, res) => {
     let userDetails = reduceUserDetails(req.body);
     try {
@@ -23,7 +23,7 @@ router.post('/add-details', Auth, async (req, res) => {
 
 //@route    GET /user/get-details
 //@desc     Get own user Details
-//@access   Private
+//@access   Protected
 router.get('/get-details', Auth, async (req, res) => {
     let userData = {};
     const doc = await db.doc(`/users/${req.user.handle}`).get();
@@ -75,7 +75,7 @@ router.get('/get-details', Auth, async (req, res) => {
 
 //@route    POST /user/image/uploads
 //@desc     Upload image for user profile
-//@access   Private
+//@access   Protected
 router.post('/image/uploads', Auth, async (req, res) => {
     const BusBoy = require('busboy');
     const path = require('path');
