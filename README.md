@@ -28,7 +28,7 @@ Next, to run the source version of the application locally using Node and Expres
 
     4. run `npm i firebase-functions` inside functions dir
     
-    5. Now we can get the values of required by 
+    5. Now we can get the values of required by firebase config as below
     `const firebase = require("firebase");
     const functions = require("firebase-functions");
     const config = functions.config();
