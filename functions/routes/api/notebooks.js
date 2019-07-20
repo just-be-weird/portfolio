@@ -6,25 +6,28 @@ const router = express.Router();
 //@route    GET /notebooks
 //@desc     Gett all the notebooks
 //@access   Public
-router.get("/", async (req, res) => {
-    const data = await db
-        .collection("notebooks")
-        .orderBy("createdAt", "desc")
-        .get();
-
+router.get("/all", async (req, res) => {
     let notebooks = [];
-    if (data) {
-        data.forEach(doc => {
-            notebooks.push({
-                userId: doc.id,
-                body: doc.data().body,
-                userHandle: doc.data().userHandle,
-                createdAt: doc.data().createdAt,
+    try {
+        const data = await db
+            .collection("notebooks")
+            .orderBy("createdAt", "desc")
+            .get();
+        if (data) {
+            data.forEach(doc => {
+                notebooks.push({
+                    userId: doc.id,
+                    body: doc.data().body,
+                    userHandle: doc.data().userHandle,
+                    createdAt: doc.data().createdAt,
+                });
             });
-        });
-        return res.json(notebooks);
+            return res.json(notebooks);
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(400).json({ msg: "Error at get request." });
     }
-    res.status(400).json({ msg: "Error at get request." });
 });
 
 //@route    POST /notebook
