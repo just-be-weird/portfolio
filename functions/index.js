@@ -3,6 +3,10 @@ const express = require("express");
 const app = express();
 const { db } = require("./Util/admin");
 
+//Enable Cors
+const cors = require("cors");
+app.use(cors());
+app.options('*', cors())
 //Notebook route
 app.use("/notebook", require("./routes/api/notebooks"));
 //Sign-up Route
@@ -151,7 +155,7 @@ exports.onNotebookDelete = functions
             notifications.forEach(notification => {
                 batch.delete(db.doc(`/notifications/${notification.id}`));
             });
-            
+
             return batch.commit();
         } catch (err) {
             console.error(err);

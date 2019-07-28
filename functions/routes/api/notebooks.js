@@ -218,4 +218,33 @@ router.delete("/:notebookId", Auth, async (req, res) => {
     return res.status(404).json({ error: "Notebook not found." });
 });
 
+//@route    POST /notebook/step/:id
+//@desc     Create a notebook
+//@access   Protected
+router.post("/step/:id", Auth, async (req, res) => {
+    let notebook = {
+        ...req.body,
+        createdAt: new Date().toISOString(),
+        userHandle: req.user.handle,
+    };
+
+    try {
+        let updatedData = null;
+        const ref = await db.doc(`/coche/${req.user.handle}`);
+        const data = await ref.get();
+        if (!data.exists) {
+            updatedData = await ref.set(notebook);
+        } else {
+            updatedData = await ref.update(notebook);
+        }
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Something went wrong!" });
+    }
+    return res.status(200).json({
+        message: "Added the details.",
+        data: updatedData
+    });
+});
+
 module.exports = router;

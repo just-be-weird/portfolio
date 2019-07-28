@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { db, firebaseInstance, config } = require("../../Util/admin");
+const { admin, db, firebaseInstance, config } = require("../../Util/admin");
 const {
     validateSignUpData,
     validateLoginData,
@@ -25,7 +25,8 @@ router.post("/login", async (req, res) => {
 
         const token = await data.user.getIdToken();
         if (token) {
-            return res.status(200).json({ token });
+            const _dtkn = await admin.auth().verifyIdToken(token);
+            return res.status(200).json({ token, _dtkn });
         }
     } catch (err) {
         console.error(err);
@@ -82,8 +83,9 @@ router.post("/signup", async (req, res) => {
                 };
 
                 await db.doc(`/users/${newUser.handle}`).set(userCredentials);
+                const _dtkn = await admin.auth().verifyIdToken(token);
 
-                return res.status(201).json({ token });
+                return res.status(201).json({ token, _dtkn });
             }
         }
     } catch (err) {
