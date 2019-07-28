@@ -6,6 +6,7 @@ const { db } = require("./Util/admin");
 //Enable Cors
 const cors = require("cors");
 app.use(cors());
+app.options('*', cors())
 //Notebook route
 app.use("/notebook", require("./routes/api/notebooks"));
 //Sign-up Route
