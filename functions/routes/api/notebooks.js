@@ -38,13 +38,19 @@ router.get("/all", async (req, res) => {
 //@desc     create a notebook for logged in user
 //@access   Protected
 router.post("/", Auth, async (request, response) => {
-    let notebook = {
-        body: request.body.body,
-        createdAt: new Date().toISOString(),
-        userHandle: request.user.handle,
-    };
-    const data = await db.collection("notebooks").add(notebook);
-    response.json({ msg: `document ${data.id} created.` });
+    try {
+        let notebook = {
+            body: request.body.body,
+            createdAt: new Date().toISOString(),
+            userHandle: request.user.handle,
+        };
+        const data = await db.collection("notebooks").add(notebook);
+        response.json({ msg: `document ${data.id} created.` });
+    } catch (err) {
+        console.error(err);
+        res.status(400).json({ msg: "Error at post request." });
+    }
+    return res.status(404).json({ error: "Error while adding notebook." });
 });
 
 //@route    GET /notebook/:notebookId

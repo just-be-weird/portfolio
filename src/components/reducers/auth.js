@@ -4,7 +4,7 @@ import { updateObject, setAuthToken } from "../Shared/Util";
 
 const intialState = {
     token: '',
-    isAuthenticated: null,
+    isAuthenticated: false,
     user: null,
 };
 
