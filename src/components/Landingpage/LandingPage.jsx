@@ -61,7 +61,11 @@ const LandingPage = ({ history, loginUser, isAuthenticated }) => {
                                 iptype='email'
                                 ipid='email'
                                 htmlFor='user-email'
-                                placeholderVal={email}
+                                placeholderVal={
+                                    email.length === 0
+                                        ? "abc@example.com"
+                                        : email
+                                }
                                 labelName='Email'
                                 isRquired={true}
                                 changeHandler={e => setEmail(e.target.value)}
@@ -70,7 +74,11 @@ const LandingPage = ({ history, loginUser, isAuthenticated }) => {
                                 iptype='password'
                                 ipid='password'
                                 htmlFor='user-password'
-                                placeholderVal={password}
+                                placeholderVal={
+                                    password.length === 0
+                                        ? "Password"
+                                        : password
+                                }
                                 labelName='Password'
                                 isRquired={true}
                                 changeHandler={e => setPassword(e.target.value)}
@@ -81,7 +89,11 @@ const LandingPage = ({ history, loginUser, isAuthenticated }) => {
                                         iptype='password'
                                         ipid='re-password'
                                         htmlFor='user-re-password'
-                                        placeholderVal={rePassword}
+                                        placeholderVal={
+                                            rePassword.length === 0
+                                                ? "Confirm Password"
+                                                : rePassword
+                                        }
                                         labelName='Confirm Password'
                                         isRquired={true}
                                         changeHandler={e =>

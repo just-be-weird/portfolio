@@ -17,7 +17,7 @@ router.post("/login", async (req, res) => {
 
     try {
         const { valid, errors } = validateLoginData(user);
-        if (!valid) return res.status(400).json(errors);
+        if (!valid) return res.status(400).json({error: errors});
 
         const data = await firebaseInstance
             .auth()
@@ -33,13 +33,13 @@ router.post("/login", async (req, res) => {
         if (err.code === "auth/wrong-password") {
             return res
                 .status(403) //unauthorized
-                .json({ general: "Incorrect credentials, Please try again." });
+                .json({ error: "Incorrect credentials, Please try again." });
         }
-        return res.status(500).json({ error: err.code });
+        res.status(500).json({ error: err.code });
     }
     return res
         .status(403) //unauthorized
-        .json({ general: "Incorrect credentials, Please try again." });
+        .json({ error: "Incorrect credentials, Please try again." });
 });
 
 //@route    POST auth/signup
@@ -97,7 +97,7 @@ router.post("/signup", async (req, res) => {
         }
         return res
             .status(500)
-            .json({ general: "Something went wrong, Please try again." });
+            .json({ error: "Something went wrong, Please try again." });
     }
     return res.status(400).json({ handle: "This email is already in use" });
 });

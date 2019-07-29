@@ -33,8 +33,8 @@ import { getProfile } from "./profile";
 
 export const loginUser = (userData, history) => async dispatch => {
     dispatch({ type: LOADING_UI }); //we dispatch a type and we will catch the type from the reducer
-    const res = await axios.post("/auth/login", userData);
     try {
+        const res = await axios.post("/auth/login", userData);
         if (res.data) {
             dispatch({ type: AUTH_SUCCESS, payload: res.data });
             dispatch(getProfile(history));
@@ -46,6 +46,7 @@ export const loginUser = (userData, history) => async dispatch => {
             type: SET_ERRORS,
             payload: err.response.data,
         });
+        dispatch({ type: STOP_LOADING_UI });
     }
 };
 

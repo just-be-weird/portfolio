@@ -10,17 +10,20 @@ import MultiActions from "../MultiActions/MultiActions";
 import classes from "../Sass/main.module.scss";
 import Footer from "./Layout/Footer";
 import PropTypes from "prop-types";
-import { logoutUser } from "../actions/auth";
-import { cachedLogin } from "../actions/auth";
+import { cachedLogin, logoutUser } from "../actions/auth";
+import { clearUIErrors } from "../actions/ui";
 import { getProfile } from "../actions/profile";
 import Loader from "../UI/Loader/Loader";
 import ProfileSteps from "./Layout/ProfileSteps";
+import Notificaton from "../UI/Notification/Notificaton";
 
 function Index({
-    history,
     cachedLogin,
+    clearUIErrors,
     getProfile,
+    history,
     isAuthenticated,
+    isloading,
     logoutUser,
 }) {
     useEffect(() => {
@@ -37,11 +40,17 @@ function Index({
         }
         console.log("called");
     }, [cachedLogin, getProfile, history, logoutUser]);
+
+    const clickHandler = e => {
+        e.preventDefault();
+        clearUIErrors();
+    };
     return (
         <Fragment>
             <header className={classes["section-header"]} id='home'>
                 <GlobalNavigation />
             </header>
+            <Notificaton clicked={clickHandler}/>
             <Switch>
                 {!isAuthenticated ? (
                     <Route exact path='/' component={LandingPage} />
@@ -53,20 +62,24 @@ function Index({
             </Switch>
             <MultiActions />
             <SocialAction />
-            <Loader />
+            <Loader isloading={isloading} />
             <Footer />
         </Fragment>
     );
 }
 Index.propTypes = {
-    logoutUser: PropTypes.func.isRequired,
-    getProfile: PropTypes.func,
     cachedLogin: PropTypes.func.isRequired,
+    clearUIErrors: PropTypes.func.isRequired,
+    getProfile: PropTypes.func.isRequired,
+    isloading: PropTypes.bool.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
+    logoutUser: PropTypes.func.isRequired,
 };
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
+    isloading: state.ui.loading,
 });
 export default connect(
     mapStateToProps,
-    { cachedLogin, logoutUser, getProfile }
+    { cachedLogin, clearUIErrors, logoutUser, getProfile }
 )(withRouter(Index));
