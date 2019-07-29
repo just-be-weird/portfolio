@@ -1,12 +1,18 @@
 .tooltip {
     position: relative;
     display: inline-block;
-  }
-  
-  .tooltip .tooltiptext {
+}
+
+.tooltip .tooltiptext {
     visibility: hidden;
     width: 8rem;
-    background-image: -webkit-gradient(linear, left top, right bottom, from(#ffb900), to(#ff7730));
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        right bottom,
+        from(#ffb900),
+        to(#ff7730)
+    );
     background-image: linear-gradient(to right bottom, #ffb900, #ff7730);
     color: $color-white;
     text-align: center;
@@ -21,9 +27,9 @@
     margin-left: -75px;
     opacity: 0;
     transition: opacity 0.3s;
-  }
-  
-  .tooltip .tooltiptext::after {
+}
+
+.tooltip .tooltiptext::after {
     content: "";
     position: absolute;
     top: 0;
@@ -32,9 +38,96 @@
     border-width: 5px;
     border-style: solid;
     border-color: #ffb900 transparent transparent transparent;
-  }
-  
-  .tooltip:hover .tooltiptext {
+}
+
+.tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
-  }
+}
+// Notificatons
+.notification {
+    border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    -moz-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+    -webkit-transition: all 0.5s ease-out;
+    color: $color-white;
+    width: auto;
+    margin: 10px auto;
+    min-height: 50px;
+    padding: 0 3rem;
+    position: absolute;
+    transform: translate(-50%);
+    top: 12.5%;
+    left: 50%;
+    z-index: 12;
+    animation: expand .7s ease-in;
+    -webkit-animation: expand 0.7s ease-in;
+    -moz-animation: expand .7s ease-in;
+    &__msg {
+        font-size: 1.6rem;
+    }
+    .popup__close {
+        font-size: 1.4rem;
+        top: 0.1rem;
+        right: 0.6rem;
+        color: transparent;
+    }
+    &-success {
+        background: #55c57a;
+        box-shadow: 0 1rem 2rem rgba(9, 95, 15, 0.22);
+        display: flex;
+        -moz-box-shadow: 0 1rem 2rem rgba(9, 95, 15, 0.22);
+        -webkit-box-shadow: 0 1rem 2rem rgba(9, 95, 15, 0.22);
+    }
+    &-fail {
+        background: #e43112;
+        box-shadow: 0 1rem 2rem rgba(109, 1, 1, 0.22);
+        display: flex;
+        -moz-box-shadow: 0 1rem 2rem rgba(109, 1, 1, 0.22);
+        -webkit-box-shadow: 0 1rem 2rem rgba(109, 1, 1, 0.22);
+    }
+    &:hover {
+        .popup__close {
+            color: $color-white;
+        }
+    }
+}
+@keyframes expand {
+    0% {
+        top: -15%;
+    }
+    40% {
+        top: -10%;
+    }
+    50% {
+        top: 5%;
+    }
+    90% {
+        top: 12.5%;
+    }
+    100% {
+        top: 12%;
+    }
+}
+@-webkit-keyframes expand {
+    0% {
+        top: -15%;
+    }
+    40% {
+        top: -10%;
+    }
+    50% {
+        top: 5%;
+    }
+    90% {
+        top: 12.5%;
+    }
+    100% {
+        top: 12%;
+    }
+}
