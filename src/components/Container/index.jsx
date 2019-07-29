@@ -20,6 +20,7 @@ import Notificaton from "../UI/Notification/Notificaton";
 function Index({
     cachedLogin,
     clearUIErrors,
+    errors,
     getProfile,
     history,
     isAuthenticated,
@@ -50,7 +51,7 @@ function Index({
             <header className={classes["section-header"]} id='home'>
                 <GlobalNavigation />
             </header>
-            <Notificaton clicked={clickHandler}/>
+            {errors && <Notificaton clicked={clickHandler} />}
             <Switch>
                 {!isAuthenticated ? (
                     <Route exact path='/' component={LandingPage} />
@@ -70,6 +71,7 @@ function Index({
 Index.propTypes = {
     cachedLogin: PropTypes.func.isRequired,
     clearUIErrors: PropTypes.func.isRequired,
+    errors: PropTypes.object,
     getProfile: PropTypes.func.isRequired,
     isloading: PropTypes.bool.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
@@ -77,6 +79,7 @@ Index.propTypes = {
 };
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
+    errors: state.ui.errors,
     isloading: state.ui.loading,
 });
 export default connect(
