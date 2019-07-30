@@ -195,7 +195,7 @@ button {
 // Radio Inputs
 .radio {
     &__group {
-        text-align: center;
+        text-align: start;
         width: 60%;
         margin: -16px 5.6rem 2rem;
         @include respond(tab-port) {

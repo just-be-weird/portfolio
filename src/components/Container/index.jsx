@@ -39,7 +39,7 @@ function Index({
                 getProfile(history);
             }
         }
-        console.log("called");
+        // console.log("called");
     }, [cachedLogin, getProfile, history, logoutUser]);
 
     const clickHandler = e => {

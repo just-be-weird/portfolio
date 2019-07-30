@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import classes from "../Sass/main.module.scss";
 import CustomInput from "../UI/InputButtons/CustomInput";
 import { loginUser } from "../actions/auth";
+import { isValidEmail, containsNumber6_8 } from "../Shared/Util";
 
 const LandingPage = ({ history, loginUser, isAuthenticated }) => {
     const [signUp, setSignUp] = useState(false);
@@ -66,6 +67,7 @@ const LandingPage = ({ history, loginUser, isAuthenticated }) => {
                                         ? "abc@example.com"
                                         : email
                                 }
+                                regEx={isValidEmail}
                                 labelName='Email'
                                 isRquired={true}
                                 changeHandler={e => setEmail(e.target.value)}
@@ -79,6 +81,7 @@ const LandingPage = ({ history, loginUser, isAuthenticated }) => {
                                         ? "Password"
                                         : password
                                 }
+                                regEx={containsNumber6_8}
                                 labelName='Password'
                                 isRquired={true}
                                 changeHandler={e => setPassword(e.target.value)}
@@ -94,30 +97,33 @@ const LandingPage = ({ history, loginUser, isAuthenticated }) => {
                                                 ? "Confirm Password"
                                                 : rePassword
                                         }
+                                        regEx={containsNumber6_8}
                                         labelName='Confirm Password'
                                         isRquired={true}
                                         changeHandler={e =>
                                             setRePassword(e.target.value)
                                         }
                                     />
-                                    <CustomInput
-                                        iptype='radio'
-                                        ipid='login'
-                                        htmlFor='login-now'
-                                        labelName='Or Login?'
-                                        changeHandler={showRePassword}
-                                    />
                                 </Fragment>
                             )}
-                            {!signUp && (
-                                <CustomInput
-                                    iptype='radio'
-                                    ipid='register'
-                                    htmlFor='register-now'
-                                    labelName='Need an account? Sign Up'
-                                    changeHandler={showRePassword}
-                                />
-                            )}
+
+                            <CustomInput
+                                iptype='radio'
+                                ipid='login'
+                                htmlFor='login-now'
+                                labelName='Or Login?'
+                                isChecked={!signUp}
+                                changeHandler={showRePassword}
+                            />
+                            <CustomInput
+                                iptype='radio'
+                                ipid='register'
+                                htmlFor='register-now'
+                                isChecked={signUp}
+                                labelName='Need an account? Sign Up'
+                                changeHandler={showRePassword}
+                            />
+
                             <div className={classes["form__group"]}>
                                 <button
                                     className={

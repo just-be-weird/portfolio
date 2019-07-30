@@ -18,3 +18,10 @@ export const setAuthToken = tokenData => {
         delete axios.defaults.headers.common["Authorization"];
     }
 };
+
+//Regex
+export const isValidEmail = '^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$';
+export const containsNumber6_8 = '^\\d{6,8}$';
+export const containsTextOnly = "^[a-zA-Z]+$";
+export const isValidPinCode = '^\\d{4,6}$';
+export const isValidPassword = '^.*(?=.{6,})(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!#$%&? "]).*$';

@@ -10,6 +10,7 @@ export const SET_USER = "SET_USER";
 
 //coche Reducer Types
 export const GET_COCHE_DATA = "GET_COCHE_DATA";
+export const SET_COCHE_DATA = "SET_COCHE_DATA";
 
 //Error Reducer Types
 export const SET_ERRORS = "SET_ERRORS";
