@@ -138,6 +138,7 @@ button {
     &__input {
         background-color: #f3f3f3;
         border: none;
+        color:#989494;
         border-bottom: 3px solid transparent;
         border-radius: .2rem;
         display: block;
@@ -146,7 +147,6 @@ button {
         font-size: 1.5rem;
         padding: 1.5rem 2rem;
         transition: all .3s;
-        margin: 0 auto;
         width: 80%;
         text-overflow: ellipsis;
         
