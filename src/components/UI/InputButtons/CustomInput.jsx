@@ -7,7 +7,7 @@ export default function CustomInput({
     iptype = "text",
     labelName = "No data provided",
     placeholderVal = "No placeholder",
-    isRquired = false,
+    isRequired = false,
     changeHandler,
     regEx = containsTextOnly, //Excepet only Alpha chars
     isChecked,
@@ -31,7 +31,7 @@ export default function CustomInput({
                 value={val}
                 className={classes[classHolder + "__input"]}
                 placeholder={classHolder !== "radio" ? placeholderVal : ""}
-                required={isRquired}
+                required={isRequired}
                 checked={classHolder === "radio" && isChecked}
                 onChange={changeHandler}
             />
@@ -40,7 +40,7 @@ export default function CustomInput({
                     <span className={classes["radio__button"]} />
                 ) : null}
                 {labelName}
-                {isRquired && <span className={classes.highlight}> *</span>}
+                {isRequired && <span className={classes.highlight}> *</span>}
             </label>
         </div>
     );

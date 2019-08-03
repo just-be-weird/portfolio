@@ -69,7 +69,7 @@ const LandingPage = ({ history, loginUser, isAuthenticated }) => {
                                 }
                                 regEx={isValidEmail}
                                 labelName='Email'
-                                isRquired={true}
+                                isRequired={true}
                                 changeHandler={e => setEmail(e.target.value)}
                             />
                             <CustomInput
@@ -83,7 +83,7 @@ const LandingPage = ({ history, loginUser, isAuthenticated }) => {
                                 }
                                 regEx={containsNumber6_8}
                                 labelName='Password'
-                                isRquired={true}
+                                isRequired={true}
                                 changeHandler={e => setPassword(e.target.value)}
                             />
                             {signUp && (
@@ -99,7 +99,7 @@ const LandingPage = ({ history, loginUser, isAuthenticated }) => {
                                         }
                                         regEx={containsNumber6_8}
                                         labelName='Confirm Password'
-                                        isRquired={true}
+                                        isRequired={true}
                                         changeHandler={e =>
                                             setRePassword(e.target.value)
                                         }
