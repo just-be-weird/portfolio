@@ -146,10 +146,7 @@ router.post("/image/uploads", Auth, async (req, res) => {
         imageToBeUploaded = { filepath, mimetype };
         //create this file on filesys
         file.pipe(fs.createWriteStream(filepath));
-
-        return res
-            .status(400)
-            .json({ error: "Wrong file type selected for upload." });
+        return true;
     });
 
     busboy.on("finish", async () => {
