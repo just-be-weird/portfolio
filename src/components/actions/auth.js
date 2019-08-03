@@ -58,7 +58,6 @@ export const logoutUser = () => dispatch => {
 };
 
 export const cachedLogin = () => dispatch => {
-    console.log('cached')
     localStorage.getItem("_htua_tkn")
     dispatch({ type: LOADING_UI });
     dispatch({ type: CACHED_AUTH_SUCCESS });

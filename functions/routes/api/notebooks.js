@@ -233,15 +233,16 @@ router.post("/step/:id", Auth, async (req, res) => {
         createdAt: new Date().toISOString(),
         userHandle: req.user.handle,
     };
-
+    let updatedData = null;
     try {
-        let updatedData = null;
         const ref = await db.doc(`/coche/${req.user.handle}`);
         const data = await ref.get();
         if (!data.exists) {
-            updatedData = await ref.set(notebook);
+            await ref.set(notebook);
+            updatedData = await ref.get();
         } else {
-            updatedData = await ref.update(notebook);
+            await ref.update(notebook);
+            updatedData = await ref.get();
         }
     } catch (err) {
         console.error(err);
@@ -249,7 +250,7 @@ router.post("/step/:id", Auth, async (req, res) => {
     }
     return res.status(200).json({
         message: "Added the details.",
-        data: updatedData
+        data: updatedData.data()
     });
 });
 

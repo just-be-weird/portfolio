@@ -1,26 +1,38 @@
 import React from "react";
 import classes from "../../Sass/main.module.scss";
+import { containsTextOnly } from "../../Shared/Util";
 
 export default function CustomInput({
     ipid = "text",
-    iptype = "type",
+    iptype = "text",
     labelName = "No data provided",
     placeholderVal = "No placeholder",
-    isRquired = false,
+    isRequired = false,
     changeHandler,
-    customHtml,
-    regEx,
+    regEx = containsTextOnly, //Excepet only Alpha chars
+    isChecked,
+    val,
 }) {
     let classHolder = iptype && iptype !== "radio" ? "custom_input" : "radio";
     return (
-        <div className={classes[classHolder + "__group"]}>
+        <div
+            className={
+                classes[classHolder + "__group"] +
+                (classHolder === "radio" && isChecked
+                    ? " " + classes.active
+                    : "")
+            }
+        >
             <input
                 type={iptype}
                 id={ipid}
-                pattern={regEx}
+                pattern={classHolder !== "radio" ? regEx : null}
+                name={classHolder === "radio" ? placeholderVal : ""}
+                value={val}
                 className={classes[classHolder + "__input"]}
-                placeholder={placeholderVal}
-                required={isRquired}
+                placeholder={classHolder !== "radio" ? placeholderVal : ""}
+                required={isRequired}
+                checked={classHolder === "radio" && isChecked}
                 onChange={changeHandler}
             />
             <label htmlFor={ipid} className={classes[classHolder + "__label"]}>
@@ -28,7 +40,7 @@ export default function CustomInput({
                     <span className={classes["radio__button"]} />
                 ) : null}
                 {labelName}
-                {customHtml && <span>{customHtml}</span>}
+                {isRequired && <span className={classes.highlight}> *</span>}
             </label>
         </div>
     );

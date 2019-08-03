@@ -2,14 +2,11 @@
 import { combineReducers } from 'redux';
 import ui from './ui';
 import auth from './auth';
-import coche from './coche.js';
-// import post from './post';
 import profile from './profile';
 
 //These will evantually evalutae to state object from where we can expose different values to components across application
 export default combineReducers({
     auth,
-    profile,
     ui,
-    coche
+    profile
 });
