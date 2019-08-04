@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "../../Sass/main.module.scss";
-import { containsTextOnly } from "../../Shared/Util";
+import { containsSpaceDeLimTextOnly } from "../../Shared/Util";
 
 export default function CustomInput({
     ipid = "text",
@@ -9,33 +9,50 @@ export default function CustomInput({
     placeholderVal = "No placeholder",
     isRequired = false,
     changeHandler,
-    regEx = containsTextOnly, //Excepet only Alpha chars
-    isChecked,
-    val,
+    regEx = null, //Excepet only Alpha chars
+    isChecked = null,
+    val = "",
 }) {
-    let classHolder = iptype && iptype !== "radio" ? "custom_input" : "radio";
+    let classHolder = "",
+        labelHolder = "",
+        inputHolder = "";
+    switch (iptype && iptype) {
+        case "radio":
+            classHolder =
+                classes.radio__group + (isChecked ? " " + classes.active : "");
+            labelHolder = classes.radio__label;
+            inputHolder = classes.radio__input;
+            placeholderVal = "";
+
+            break;
+        case "file":
+            classHolder = classes.custom_input__group;
+            labelHolder = classes.custom_input__label;
+            inputHolder = classes.custom_input__input;
+            regEx = null;
+            break;
+        default:
+            classHolder = classes.custom_input__group;
+            labelHolder = classes.custom_input__label;
+            inputHolder = classes.custom_input__input;
+            regEx = containsSpaceDeLimTextOnly;
+            break;
+    }
     return (
-        <div
-            className={
-                classes[classHolder + "__group"] +
-                (classHolder === "radio" && isChecked
-                    ? " " + classes.active
-                    : "")
-            }
-        >
+        <div className={classHolder}>
             <input
                 type={iptype}
                 id={ipid}
-                pattern={classHolder !== "radio" ? regEx : null}
-                name={classHolder === "radio" ? placeholderVal : ""}
+                pattern={regEx}
+                name={placeholderVal}
                 value={val}
-                className={classes[classHolder + "__input"]}
-                placeholder={classHolder !== "radio" ? placeholderVal : ""}
+                className={inputHolder}
+                placeholder={placeholderVal}
                 required={isRequired}
-                checked={classHolder === "radio" && isChecked}
+                checked={isChecked}
                 onChange={changeHandler}
             />
-            <label htmlFor={ipid} className={classes[classHolder + "__label"]}>
+            <label htmlFor={ipid} className={labelHolder}>
                 {iptype && iptype === "radio" ? (
                     <span className={classes["radio__button"]} />
                 ) : null}

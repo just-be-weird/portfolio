@@ -23,7 +23,8 @@ const MultiSelect = ({
                 classes.custom_input__group +
                 " " +
                 classes.dropdown +
-                (show ? " " + classes.open : "")
+                (show ? " " + classes.open : "") +
+                (selectedLi ? " " + classes.optActive : "")
             }
         >
             <select placeholder={title} id={ipid}>
@@ -51,10 +52,14 @@ const MultiSelect = ({
                     ))}
                 </ul>
             </span>
-            <label htmlFor={ipid} className={classes.custom_input__label}>
-                {labelName}
-                {isRequired && <span className={classes.highlight}> *</span>}
-            </label>
+            {labelName && (
+                <label htmlFor={ipid} className={classes.custom_input__label}>
+                    {labelName}
+                    {isRequired && (
+                        <span className={classes.highlight}> *</span>
+                    )}
+                </label>
+            )}
         </div>
     );
 };

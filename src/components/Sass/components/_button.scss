@@ -126,7 +126,7 @@ button {
     }
 }
 // General Inputs
-
+.file,
 .custom_input {
     &__group {
         &:not(:last-child) {
@@ -190,8 +190,7 @@ button {
         visibility: hidden;//visibility doesn't work wothout opacity
         transform: translateY(-4rem);
     }
-}
-
+} 
 // Radio Inputs
 .radio {
     &__group {

@@ -131,7 +131,11 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage }) => {
                                             list={row[ref].options}
                                             rfid={ref}
                                             ipid={row[ref + "_id"]}
-                                            labelName={row[ref].q}
+                                            labelName={
+                                                row[ref + "_a"]
+                                                    ? row[ref].q
+                                                    : null
+                                            }
                                             selectedLi={row[ref + "_a"]}
                                             show={dropdownState}
                                             isRequired={row.req}
@@ -200,6 +204,7 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage }) => {
                                             ? isValidPinCode
                                             : containsTextOnly
                                     }
+                                    val={row[ref + "_a"] ? row[ref + "_a"] : ""}
                                     changeHandler={e =>
                                         handleChange(e, ref, lineId, rowId)
                                     }

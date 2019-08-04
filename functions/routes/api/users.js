@@ -162,13 +162,12 @@ router.post("/image/uploads", Auth, async (req, res) => {
                 },
             });
         
-        console.log("config",config.portfolio.storage_bucket);
         const imageUrl = `https://firebasestorage.googleapis.com/v0/b/${
             config.portfolio.storage_bucket
             }/o/${imageFileName}?alt=media`;
 
         await db.doc(`/users/${req.user.handle}`).update({ imageUrl });
-        res.json({ message: "Image uploaded." });
+        res.json({ message: "Image uploaded.", imageUrl });
     });
     busboy.end(req.rawBody);
 });
