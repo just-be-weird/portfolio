@@ -18,13 +18,15 @@ const initialState = {
                 {
                     info_0_0: "Country",
                     info_0_0_id: "country",
+                    info_0_0_type: "text",
                     placeholder0: "Enter Country",
                     req: true,
                     status: 0,
                 },
                 {
-
+                    
                     info_0_1: "Postal code",
+                    info_0_1_type: "number",
                     info_0_1_id: "postal_code",
                     req: true,
                     placeholder1: "Enter Postal Code",
@@ -58,6 +60,7 @@ const initialState = {
                 },
                 {
                     info_1_2: "Job title",
+                    info_1_2_type: "text",
                     placeholder2: "Enter Job Title",
                     info_1_2_id: "job_title",
                     req: true,
@@ -65,6 +68,7 @@ const initialState = {
                 },
                 {
                     info_1_3: "Company",
+                    info_1_3_type: "text",
                     info_1_3_id: "company",
                     req: false,
                     placeholder3: "Enter Company Name",

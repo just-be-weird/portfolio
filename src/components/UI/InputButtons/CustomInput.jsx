@@ -9,7 +9,7 @@ export default function CustomInput({
     placeholderVal = "No placeholder",
     isRequired = false,
     changeHandler,
-    regEx = null, //Excepet only Alpha chars
+    regEx = containsSpaceDeLimTextOnly, //Excepet only Alpha chars
     isChecked = null,
     val = "",
 }) {
@@ -23,7 +23,7 @@ export default function CustomInput({
             labelHolder = classes.radio__label;
             inputHolder = classes.radio__input;
             placeholderVal = "";
-
+            regEx = null;
             break;
         case "file":
             classHolder = classes.custom_input__group;
@@ -35,7 +35,6 @@ export default function CustomInput({
             classHolder = classes.custom_input__group;
             labelHolder = classes.custom_input__label;
             inputHolder = classes.custom_input__input;
-            regEx = containsSpaceDeLimTextOnly;
             break;
     }
     return (
