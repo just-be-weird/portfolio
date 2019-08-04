@@ -117,92 +117,87 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage }) => {
                         const ref = "info_" + id + "_" + rowId,
                             type = row[ref + "_type"];
 
-                        if (type) {
-                            switch (type) {
-                                case "select":
-                                    jsx = (
-                                        <MultiSelect
-                                            key={row[ref + "_id"] + rowId}
-                                            title={
-                                                row[ref + "_a"]
-                                                    ? row[ref + "_a"]
-                                                    : row[ref].q
-                                            }
-                                            list={row[ref].options}
-                                            rfid={ref}
-                                            ipid={row[ref + "_id"]}
-                                            labelName={row[ref].q}
-                                            selectedLi={row[ref + "_a"]}
-                                            show={dropdownState}
-                                            isRequired={row.req}
-                                            dropdownOpend={dropdownOpendHandel}
-                                            dropDownHandel={setDDOption}
-                                        />
-                                    );
-                                    break;
-                                default:
-                                    jsx = (
-                                        <CustomInput
-                                            key={row[ref + "_id"] + rowId}
-                                            ipid={row[ref + "_id"]}
-                                            iptype={type}
-                                            htmlFor={row[ref + "_id"]}
-                                            placeholderVal={
-                                                row["placeholder" + rowId]
-                                            }
-                                            val={
-                                                type === "radio"
-                                                    ? row[ref + "_val"] ===
-                                                      radioState.id
-                                                        ? radioState.id
-                                                        : row[ref + "_val"]
-                                                    : row[ref + "_a"]
-                                                    ? row[ref + "_a"]
-                                                    : ""
-                                            }
-                                            labelName={row[ref]}
-                                            isChecked={
-                                                type === "radio"
-                                                    ? radioState.id ===
-                                                      row[ref + "_val"]
-                                                    : undefined
-                                            }
-                                            changeHandler={e =>
-                                                type === "file"
-                                                    ? handleImageChange(
-                                                          e,
-                                                          ref,
-                                                          lineId,
-                                                          rowId
-                                                      )
-                                                    : handleChange(
-                                                          e,
-                                                          ref,
-                                                          lineId,
-                                                          rowId,
-                                                          type
-                                                      )
-                                            }
-                                        />
-                                    );
-                            }
+                        let keyHolder = row[ref + "_id"] + rowId,
+                            titleHolder = "",
+                            ipidHolder = row[ref + "_id"],
+                            placeHolder = row["placeholder" + rowId],
+                            labeHolder = row[ref],
+                            isRequiredHolder = row.req,
+                            isCheckedHolder = undefined,
+                            regExHolder = "",
+                            valHolder = "",
+                            fnHolder = e =>
+                                handleChange(e, ref, lineId, rowId, type);
+
+                        switch (type) {
+                            case "select":
+                                titleHolder = row[ref + "_a"]
+                                    ? row[ref + "_a"]
+                                    : row[ref].q;
+
+                                labeHolder = row[ref + "_a"]
+                                    ? row[ref].q
+                                    : null;
+
+                                break;
+
+                            case "radio":
+                                valHolder =
+                                    row[ref + "_val"] === radioState.id
+                                        ? radioState.id
+                                        : row[ref + "_val"];
+
+                                isCheckedHolder =
+                                    radioState.id === row[ref + "_val"];
+                                break;
+
+                            case "file":
+                                fnHolder = e =>
+                                    handleImageChange(e, ref, lineId, rowId);
+                                break;
+
+                            default:
+                                valHolder = row[ref + "_a"]
+                                    ? row[ref + "_a"]
+                                    : "";
+
+                                regExHolder =
+                                    ipidHolder === "postal_code"
+                                        ? isValidPinCode
+                                        : containsTextOnly;
+                                break;
+                        }
+
+                        if (type && type === "select") {
+                            jsx = (
+                                <MultiSelect
+                                    key={keyHolder}
+                                    title={titleHolder}
+                                    list={row[ref].options}
+                                    rfid={ref}
+                                    ipid={ipidHolder}
+                                    labelName={labeHolder}
+                                    selectedLi={row[ref + "_a"]}
+                                    show={dropdownState}
+                                    isRequired={isRequiredHolder}
+                                    dropdownOpend={dropdownOpendHandel}
+                                    dropDownHandel={setDDOption}
+                                />
+                            );
                         } else {
                             jsx = (
                                 <CustomInput
-                                    key={row[ref + "_id"] + rowId}
-                                    ipid={row[ref + "_id"]}
-                                    htmlFor={row[ref + "_id"]}
-                                    placeholderVal={row["placeholder" + rowId]}
-                                    labelName={row[ref]}
-                                    isRequired={row.req}
-                                    regEx={
-                                        row[ref + "_id"] === "postal_code"
-                                            ? isValidPinCode
-                                            : containsTextOnly
-                                    }
-                                    changeHandler={e =>
-                                        handleChange(e, ref, lineId, rowId)
-                                    }
+                                    key={keyHolder}
+                                    ipid={ipidHolder}
+                                    iptype={type}
+                                    htmlFor={ipidHolder}
+                                    placeholderVal={placeHolder}
+                                    isRequired={isRequiredHolder}
+                                    val={valHolder}
+                                    regEx={regExHolder}
+                                    labelName={labeHolder}
+                                    isChecked={isCheckedHolder}
+                                    changeHandler={e => fnHolder(e)}
                                 />
                             );
                         }

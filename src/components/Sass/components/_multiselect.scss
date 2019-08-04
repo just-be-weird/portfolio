@@ -23,7 +23,6 @@
         // border-radius: 6px;
         display: block;
         position: relative;
-        color: var(--text);
         border: 1px solid transparent;
         background: var(--background);
         transition: all 0.3s ease;
@@ -58,7 +57,7 @@
         visibility: hidden;
         position: absolute;
         max-height: calc(var(--max-scroll) * 42px);
-        top: 35px;
+        top: 38px;
         left: 0;
         z-index: 1;
         right: 0;
@@ -168,6 +167,12 @@
                     $i: $i + 1;
                 }
             }
+        }
+    }
+    &.optActive {
+        & > span {
+            color: $color-black;
+            background: rgb(232, 240, 254);
         }
     }
 }

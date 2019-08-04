@@ -3,11 +3,10 @@ import {
     AUTH_LOGOUT,
     CACHED_AUTH_SUCCESS,
     AUTH_SUCCESS,
-    CLEAR_ERRORS,
-    SET_ERRORS,
     LOADING_UI,
     STOP_LOADING_UI,
 } from "./actionTypes";
+import { setUIErrors, clearUIErrors } from './ui'
 import { getProfile } from "./profile";
 
 //Load User
@@ -39,13 +38,10 @@ export const loginUser = (userData, history) => async dispatch => {
             dispatch({ type: AUTH_SUCCESS, payload: res.data });
             dispatch(getProfile(history));
             dispatch({ type: STOP_LOADING_UI });
-            dispatch({ type: CLEAR_ERRORS });
+            clearUIErrors();
         }
     } catch (err) {
-        dispatch({
-            type: SET_ERRORS,
-            payload: err.response.data,
-        });
+        setUIErrors(err.response.data);
         dispatch({ type: STOP_LOADING_UI });
     }
 };
@@ -62,5 +58,5 @@ export const cachedLogin = () => dispatch => {
     dispatch({ type: LOADING_UI });
     dispatch({ type: CACHED_AUTH_SUCCESS });
     dispatch({ type: STOP_LOADING_UI });
-    dispatch({ type: CLEAR_ERRORS });
+    clearUIErrors();
 };

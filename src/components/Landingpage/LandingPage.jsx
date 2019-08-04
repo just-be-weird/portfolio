@@ -8,9 +8,9 @@ import { isValidEmail, containsNumber6_8 } from "../Shared/Util";
 
 const LandingPage = ({ history, loginUser, isAuthenticated }) => {
     const [signUp, setSignUp] = useState(false);
-    const [email, setEmail] = useState("abc@example.com");
-    const [password, setPassword] = useState("Password");
-    const [rePassword, setRePassword] = useState("Confirm Password");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [rePassword, setRePassword] = useState("");
 
     const showRePassword = () => {
         setSignUp(!signUp);
@@ -70,6 +70,7 @@ const LandingPage = ({ history, loginUser, isAuthenticated }) => {
                                 regEx={isValidEmail}
                                 labelName='Email'
                                 isRequired={true}
+                                val={email}
                                 changeHandler={e => setEmail(e.target.value)}
                             />
                             <CustomInput
@@ -84,6 +85,7 @@ const LandingPage = ({ history, loginUser, isAuthenticated }) => {
                                 regEx={containsNumber6_8}
                                 labelName='Password'
                                 isRequired={true}
+                                val={password}
                                 changeHandler={e => setPassword(e.target.value)}
                             />
                             {signUp && (
@@ -100,6 +102,7 @@ const LandingPage = ({ history, loginUser, isAuthenticated }) => {
                                         regEx={containsNumber6_8}
                                         labelName='Confirm Password'
                                         isRequired={true}
+                                        val={rePassword}
                                         changeHandler={e =>
                                             setRePassword(e.target.value)
                                         }
@@ -113,6 +116,7 @@ const LandingPage = ({ history, loginUser, isAuthenticated }) => {
                                 htmlFor='login-now'
                                 labelName='Or Login?'
                                 isChecked={!signUp}
+                                val={!signUp}
                                 changeHandler={showRePassword}
                             />
                             <CustomInput
@@ -120,6 +124,7 @@ const LandingPage = ({ history, loginUser, isAuthenticated }) => {
                                 ipid='register'
                                 htmlFor='register-now'
                                 isChecked={signUp}
+                                val={signUp}
                                 labelName='Need an account? Sign Up'
                                 changeHandler={showRePassword}
                             />
