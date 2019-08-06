@@ -115,6 +115,7 @@ router.get("/:handle", async (req, res) => {
 //@desc     Upload image for user profile
 //@access   Protected
 router.post("/image/uploads", Auth, async (req, res) => {
+    console.log(">>", config.portfolio.storage_bucket)
     const BusBoy = require("busboy");
     const path = require("path");
     const os = require("os");
@@ -161,7 +162,7 @@ router.post("/image/uploads", Auth, async (req, res) => {
                     },
                 },
             });
-        
+        console.log(">>", config.portfolio.storage_bucket)
         const imageUrl = `https://firebasestorage.googleapis.com/v0/b/${
             config.portfolio.storage_bucket
             }/o/${imageFileName}?alt=media`;

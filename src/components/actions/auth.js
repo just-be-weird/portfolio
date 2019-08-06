@@ -5,8 +5,9 @@ import {
     AUTH_SUCCESS,
     LOADING_UI,
     STOP_LOADING_UI,
+    SET_ERRORS,
+    CLEAR_ERRORS
 } from "./actionTypes";
-import { setUIErrors, clearUIErrors } from './ui'
 import { getProfile } from "./profile";
 
 //Load User
@@ -36,12 +37,35 @@ export const loginUser = (userData, history) => async dispatch => {
         const res = await axios.post("/auth/login", userData);
         if (res.data) {
             dispatch({ type: AUTH_SUCCESS, payload: res.data });
-            dispatch(getProfile(history));
+            dispatch(getProfile(history, userData.isSignUp));
             dispatch({ type: STOP_LOADING_UI });
-            clearUIErrors();
+            dispatch({ type: CLEAR_ERRORS });
         }
     } catch (err) {
-        setUIErrors(err.response.data);
+        dispatch({
+            type: SET_ERRORS,
+            payload: err.response.data
+        });
+        dispatch({ type: STOP_LOADING_UI });
+    }
+};
+
+export const signUpUser = (userData, history) => async dispatch => {
+    dispatch({ type: LOADING_UI }); //we dispatch a type and we will catch the type from the reducer
+    try {
+
+        const res = await axios.post("/auth/signup", userData);
+        if (res.data) {
+            dispatch({ type: AUTH_SUCCESS, payload: res.data });
+            dispatch(getProfile(history, userData.isSignUp));
+            dispatch({ type: STOP_LOADING_UI });
+            dispatch({ type: CLEAR_ERRORS });
+        }
+    } catch (err) {
+        dispatch({
+            type: SET_ERRORS,
+            payload: err.response.data
+        });
         dispatch({ type: STOP_LOADING_UI });
     }
 };
@@ -58,5 +82,5 @@ export const cachedLogin = () => dispatch => {
     dispatch({ type: LOADING_UI });
     dispatch({ type: CACHED_AUTH_SUCCESS });
     dispatch({ type: STOP_LOADING_UI });
-    clearUIErrors();
+    dispatch({ type: CLEAR_ERRORS });
 };

@@ -4,7 +4,10 @@ import classes from "../../Sass/main.module.scss";
 import { connect } from "react-redux";
 
 const Notificaton = ({ errors, clicked }) => {
-    let notification_class = errors && ~Object.keys(errors)[0].indexOf("err");
+    let notification_class =
+        errors &&
+        (~Object.keys(errors)[0].indexOf("err") ||
+            ~Object.keys(errors)[0].indexOf("Password"));
     return (
         <div
             className={
