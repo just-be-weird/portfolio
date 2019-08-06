@@ -1,2 +1,6 @@
-@import '../../../components/UI/Backdrop/backdrop.module';
-@import '../../../components/UI/Modal/modal.module';
+@import "../../../components/UI/Backdrop/backdrop.module";
+@import "../../../components/UI/Modal/modal.module";
+
+#popup--login_modal {
+    width: 50%;
+}

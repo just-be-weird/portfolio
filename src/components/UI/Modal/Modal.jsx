@@ -12,7 +12,7 @@ export default function Modal({
     return (
         <Backdrop show={modalState} clicked={hideModal}>
             <div className={classes.popup__content + " " + (modalState ? classes.active : '')}
-                id={`popup--${id}`} onClick={e => e.stopPropagation()}>
+                id={classes[`popup--${id}`]} onClick={e => e.stopPropagation()}>
                 <div className={classes.popup__right}>
                     <button className={classes.popup__close} onClick={hideModal}>&times;</button>
                     {children}
