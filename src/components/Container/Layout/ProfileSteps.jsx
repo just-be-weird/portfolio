@@ -62,7 +62,7 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage }) => {
         stateCopy.step_meta_data[1].data[1].info_1_1_a =
             radioState.id === "professional";
 
-        const res = await axios.post(`/notebook/step/${current_step}`, {
+        const res = await axios.post(`/notebook`, {
             ...stateCopy,
             current_step,
             step_completed,

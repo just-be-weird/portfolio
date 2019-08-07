@@ -36,10 +36,10 @@ function Index({
             } else {
                 axios.defaults.headers.common["Authorization"] = token;
                 cachedLogin();
-                getProfile(history);
+                getProfile();
+                history.push('/step/1');
             }
         }
-        // console.log("called");
     }, [cachedLogin, getProfile, history, logoutUser]);
 
     const clickHandler = e => {

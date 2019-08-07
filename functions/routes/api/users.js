@@ -33,7 +33,7 @@ router.get("/get-details", Auth, async (req, res) => {
 
             const likes = await db
                 .collection("likes")
-                .where("userHandle", "==", req.user.handle)
+                .where("handle", "==", req.user.handle)
                 .get();
 
             if (likes) {
@@ -85,7 +85,7 @@ router.get("/:handle", async (req, res) => {
             userData.user = userDoc.data();
             const user = await db
                 .collection("notebooks")
-                .where("userHandle", "==", req.params.handle)
+                .where("handle", "==", req.params.handle)
                 .orderBy("createdAt", "desc")
                 .get();
 
@@ -94,7 +94,7 @@ router.get("/:handle", async (req, res) => {
                 userData.notebooks.push({
                     body: u.data().body,
                     createdAt: u.data().createdAt,
-                    userHandle: u.data().userHandle,
+                    handle: u.data().handle,
                     userImage: u.data().userImage,
                     likeCount: u.data().likeCount,
                     commentCount: u.data().commentCount,
