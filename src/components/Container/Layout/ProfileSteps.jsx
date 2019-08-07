@@ -29,6 +29,7 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage }) => {
             stateCopy.step_meta_data[lineId].data[rowId] = {
                 ...stateCopy.step_meta_data[lineId].data[rowId],
                 [ref + "_a"]: e.target.value,
+                status: e.target.value ? 1 : 0,
             };
         }
         setProfile(stateCopy);
@@ -125,7 +126,7 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage }) => {
                             isRequiredHolder = row.req,
                             isCheckedHolder = undefined,
                             regExHolder = "",
-                            valHolder = "",
+                            valHolder = row[ref + "_a"] ? row[ref + "_a"] : "",
                             fnHolder = e =>
                                 handleChange(e, ref, lineId, rowId, type);
 
