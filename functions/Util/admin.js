@@ -2,11 +2,8 @@ const admin = require("firebase-admin");
 const firebase = require("firebase");
 const functions = require("firebase-functions");
 
-admin.initializeApp({ credential: admin.credential.applicationDefault() });
-const db = admin.firestore();
-
 const config = functions.config();
-const firebaseInstance = firebase.initializeApp({
+const apiConfig = {
     apiKey: config.portfolio.api_key,
     authDomain: config.portfolio.auth_domain,
     databaseURL: config.portfolio.database_url,
@@ -14,6 +11,10 @@ const firebaseInstance = firebase.initializeApp({
     storageBucket: config.portfolio.storage_bucket,
     messagingSenderId: config.portfolio.messaging_sender_id,
     appId: config.portfolio.app_id,
-});
+};
+
+admin.initializeApp(apiConfig);
+const db = admin.firestore();
+const firebaseInstance = firebase.initializeApp(apiConfig);
 
 module.exports = { admin, db, firebaseInstance, config };

@@ -28,7 +28,7 @@ exports.Auth = async (req, res, next) => {
                 return next();
             }
         }
-        return res.status(403).json({ error: "No valid auth token found1." });
+        return res.status(403).json({ error: "No valid auth token found." });
     } catch (err) {
         console.error(err);
         if (err.code === "auth/id-token-expired") {
