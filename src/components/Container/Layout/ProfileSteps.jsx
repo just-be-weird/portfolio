@@ -29,6 +29,7 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage }) => {
             stateCopy.step_meta_data[lineId].data[rowId] = {
                 ...stateCopy.step_meta_data[lineId].data[rowId],
                 [ref + "_a"]: e.target.value,
+                status: e.target.value ? 1 : 0,
             };
         }
         setProfile(stateCopy);
@@ -61,7 +62,7 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage }) => {
         stateCopy.step_meta_data[1].data[1].info_1_1_a =
             radioState.id === "professional";
 
-        const res = await axios.post(`/notebook/step/${current_step}`, {
+        const res = await axios.post(`/notebook`, {
             ...stateCopy,
             current_step,
             step_completed,
@@ -125,7 +126,7 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage }) => {
                             isRequiredHolder = row.req,
                             isCheckedHolder = undefined,
                             regExHolder = "",
-                            valHolder = "",
+                            valHolder = row[ref + "_a"] ? row[ref + "_a"] : "",
                             fnHolder = e =>
                                 handleChange(e, ref, lineId, rowId, type);
 

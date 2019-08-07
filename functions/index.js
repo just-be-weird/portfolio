@@ -38,12 +38,12 @@ exports.createNotificationOnLike = functions
         try {
             if (
                 notebook.exists &&
-                notebook.data().userHandle !== snapshot.data().userHandle
+                notebook.data().handle !== snapshot.data().handle
             ) {
                 await db.doc(`/notifications/${snapshot.id}`).set({
                     createdAt: new Date().toISOString(),
-                    recipient: notebook.data().userHandle,
-                    sender: snapshot.data().userHandle,
+                    recipient: notebook.data().handle,
+                    sender: snapshot.data().handle,
                     type: "like",
                     read: false,
                     notebookId: notebook.id,
@@ -80,12 +80,12 @@ exports.createNotificationOnComment = functions
             //to avoid creating notifications for self actions
             if (
                 notebook.exists &&
-                notebook.data().userHandle !== snapshot.data().userHandle
+                notebook.data().handle !== snapshot.data().handle
             ) {
                 await db.doc(`/notifications/${snapshot.id}`).set({
                     createdAt: new Date().toISOString(),
-                    recipient: notebook.data().userHandle,
-                    sender: snapshot.data().userHandle,
+                    recipient: notebook.data().handle,
+                    sender: snapshot.data().handle,
                     type: "comment",
                     read: false,
                     notebookId: notebook.id,
@@ -109,7 +109,7 @@ exports.onUserImageChange = functions
             const batch = db.batch();
             const userNotebook = await db
                 .collection("notebooks")
-                .where("userHandle", "==", change.before.data().handle)
+                .where("handle", "==", change.before.data().handle)
                 .get();
 
             userNotebook.forEach(notebook => {

@@ -10,26 +10,6 @@ import {
 } from "./actionTypes";
 import { getProfile } from "./profile";
 
-//Load User
-// export const getUserData = (userData, history) => async dispatch => {
-//     dispatch({ type: LOADING_UI });//we dispatch a type and we will catch the type from the reducer
-//     if (localStorage._htua_tkn) {
-//         setAuthToken(localStorage._htua_tkn);
-//     }
-
-//     try {
-//         const res = await axios.post("/api/auth/login", );
-//         console.log("action>>",res);
-//         dispatch({
-//             type: AUTH_SUCCESS,
-//             payload: res.data,
-//         });
-//     } catch (error) {
-//         dispatch({
-//             type: AUTH_ERROR,
-//         });
-//     }
-// };
 
 export const loginUser = (userData, history) => async dispatch => {
     dispatch({ type: LOADING_UI }); //we dispatch a type and we will catch the type from the reducer

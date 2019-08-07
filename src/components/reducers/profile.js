@@ -24,7 +24,7 @@ const initialState = {
                     status: 0,
                 },
                 {
-                    
+
                     info_0_1: "Postal code",
                     info_0_1_type: "number",
                     info_0_1_id: "postal_code",
@@ -46,7 +46,7 @@ const initialState = {
                     placeholder0: "profession",
                     info_1_0_val: 'student',
                     info_1_0_a: true,
-                    status: 0,
+                    status: 1,
                 },
                 {
                     info_1_1: "Working professional",
@@ -56,7 +56,7 @@ const initialState = {
                     info_1_1_val: 'professional',
                     info_1_1_a: false,
                     req: true,
-                    status: 0,
+                    status: 1,
                 },
                 {
                     info_1_2: "Job title",
@@ -106,7 +106,6 @@ const initialState = {
                     info_3_0_type: "file",
                     info_3_0: "Add a photo",
                     status: 0,
-
                 }
             ]
         },
@@ -117,7 +116,7 @@ export default function (state = initialState, action) {
     const { type, payload } = action;
     switch (type) {
         case GET_COCHE_DATA:
-            return updateObject(state)
+            return updateObject(state, payload)
 
         case SET_COCHE_DATA:
             return updateObject(state, payload)

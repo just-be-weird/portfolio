@@ -18,7 +18,7 @@ router.get("/all", async (req, res) => {
                 notebooks.push({
                     notebookId: doc.id,
                     body: doc.data().body,
-                    userHandle: doc.data().userHandle,
+                    handle: doc.data().handle,
                     createdAt: doc.data().createdAt,
                     commentCount: doc.data().commentCount,
                     likeCount: doc.data().likeCount,
@@ -37,20 +37,31 @@ router.get("/all", async (req, res) => {
 //@route    POST /notebook
 //@desc     create a notebook for logged in user
 //@access   Protected
-router.post("/", Auth, async (request, response) => {
+router.post("/", Auth, async (req, res) => {
+    let notebook = {
+        ...req.body,
+        createdAt: new Date().toISOString(),
+        handle: req.user.handle,
+    };
+    let updatedData = null;
     try {
-        let notebook = {
-            body: request.body.body,
-            createdAt: new Date().toISOString(),
-            userHandle: request.user.handle,
-        };
-        const data = await db.collection("notebooks").add(notebook);
-        response.json({ msg: `document ${data.id} created.` });
+        const ref = await db.doc(`/users/${req.user.handle}`);
+        const data = await ref.get();
+        if (!data.exists) {
+            await ref.set(notebook);
+            updatedData = await ref.get();
+        } else {
+            await ref.update(notebook);
+            updatedData = await ref.get();
+        }
     } catch (err) {
         console.error(err);
-        res.status(400).json({ msg: "Error at post request." });
+        return res.status(500).json({ error: "Something went wrong, while updating profile!" });
     }
-    return res.status(404).json({ error: "Error while adding notebook." });
+    return res.status(200).json({
+        message: "Profile Updated Successfully.",
+        data: updatedData.data()
+    });
 });
 
 //@route    GET /notebook/:notebookId
@@ -98,7 +109,7 @@ router.post("/:notebookId/comment", Auth, async (req, res) => {
         body: req.body.body,
         createdAt: new Date().toISOString(),
         notebookId: req.params.notebookId,
-        userHandle: req.user.handle,
+        handle: req.user.handle,
         userImage: req.user.imageUrl,
     };
     try {
@@ -126,7 +137,7 @@ router.get("/:notebookId/like", Auth, async (req, res) => {
     try {
         const likeDocument = await db
             .collection("likes")
-            .where("userHandle", "==", req.user.handle)
+            .where("handle", "==", req.user.handle)
             .where("notebookId", "==", req.params.notebookId)
             .limit(1)
             .get();
@@ -142,7 +153,7 @@ router.get("/:notebookId/like", Auth, async (req, res) => {
             if (likeDocument.empty) {
                 await db.collection("likes").add({
                     notebookId: req.params.notebookId,
-                    userHandle: req.user.handle,
+                    handle: req.user.handle,
                 });
                 notebookData.likeCount++;
                 await notebookDocument.update({
@@ -169,7 +180,7 @@ router.get("/:notebookId/unlike", Auth, async (req, res) => {
     try {
         const likeDocument = await db
             .collection("likes")
-            .where("userHandle", "==", req.user.handle)
+            .where("handle", "==", req.user.handle)
             .where("notebookId", "==", req.params.notebookId)
             .limit(1)
             .get();
@@ -211,7 +222,7 @@ router.delete("/:notebookId", Auth, async (req, res) => {
         );
         const notebook = await notebookDocument.get();
         if (notebook.exists) {
-            if (notebook.data().userHandle !== req.user.handle) {
+            if (notebook.data().handle !== req.user.handle) {
                 return res.status(403).json({ error: "Not Authorized." });
             }
             await notebookDocument.delete();
@@ -222,36 +233,6 @@ router.delete("/:notebookId", Auth, async (req, res) => {
         res.status(500).json({ error: "Something went wrong!" });
     }
     return res.status(404).json({ error: "Notebook not found." });
-});
-
-//@route    POST /notebook/step/:id
-//@desc     Create a notebook
-//@access   Protected
-router.post("/step/:id", Auth, async (req, res) => {
-    let notebook = {
-        ...req.body,
-        createdAt: new Date().toISOString(),
-        userHandle: req.user.handle,
-    };
-    let updatedData = null;
-    try {
-        const ref = await db.doc(`/coche/${req.user.handle}`);
-        const data = await ref.get();
-        if (!data.exists) {
-            await ref.set(notebook);
-            updatedData = await ref.get();
-        } else {
-            await ref.update(notebook);
-            updatedData = await ref.get();
-        }
-    } catch (err) {
-        console.error(err);
-        return res.status(500).json({ error: "Something went wrong!" });
-    }
-    return res.status(200).json({
-        message: "Added the details.",
-        data: updatedData.data()
-    });
 });
 
 module.exports = router;

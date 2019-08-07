@@ -13,7 +13,7 @@ const apiConfig = {
     appId: config.portfolio.app_id,
 };
 
-admin.initializeApp(apiConfig);
+admin.initializeApp({ credential: admin.credential.applicationDefault(), ...apiConfig });
 const db = admin.firestore();
 const firebaseInstance = firebase.initializeApp(apiConfig);
 
