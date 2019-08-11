@@ -50,6 +50,7 @@ export default function CustomInput({
                 required={isRequired}
                 checked={isChecked}
                 onChange={changeHandler}
+                style={{ color: val ? "#333" : "#989494" }}
             />
             <label htmlFor={ipid} className={labelHolder}>
                 {iptype && iptype === "radio" ? (

@@ -28,3 +28,24 @@
         content: none;
     }
 }
+
+//Auth_Home
+.wrap_container {
+    padding: 3rem 3rem 4rem 3rem;
+    width: 100vw;
+    .content {
+        position: relative;
+        margin: 0 auto;
+        display: flex;
+        &__main {
+            width: 70%;
+        }
+        &__sidbar {
+            width: 30%;
+            img {
+                height: auto;
+                width: 100px;
+            }
+        }
+    }
+}

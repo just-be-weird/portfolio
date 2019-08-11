@@ -1,11 +1,19 @@
 .login {
-    background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.7) 50%, transparent 50%);
+    background-image: linear-gradient(
+        105deg,
+        rgba(255, 255, 255, 0.7) 0%,
+        rgba(255, 255, 255, 0.7) 50%,
+        transparent 50%
+    );
     background-size: 100%;
+    width: 50%;
+    margin: 4rem auto 0 6rem;
+    text-align: center;
     &__form {
         height: 100vh;
-        width: 40%;
-        padding: 2rem 8rem;
-    
+        // width: 40%;
+        padding: 8rem;
+
         @include respond(tab-landscape) {
             width: 70%;
         }
@@ -16,15 +24,26 @@
             padding: 0;
         }
     }
+    .radio__group {
+        display: inline-block;
+        padding-left: 1rem;
+        padding-bottom: 2rem;
+        width: auto;
+        margin: 0;
+    }
 }
 
 .form__group {
     text-align: center;
-    padding: 0px 2rem 0 0
+    padding: 0;
 }
 .form__des {
     text-align: center;
     h2 {
         font-size: 1.6rem;
     }
+}
+
+.custom_input__label {
+    text-align: start;
 }
