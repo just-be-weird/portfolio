@@ -6,14 +6,14 @@ import { updateObject } from "../Shared/Util";
 
 
 const initialState = {
-    current_step: 0,
+    current_step: {},
     title: "Tell's about your self,",
     subtitle: "This makes easy for others to identify you",
-    step_completed: [],
-    step_meta_data: [
+    step_completed: [{ id: 'step' }, { id: 'about' }, { id: 'experience' }, { id: 'stones' }, { id: 'projects' }, { contact: 'contact' }],
+    profile_data: [
         {
             id: 0,
-            count: 2,
+            count: 1,
             data: [
                 {
                     info_0_0: "Country",
@@ -21,15 +21,6 @@ const initialState = {
                     info_0_0_type: "text",
                     placeholder0: "Enter Country",
                     req: true,
-                    status: 0,
-                },
-                {
-
-                    info_0_1: "Postal code",
-                    info_0_1_type: "number",
-                    info_0_1_id: "postal_code",
-                    req: true,
-                    placeholder1: "Enter Postal Code",
                     status: 0,
                 }
             ],
@@ -59,9 +50,9 @@ const initialState = {
                     status: 1,
                 },
                 {
-                    info_1_2: "Job title",
+                    info_1_2: "Github User ID",
                     info_1_2_type: "text",
-                    placeholder2: "Enter Job Title",
+                    placeholder2: "Enter Github User ID",
                     info_1_2_id: "job_title",
                     req: true,
                     status: 0,
@@ -82,14 +73,20 @@ const initialState = {
             data: [
                 {
                     info_2_0_type: "select",
-                    info_2_0_id: "req_portfolio",
+                    info_2_0_id: "professional_status",
                     info_2_0: {
-                        q: "Why you need portfolio",
+                        q: "Please select a professional field",
                         options: [
-                            "Hunting a job",
-                            "Building a network",
-                            "trying out my app",
-                            "Not Sure!",
+                            "Artist",
+                            "Fashion desginer",
+                            "Software developer",
+                            "Web app developer",
+                            "Sales and marketing",
+                            "Accounting professional",
+                            "Teacher",
+                            "Student",
+                            "HR professional",
+                            "Others"
                         ],
                     },
                     req: true,
@@ -102,14 +99,28 @@ const initialState = {
             count: 1,
             data: [
                 {
-                    info_3_0_id: "avatar",
-                    info_3_0_type: "file",
-                    info_3_0: "Add a photo",
+                    info_3_0_id: "skill-set",
+                    info_3_0_type: "text",
+                    info_3_0: "Add your professional skills",
+                    status: 0,
+                }
+            ]
+        },
+        {
+            id: 4,
+            count: 1,
+            data: [
+                {
+                    info_4_0_id: "avatar",
+                    info_4_0_type: "file",
+                    info_4_0: "Add a photo",
                     status: 0,
                 }
             ]
         },
     ],
+    experience: [],
+    education:[]
 }
 
 export default function (state = initialState, action) {

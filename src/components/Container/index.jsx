@@ -37,7 +37,6 @@ function Index({
                 axios.defaults.headers.common["Authorization"] = token;
                 cachedLogin();
                 getProfile();
-                history.push('/step/1');
             }
         }
     }, [cachedLogin, getProfile, history, logoutUser]);
@@ -56,10 +55,10 @@ function Index({
                 {!isAuthenticated ? (
                     <Route exact path='/' component={LandingPage} />
                 ) : (
-                    <Route exact path='/' component={ProfileSteps} />
+                    <Route component={Routes} />
                 )}
 
-                <Route component={Routes} />
+                
             </Switch>
             <MultiActions />
             <SocialAction />
