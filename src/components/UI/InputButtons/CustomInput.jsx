@@ -43,7 +43,7 @@ export default function CustomInput({
                 type={iptype}
                 id={ipid}
                 pattern={regEx}
-                name={placeholderVal}
+                name={ipid}
                 value={val}
                 className={inputHolder}
                 placeholder={placeholderVal}
