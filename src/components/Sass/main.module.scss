@@ -2,6 +2,8 @@
 @import "abstracts/mixins";
 @import "abstracts/variables";
 
+@import "themes/common";
+
 @import "base/animations";
 @import "base/base";
 @import "base/typography";
@@ -18,7 +20,6 @@
 @import "components/sticky-sidebar";
 @import "components/sticky-actions";
 
-@import "themes/common";
 
 @import "layout/footer";
 @import "layout/grid";
