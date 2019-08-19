@@ -120,7 +120,7 @@ const initialState = {
         },
     ],
     experience: [],
-    education:[]
+    education: []
 }
 
 export default function (state = initialState, action) {

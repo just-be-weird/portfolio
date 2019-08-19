@@ -11,6 +11,7 @@ export default function CustomInput({
     changeHandler,
     regEx = containsSpaceDeLimTextOnly, //Excepet only Alpha chars
     isChecked = null,
+    isDisabled = null,
     val = "",
 }) {
     let classHolder = "",
@@ -50,7 +51,11 @@ export default function CustomInput({
                 required={isRequired}
                 checked={isChecked}
                 onChange={changeHandler}
-                style={{ color: val ? "#333" : "#989494" }}
+                disabled={isDisabled}
+                style={{
+                    color: val ? "#333" : "#989494",
+                    background: isDisabled ? "#dedede" : "#f3f3f3",
+                }}
             />
             <label htmlFor={ipid} className={labelHolder}>
                 {iptype && iptype === "radio" ? (

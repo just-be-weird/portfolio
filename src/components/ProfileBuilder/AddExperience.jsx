@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import axios from "../../axios.instance";
 import classes from "../Sass/main.module.scss";
 import CustomInput from "../UI/InputButtons/CustomInput";
 import { containsTextOnly } from "../Shared/Util";
+import CustomSwitch from "../UI/InputButtons/CustomSwitch";
+import { setProfile } from "../actions/profile";
 
-const AddExperience = () => {
+const AddExperience = ({ setProfile, stateData, history }) => {
     const [experienceData, setExperienceData] = useState({
         company: "",
         title: "",
@@ -13,8 +18,9 @@ const AddExperience = () => {
         current: false,
         description: "",
     });
+    const [toDateDisabled, toggleDisabled] = useState(false);
+
     const onChange = e => {
-        console.log({ [e.target.name]: e.target.value });
         setExperienceData({
             ...experienceData,
             [e.target.name]: e.target.value,
@@ -31,9 +37,23 @@ const AddExperience = () => {
         description,
     } = experienceData;
 
+    const submitHandler = async e => {
+        e.preventDefault();
+        stateData.experience.push(experienceData);
+        const res = await axios.post(`/notebook`, {
+            ...stateData,
+        });
+        setProfile(res.data.data);
+        history.push("/");
+    };
+
     return (
         <section className={classes.profile}>
-            <form action='#' className={classes["form"]}>
+            <form
+                action='#'
+                className={classes["form"]}
+                onSubmit={submitHandler}
+            >
                 <div
                     className={
                         classes["u-margin-bottom-medium"] +
@@ -88,6 +108,22 @@ const AddExperience = () => {
                     regEx={null}
                     changeHandler={e => onChange(e)}
                 />
+                <div className={classes.custom_input__group}>
+                    <CustomSwitch
+                        ipid={"current"}
+                        val={current}
+                        switch_label={"Current Job"}
+                        changeHandler={e => {
+                            console.log({ [e.target.name]: e.target.checked });
+
+                            setExperienceData({
+                                ...experienceData,
+                                [e.target.name]: e.target.checked,
+                            });
+                            toggleDisabled(!toDateDisabled);
+                        }}
+                    />
+                </div>
                 <CustomInput
                     ipid={"to"}
                     iptype={"date"}
@@ -95,6 +131,7 @@ const AddExperience = () => {
                     val={to}
                     labelName={"To Date"}
                     regEx={null}
+                    isDisabled={current}
                     changeHandler={e => onChange(e)}
                 />
                 {/* this should take special chars and number */}
@@ -119,4 +156,15 @@ const AddExperience = () => {
     );
 };
 
-export default AddExperience;
+AddExperience.propTypes = {
+    setProfile: PropTypes.func.isRequired,
+    stateData: PropTypes.object.isRequired,
+};
+const mapStateToProps = state => ({
+    stateData: state.profile,
+});
+
+export default connect(
+    mapStateToProps,
+    { setProfile }
+)(AddExperience);
