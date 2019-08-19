@@ -13,6 +13,9 @@
                 label {
                     width: 15%;
                 }
+                .switch {
+                    width: auto;
+                }
             }
             &__input {
             }
@@ -24,6 +27,15 @@
         }
         &__group {
             padding: 2rem 0rem 0 9.6rem;
+        }
+    }
+}
+// Education
+#education {
+    .custom_input {
+        &__label {
+            margin-left: 0rem;
+            width: 25%;
         }
     }
 }
