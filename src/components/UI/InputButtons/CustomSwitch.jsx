@@ -1,10 +1,16 @@
 import React from "react";
-import classes from '../../Sass/main.module.scss'
+import classes from "../../Sass/main.module.scss";
 
-const CustomSwitch = ({switch_label,changeHandler}) => {
+const CustomSwitch = ({ switch_label, changeHandler, val, ipid }) => {
     return (
-        <label className={classes.switch}>
-            <input type='checkbox' onChange={changeHandler}/>
+        <label htmlFor={ipid} className={classes.switch}>
+            <input
+                name={ipid}
+                id={ipid}
+                checked={val ? "checked" : ""}
+                type='checkbox'
+                onChange={changeHandler}
+            />
             <span>{switch_label}</span>
         </label>
     );
