@@ -47,7 +47,7 @@
         color: transparent;
     }
     &-success {
-        background: #55c57a;
+        background: $color-primary;
         box-shadow: 0 1rem 2rem rgba(9, 95, 15, 0.22);
         display: flex;
         -moz-box-shadow: 0 1rem 2rem rgba(9, 95, 15, 0.22);

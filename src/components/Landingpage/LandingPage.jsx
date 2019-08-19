@@ -44,15 +44,14 @@ const LandingPage = ({ history, loginUser, signUpUser, isAuthenticated }) => {
         }
     };
     const headingEl = (
-        <div
-            className={
-                classes["u-margin-bottom-medium"] + " " + classes["form__des"]
-            }
-        >
-            <h2 className={classes["heading-secondary"]}>
+        <div className={classes["form__des"]}>
+            <h2
+                className={classes["heading-secondary"]}
+                style={{ marginBottom: !hideModal ? "0px" : "3.5rem" }}
+            >
                 {" "}
                 Create your own
-                <br />{" "}
+                {hideModal && <br />}
                 <span className={classes.highlight}>
                     {" "}
                     customized portfolio.

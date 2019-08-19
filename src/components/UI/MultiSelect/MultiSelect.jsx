@@ -41,7 +41,7 @@ const MultiSelect = ({
                 <ul>
                     {list.map((opt, i) => (
                         <li key={i} data-id={i} className={isActive(opt)}>
-                            <span
+                            <span tabIndex={i}
                                 onClick={e =>
                                     dropDownHandel(e, rfid, isActive(opt))
                                 }

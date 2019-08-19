@@ -8,13 +8,13 @@ import { setProfile, uploadImage } from "../../actions/profile";
 import { isValidPinCode, containsTextOnly } from "../../Shared/Util";
 import MultiSelect from "../../UI/MultiSelect/MultiSelect";
 
-const ProfileSteps = ({ stepData, setProfile, uploadImage }) => {
+const ProfileSteps = ({ stepData, setProfile, uploadImage, history }) => {
     const [radioState, setRadioState] = useState({ id: "student" });
     const [dropdownState, setDropdownState] = useState(false);
     let {
         current_step,
         step_completed,
-        step_meta_data,
+        profile_data,
         title,
         subtitle,
     } = stepData;
@@ -26,8 +26,8 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage }) => {
             setRadioState({ id: e.target.value });
         } else {
             e.preventDefault();
-            stateCopy.step_meta_data[lineId].data[rowId] = {
-                ...stateCopy.step_meta_data[lineId].data[rowId],
+            stateCopy.profile_data[lineId].data[rowId] = {
+                ...stateCopy.profile_data[lineId].data[rowId],
                 [ref + "_a"]: e.target.value,
                 status: e.target.value ? 1 : 0,
             };
@@ -37,8 +37,8 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage }) => {
 
     const handleImageChange = (e, ref, lineId, rowId) => {
         const stateCopy = Object.assign({}, stepData);
-        stateCopy.step_meta_data[lineId].data[rowId] = {
-            ...stateCopy.step_meta_data[lineId].data[rowId],
+        stateCopy.profile_data[lineId].data[rowId] = {
+            ...stateCopy.profile_data[lineId].data[rowId],
             [ref + "_a"]: e.target.value,
         };
         const image = e.target.files[0];
@@ -51,15 +51,17 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage }) => {
     const submitHandler = async e => {
         e.preventDefault();
         //not found then only
-        if (!~step_completed.indexOf(current_step)) {
+        current_step = step_completed.find(
+            step => step.id === history.location.pathname
+        );
+        if (current_step) {
             step_completed.push(current_step);
-            current_step++;
         }
         const stateCopy = Object.assign({}, stepData);
         //Hack for updating radio button values in database
-        stateCopy.step_meta_data[1].data[0].info_1_0_a =
+        stateCopy.profile_data[1].data[0].info_1_0_a =
             radioState.id === "student";
-        stateCopy.step_meta_data[1].data[1].info_1_1_a =
+        stateCopy.profile_data[1].data[1].info_1_1_a =
             radioState.id === "professional";
 
         const res = await axios.post(`/notebook`, {
@@ -74,12 +76,12 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage }) => {
         e.preventDefault();
         const stateCopy = Object.assign({}, stepData);
         if (!isActive) {
-            stateCopy.step_meta_data[2].data[0] = {
-                ...stepData.step_meta_data[2].data[0],
+            stateCopy.profile_data[2].data[0] = {
+                ...stepData.profile_data[2].data[0],
                 [ref + "_a"]: e.target.innerText,
             };
         } else {
-            delete stateCopy.step_meta_data[2].data[0][ref + "_a"];
+            delete stateCopy.profile_data[2].data[0][ref + "_a"];
         }
         setProfile(stateCopy);
     };
@@ -111,7 +113,7 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage }) => {
                     </h2>
                     <h4>{subtitle}</h4>
                 </div>
-                {step_meta_data.map((line, lineId) => {
+                {profile_data.map((line, lineId) => {
                     const { id, data } = line;
                     let jsx = [];
                     return data.map((row, rowId) => {
@@ -209,9 +211,9 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage }) => {
                     <button
                         className={classes["btn"] + " " + classes["btn--blue"]}
                     >
-                        {step_meta_data[current_step].id !== 0
-                            ? "Back"
-                            : "Next"}
+                        {/* {profile_data[current_step].id !== 0
+                            ? "Back" */}
+                        {"Next"}
                     </button>
                 </div>
             </form>

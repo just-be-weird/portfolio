@@ -5,6 +5,9 @@ import Experience from "../Container/Layout/Experience";
 import InfinityStones from "../Container/Layout/InfinityStones";
 import Projects from "../Container/Layout/Projects";
 import ProfileSteps from "../Container/Layout/ProfileSteps";
+import AddExperience from "../ProfileBuilder/AddExperience";
+import AddEducation from "../ProfileBuilder/AddEducation";
+import Dashboard from "../Container/Layout/Dashboard";
 import Contact from "../Container/Layout/Contact";
 import NotFound from "../NotFound/NotFound";
 import classes from "../Sass/main.module.scss";
@@ -14,7 +17,10 @@ export default function Routes() {
     return (
         <div className={classes.container}>
             <Switch>
+                <PrivateRoute exact path='/' component={Dashboard} />
                 <PrivateRoute exact path='/step/:id' component={ProfileSteps} />
+                <PrivateRoute exact path='/add-experience' component={AddExperience} />
+                <PrivateRoute exact path='/add-education' component={AddEducation} />
                 <Route exact path='/about' component={About} />
                 <Route exact path='/experience' component={Experience} />
                 <Route exact path='/stones' component={InfinityStones} />

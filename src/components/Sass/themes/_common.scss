@@ -19,9 +19,16 @@
     }
 }
 
-
 .rainbow-anm {
-    background: linear-gradient(270deg, #0600ff, #00ffdf, #45ff00, #fffa00, #ff9400, #ff0200);
+    background: linear-gradient(
+        270deg,
+        #0600ff,
+        #00ffdf,
+        #45ff00,
+        #fffa00,
+        #ff9400,
+        #ff0200
+    );
     background-size: 1200% 1200%;
     -webkit-animation: rainbow-effect 2s ease infinite;
     -moz-animation: rainbow-effect 2s ease infinite;
@@ -62,14 +69,16 @@
     }
 }
 .grd-color {
-    background: -webkit-gradient(linear,left top,right top,from(#ff8a00),to(#da1b60)) left 
-    bottom
-    transparent    
-    no-repeat;
-    background: linear-gradient(to right,#ff8a00,#da1b60) left 
-    bottom
-    transparent    
-    no-repeat;
+    background: -webkit-gradient(
+            linear,
+            left top,
+            right top,
+            from(#ff8a00),
+            to(#da1b60)
+        )
+        left bottom transparent no-repeat;
+    background: linear-gradient(to right, #ff8a00, #da1b60) left bottom
+        transparent no-repeat;
 }
 
 .highlight {
@@ -85,4 +94,16 @@
 .grd-border-btm {
     @extend .grd-color;
     background-size: 100% 3px;
+}
+
+//svg icons
+.icon {
+    color: $color-black;
+    display: inline-block;
+    fill: currentColor;
+    height: 1.3rem;
+    margin-right: 0.5rem;
+    stroke: currentColor;
+    stroke-width: 0;
+    width: 1.3rem;
 }
