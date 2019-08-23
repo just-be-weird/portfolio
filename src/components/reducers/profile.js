@@ -34,27 +34,26 @@ const initialState = {
                     info_1_0: "Are you a student?",
                     info_1_0_id: "is_student",
                     info_1_0_type: "radio",
-                    placeholder0: "profession",
-                    info_1_0_val: 'student',
+                    info_1_0_val: "student",
                     info_1_0_a: true,
+                    req: false,
                     status: 1,
                 },
                 {
                     info_1_1: "Working professional",
                     info_1_1_id: "is_working",
                     info_1_1_type: "radio",
-                    placeholder1: "profession",
-                    info_1_1_val: 'professional',
+                    info_1_1_val: "professional",
                     info_1_1_a: false,
-                    req: true,
+                    req: false,
                     status: 1,
                 },
                 {
                     info_1_2: "Github User ID",
                     info_1_2_type: "text",
-                    placeholder2: "Enter Github User ID",
-                    info_1_2_id: "job_title",
-                    req: true,
+                    placeholder2: "Enter Github user ID",
+                    info_1_2_id: "github_id",
+                    req: false,
                     status: 0,
                 },
                 {
@@ -62,7 +61,7 @@ const initialState = {
                     info_1_3_type: "text",
                     info_1_3_id: "company",
                     req: false,
-                    placeholder3: "Enter Company Name",
+                    placeholder3: "Enter company name",
                     status: 0,
                 }
             ]
@@ -75,6 +74,7 @@ const initialState = {
                     info_2_0_type: "select",
                     info_2_0_id: "professional_status",
                     info_2_0: {
+                        label: "Professional Field",
                         q: "Please select a professional field",
                         options: [
                             "Artist",
@@ -101,7 +101,9 @@ const initialState = {
                 {
                     info_3_0_id: "skill-set",
                     info_3_0_type: "text",
-                    info_3_0: "Add your professional skills",
+                    info_3_0: "Professional Skills",
+                    placeholder0: "Add your professional skills",
+                    req: false,
                     status: 0,
                 }
             ]
@@ -113,7 +115,8 @@ const initialState = {
                 {
                     info_4_0_id: "avatar",
                     info_4_0_type: "file",
-                    info_4_0: "Add a photo",
+                    info_4_0: "Update Photo",
+                    req: false,
                     status: 0,
                 }
             ]
