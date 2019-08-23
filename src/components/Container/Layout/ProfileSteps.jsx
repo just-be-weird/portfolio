@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import classes from "../../Sass/main.module.scss";
 import CustomInput from "../../UI/InputButtons/CustomInput";
 import { setProfile, uploadImage } from "../../actions/profile";
+import { loadingUI } from "../../actions/ui";
 import {
     isValidPinCode,
     containsTextOnly,
@@ -13,6 +14,7 @@ import {
 import MultiSelect from "../../UI/MultiSelect/MultiSelect";
 
 const ProfileSteps = ({
+    loadingUI,
     profileData,
     title,
     subtitle,
@@ -65,10 +67,12 @@ const ProfileSteps = ({
         //Hack for updating radio button values in database
         stateCopy[1].data[0].info_1_0_a = radioState.id === "student";
         stateCopy[1].data[1].info_1_1_a = radioState.id === "professional";
-
+        loadingUI(true);
         const res = await axios.post(`/notebook`, { profile_data: stateCopy });
-
         setProfile({ profile_data: res.data.data.profile_data });
+
+        loadingUI();
+        history.push("/");
     };
 
     const setDDOption = (e, ref, isActive) => {
@@ -207,10 +211,17 @@ const ProfileSteps = ({
                 })}
                 <div className={classes["form__group"]}>
                     <button
+                        className={classes["btn"] + " " + classes["btn--back"]}
+                        onClick={e => {
+                            e.stopPropagation();
+                            history.push("/");
+                        }}
+                    >
+                        Back
+                    </button>
+                    <button
                         className={classes["btn"] + " " + classes["btn--blue"]}
                     >
-                        {/* {profile_data[current_step].id !== 0
-                            ? "Back" */}
                         {"Next"}
                     </button>
                 </div>
@@ -222,6 +233,7 @@ const ProfileSteps = ({
 ProfileSteps.propTypes = {
     profileData: PropTypes.array.isRequired,
     setProfile: PropTypes.func.isRequired,
+    loadingUI: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
     uploadImage: PropTypes.func.isRequired,
@@ -234,5 +246,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { setProfile, uploadImage }
+    { loadingUI, setProfile, uploadImage }
 )(ProfileSteps);

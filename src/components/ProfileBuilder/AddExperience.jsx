@@ -53,6 +53,7 @@ const AddExperience = ({ setProfile, stateData, history }) => {
                 action='#'
                 className={classes["form"]}
                 onSubmit={submitHandler}
+                id={classes.experience}
             >
                 <div
                     className={
@@ -145,6 +146,15 @@ const AddExperience = ({ setProfile, stateData, history }) => {
                     changeHandler={e => onChange(e)}
                 />
                 <div className={classes["form__group"]}>
+                    <button
+                        className={classes["btn"] + " " + classes["btn--back"]}
+                        onClick={e => {
+                            e.stopPropagation();
+                            history.push("/");
+                        }}
+                    >
+                        Back
+                    </button>
                     <button
                         className={classes["btn"] + " " + classes["btn--blue"]}
                     >

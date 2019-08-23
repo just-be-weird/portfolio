@@ -149,6 +149,16 @@ const AddEducation = ({ setProfile, stateData, history }) => {
                 />
                 <div className={classes["form__group"]}>
                     <button
+                        type='button'
+                        className={classes["btn"] + " " + classes["btn--back"]}
+                        onClick={e => {
+                            e.stopPropagation();
+                            history.push("/");
+                        }}
+                    >
+                        Back
+                    </button>
+                    <button
                         className={classes["btn"] + " " + classes["btn--blue"]}
                     >
                         {"Submit"}
