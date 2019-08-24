@@ -6,7 +6,7 @@ import Tooltip from "../UI/Tooltip/Tooltip";
 import classes from "../Sass/main.module.scss";
 import { logoutUser } from "../actions/auth";
 
-const MultiActions = ({ logoutUser }) => {
+const MultiActions = ({ history, logoutUser }) => {
     return (
         <section className={classes["section-multi-action"]}>
             <svg
@@ -23,7 +23,7 @@ const MultiActions = ({ logoutUser }) => {
                     <Tooltip id={"sign-out"} actionMsg={"Sign out"}>
                         <button
                             className={classes["section-sidebar__anchor"]}
-                            onClick={logoutUser}
+                            onClick={() => logoutUser(history)}
                         >
                             {/* <Link
                                 className={
@@ -32,17 +32,15 @@ const MultiActions = ({ logoutUser }) => {
                                 to='/'
                                 rel='nofollow noopener noreferrer'
                             > */}
-                                <svg
-                                    className={
-                                        classes["section-multi-action__icon"] +
-                                        " " +
-                                        classes[
-                                            "section-multi-action__icon--exit"
-                                        ]
-                                    }
-                                >
-                                    <use xlinkHref='/assets/img/sprite.svg#icon-exit' />
-                                </svg>
+                            <svg
+                                className={
+                                    classes["section-multi-action__icon"] +
+                                    " " +
+                                    classes["section-multi-action__icon--exit"]
+                                }
+                            >
+                                <use xlinkHref='/assets/img/sprite.svg#icon-exit' />
+                            </svg>
                             {/* </Link> */}
                         </button>
                     </Tooltip>

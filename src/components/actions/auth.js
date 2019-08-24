@@ -51,12 +51,13 @@ export const signUpUser = (userData, history) => async dispatch => {
     }
 };
 
-export const logoutUser = () => dispatch => {
+export const logoutUser = history => dispatch => {
     localStorage.removeItem("_htua_tkn");
     localStorage.removeItem("_dtkn_exp");
     delete axios.defaults.headers.common["Authorization"];
     dispatch({ type: RESET_COCHE_DATA });
     dispatch({ type: AUTH_LOGOUT });
+    history.push("/");
 };
 
 export const cachedLogin = () => dispatch => {

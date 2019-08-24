@@ -31,7 +31,7 @@ function Index({
         if (token) {
             const expairy = localStorage.getItem("_dtkn_exp");
             if (expairy && expairy * 1000 < Date.now()) {
-                logoutUser();
+                logoutUser(history);
             } else {
                 axios.defaults.headers.common["Authorization"] = token;
                 cachedLogin();
@@ -56,10 +56,8 @@ function Index({
                 ) : (
                     <Route component={Routes} />
                 )}
-
-                
             </Switch>
-            <MultiActions />
+            <MultiActions history={history} />
             <SocialAction />
             <Loader isloading={isloading} />
             <Footer />
