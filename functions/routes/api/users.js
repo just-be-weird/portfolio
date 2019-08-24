@@ -110,6 +110,54 @@ router.get("/:handle", async (req, res) => {
     return res.status(404).json({ error: "User dosn't exists." });
 });
 
+//@route    GET /user/:userId/follow
+//@desc     Follow user
+//@access   Protected
+router.get("/:userId/follow", Auth, async (req, res) => {
+    // console.log("req",req.params.userId)
+    try {
+        // Get the follower doc for requested user
+        const followerDocument = await db
+            .collection("followers")
+            .where("handle", "==", req.user.handle)
+            .where("userId", "==", req.params.userId)
+            .limit(1)
+            .get();
+        // Check if requested user has created profile yet?
+        const notebookDocument = await db.doc(
+            `/notebooks/${req.params.userId}`
+        );
+        let notebookData;
+        const notebook = await notebookDocument.get();
+        if (notebook.exists) {
+            notebookData = notebook.data();
+            notebookData.userId = notebook.id;
+            if (followerDocument.empty) {
+                await db.collection("followers").add({
+                    userId: req.params.userId,
+                    handle: req.user.handle,
+                });
+                notebookData.followerCount++;
+                await notebookDocument.update({
+                    followerCount: notebookData.followerCount,
+                });
+                return res.json(notebookData);
+            } else if (req.params.userId === req.user.user_id) {
+                return res
+                    .status(400)
+                    .json({ warning: `Can't follow your own profile.` });
+            } else {
+                return res
+                    .status(400)
+                    .json({ warning: `Already following ${req.user.handle}'s profile.` });
+            }
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Something went wrong!" });
+    }
+    return res.status(404).json({ error: `${req.user.handle} has not created profile yet.` });
+});
 
 //@route    POST /user/image/uploads
 //@desc     Upload image for user profile
