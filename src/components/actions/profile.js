@@ -7,7 +7,7 @@ import {
 import { setUIErrors } from './ui'
 import axios from "../../axios.instance";
 
-export const getProfile = history => async dispatch => {
+export const getProfile = () => async dispatch => {
     try {
         dispatch({ type: LOADING_UI });
         const res = await axios.get('/user/get-details');

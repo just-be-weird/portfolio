@@ -14,7 +14,6 @@ import { cachedLogin, logoutUser } from "../actions/auth";
 import { clearUIErrors } from "../actions/ui";
 import { getProfile } from "../actions/profile";
 import Loader from "../UI/Loader/Loader";
-import ProfileSteps from "./Layout/ProfileSteps";
 import Notificaton from "../UI/Notification/Notificaton";
 
 function Index({

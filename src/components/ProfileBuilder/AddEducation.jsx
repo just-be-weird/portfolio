@@ -70,7 +70,7 @@ const AddEducation = ({ setProfile, stateData, history }) => {
                             Add Education
                         </span>
                     </h2>
-                    <h4>Add your education details</h4>
+                    <h3>Add your education details</h3>
                 </div>
                 <CustomInput
                     ipid={"school"}
@@ -148,6 +148,16 @@ const AddEducation = ({ setProfile, stateData, history }) => {
                     changeHandler={e => onChange(e)}
                 />
                 <div className={classes["form__group"]}>
+                    <button
+                        type='button'
+                        className={classes["btn"] + " " + classes["btn--back"]}
+                        onClick={e => {
+                            e.stopPropagation();
+                            history.push("/");
+                        }}
+                    >
+                        Back
+                    </button>
                     <button
                         className={classes["btn"] + " " + classes["btn--blue"]}
                     >

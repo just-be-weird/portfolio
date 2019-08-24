@@ -6,14 +6,6 @@ button {
     background: transparent;
 }
 .btn {
-    &--blue {
-        background-color: $color-dark-blue;
-        color: $color-white;
-
-        &:after {
-            background-color: $color-dark-blue;
-        }
-    }
 
     &--green {
         background-color: $color-primary;
@@ -99,6 +91,27 @@ button {
         animation-duration: 1s;
         animation-timing-function: ease-out; */
     }
+    
+    &--back {
+        background-color: transparent;
+        border: 1px solid $color-dark-blue;
+        color: $color-black;
+        margin-right: 1.5rem;
+        &:after {
+            background-color: transparent;
+            color: $color-black;
+        }
+    }
+
+    &--blue {
+        background-color: $color-dark-blue;
+        color: $color-white;
+        padding: 1.6rem 4rem;
+
+        &:after {
+            background-color: $color-dark-blue;
+        }
+    }
 }
 
 .btn-text {
@@ -133,52 +146,51 @@ button {
             margin-bottom: 2rem;
         }
     }
-    
 
     &__input {
         background-color: #f3f3f3;
         border: none;
-        color:#989494;
+        color: #989494;
         border-bottom: 3px solid transparent;
-        border-radius: .2rem;
+        border-radius: 0.2rem;
         display: block;
         margin: 0 auto;
         font-family: inherit;
         font-size: 1.5rem;
         padding: 1.5rem 2rem;
-        transition: all .3s;
+        transition: all 0.3s;
         width: 80%;
         text-overflow: ellipsis;
-        
+
         @include respond(tab-port) {
-            width:100%;
+            width: 100%;
         }
         @include respond(mobile-landscape-n-up) {
             width: 50%;
         }
-        
+
         &:focus {
             border-bottom: 3px solid $color-primary;
-            box-shadow: 0 1rem 2rem rgba($color-black, .1);
+            box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
             outline: none;
-            
+
             &:invalid {
                 border-bottom: 3px solid $color-secondary-dark;
             }
         }
 
         &::-webkit-input-placeholder {
-            color: $color-grey-dark-2; 
+            color: $color-grey-dark-2;
         }
     }
 
     &__label {
         display: block;
         font-size: 1.2rem;
-        font-weight: 700;
-        margin-left: 5rem;
-        margin-top: 1rem;
-        transition: all .3s;
+        font-weight: 500;
+        margin-left: 6.5rem;
+        margin-top: 0.5rem;
+        transition: all 0.3s;
         @include respond(tab-port) {
             margin-left: 2rem;
             margin-top: 0.7rem;
@@ -187,10 +199,10 @@ button {
 
     &__input:placeholder-shown + &__label {
         opacity: 0;
-        visibility: hidden;//visibility doesn't work wothout opacity
+        visibility: hidden; //visibility doesn't work wothout opacity
         transform: translateY(-4rem);
     }
-} 
+}
 // Radio Inputs
 .radio {
     &__group {
@@ -200,7 +212,7 @@ button {
         @include respond(tab-port) {
             text-align: initial;
         }
-        
+
         @include respond(tab-port) {
             width: 100%;
             margin-bottom: 2rem;

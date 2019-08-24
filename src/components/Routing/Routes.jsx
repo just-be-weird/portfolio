@@ -18,7 +18,7 @@ export default function Routes() {
         <div className={classes.container}>
             <Switch>
                 <PrivateRoute exact path='/' component={Dashboard} />
-                <PrivateRoute exact path='/step/:id' component={ProfileSteps} />
+                <PrivateRoute exact path='/edit-profile' component={ProfileSteps} />
                 <PrivateRoute exact path='/add-experience' component={AddExperience} />
                 <PrivateRoute exact path='/add-education' component={AddEducation} />
                 <Route exact path='/about' component={About} />

@@ -1,41 +1,49 @@
 .profile {
     .form {
         width: 80%;
-        margin: 0 auto;
+        margin: 3rem auto;
         .file,
         .custom_input {
             &__group {
                 width: 50%;
-                display: flex;
-                flex-direction: row-reverse;
                 margin: 0 auto 2rem;
 
-                label {
-                    width: 15%;
-                }
                 .switch {
+                    @extend .custom_input__label;
                     width: auto;
                 }
             }
-            &__input {
-            }
         }
         .radio__group {
-            margin: 1rem 2rem 2rem 40rem;
+            margin: 1rem 2rem 2rem 33rem;
             text-align: start;
             display: inline-block;
         }
-        &__group {
-            padding: 2rem 0rem 0 9.6rem;
-        }
     }
 }
-// Education
-#education {
-    .custom_input {
-        &__label {
-            margin-left: 0rem;
-            width: 25%;
+
+// Dashboard
+.dashboard__content {
+    .section-subtitle {
+        margin-left: 1rem;
+        width: 100%;
+        text-align: left;
+        &::after {
+            margin: 0;
+        }
+    }
+    &-row {
+        ._container {
+            padding: 0 2rem 1rem;
+            font-size: $default-font-size;
+            .degree,
+            .company,
+            .date {
+                font-size: 1.2rem;
+            }
+            .description {
+                font-size: 1.4rem;
+            }
         }
     }
 }

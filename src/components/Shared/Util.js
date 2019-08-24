@@ -24,6 +24,7 @@ export const isValidEmail = '^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\
 export const containsNumber6_8 = '^\\d{6,8}$';
 export const containsTextOnly = "^[a-zA-Z ]{3,}$";
 export const containsDotAtEnd = "^[a-zA-Z. ]{2,}$";
+export const commaSeperatedTextOnly = "^[a-zA-Z, ]{2,}$";
 export const containsSpaceDeLimTextOnly = "^[a-zA-Z ]*$";
 export const isValidPinCode = '^\\d{4,6}$';
 export const isValidPassword = '^.*(?=.{6,})(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!#$%&? "]).*$';

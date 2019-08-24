@@ -5,7 +5,17 @@ import { connect } from "react-redux";
 import classes from "../../Sass/main.module.scss";
 
 const Dashboard = ({ isAuthenticated, isloading, errors, profile }) => {
-    const { imageUrl, location, handle, bio, email, website } = profile;
+    const {
+        imageUrl,
+        location,
+        handle,
+        bio,
+        email,
+        website,
+        education,
+        experience,
+        profile_data,
+    } = profile;
     return (
         <Fragment>
             <section className={classes.wrap_container}>
@@ -23,7 +33,7 @@ const Dashboard = ({ isAuthenticated, isloading, errors, profile }) => {
                                     src={imageUrl}
                                 />
                             </picture>
-                            {handle}
+                            <span className={classes.heading}>{handle}</span>
                             {/* </a> */}
                             <span className={classes.location}>
                                 <span className={classes.locality}>
@@ -43,7 +53,7 @@ const Dashboard = ({ isAuthenticated, isloading, errors, profile }) => {
                                     rel='tipsy'
                                     data-message-recipient='702789'
                                     data-button-location='profile'
-                                    href='/messages/new?recipient_id=outcrowd'
+                                    href={"mailto:" + email}
                                     original-title='Send a message about a work opportunity'
                                 >
                                     <svg
@@ -55,7 +65,6 @@ const Dashboard = ({ isAuthenticated, isloading, errors, profile }) => {
                                     >
                                         <path d='m12 13.595c-.715 0-1.43-.153-2.095-.46l-9.905-4.572v11.437c0 1.105.895 2 2 2h20c1.105 0 2-.895 2-2v-11.437l-9.905 4.572c-.665.307-1.38.46-2.095.46zm10-11.595h-20c-1.105 0-2 .895-2 2v2.36l10.743 4.958c.799.368 1.716.369 2.515 0l10.742-4.958v-2.36c0-1.105-.895-2-2-2z' />
                                     </svg>
-
                                     <span>Contact Me</span>
                                 </a>
                             </div>
@@ -66,7 +75,7 @@ const Dashboard = ({ isAuthenticated, isloading, errors, profile }) => {
                                     rel='tipsy'
                                     data-signup-trigger=''
                                     data-context='follow-user'
-                                    href='/outcrowd/followers'
+                                    href={`/${handle}/followers`}
                                     original-title='Follow Outcrowd '
                                 >
                                     <svg
@@ -181,6 +190,36 @@ const Dashboard = ({ isAuthenticated, isloading, errors, profile }) => {
                                 Add Education
                             </Link>
                         </div>
+                        <div className={classes.skill}>
+                            <h2 className={classes["section-subtitle"]}>
+                                SKILLS
+                            </h2>
+                            <ul className={classes["skills-list"]}>
+                                {profile_data[3].data[0].info_3_0_a &&
+                                profile_data[3].data[0].info_3_0_a.split(",")
+                                    .length > 0 ? (
+                                    profile_data[3].data[0].info_3_0_a
+                                        .split(",")
+                                        .map((s, i) => (
+                                            <li key={i}>
+                                                <p
+                                                    className={
+                                                        classes.skill__item
+                                                    }
+                                                >
+                                                    {s}
+                                                </p>
+                                            </li>
+                                        ))
+                                ) : (
+                                    <li>
+                                        <p className={classes.skill__item}>
+                                            No skills added
+                                        </p>
+                                    </li>
+                                )}
+                            </ul>
+                        </div>
                         <div className={classes.notification}>
                             <button className={classes.popup__close}>
                                 &#9932;
@@ -197,15 +236,69 @@ const Dashboard = ({ isAuthenticated, isloading, errors, profile }) => {
                     className={
                         classes["dashboard__content"] + " " + classes.experience
                     }
+                    style={{ display: "block", width: "56%" }}
                 >
-                    No Experience Found.
+                    <h2 className={classes["section-subtitle"]}>Experience</h2>
+                    <div className={classes["dashboard__content-row"]}>
+                        {experience.length > 0 ? (
+                            experience.map((exp, id) => (
+                                <div key={id} className={classes._container}>
+                                    <h4 className={classes.title}>
+                                        {exp.title}
+                                    </h4>
+                                    <p className={classes.company}>
+                                        <span>{exp.company + ", "}</span>
+                                        <span>{exp.location}</span>
+                                    </p>
+                                    <p className={classes.date}>
+                                        {exp.from + "-" + exp.to}
+                                    </p>
+                                    <p className={classes.description}>
+                                        {exp.description}
+                                    </p>
+                                </div>
+                            ))
+                        ) : (
+                            <div className={classes._container}>
+                                No Experience is been added.
+                            </div>
+                        )}
+                    </div>
                 </div>
+            </section>
+            <section className={classes["dashboard__content-container"]}>
                 <div
                     className={
                         classes["dashboard__content"] + " " + classes.education
                     }
+                    style={{ display: "block", width: "56%" }}
                 >
-                    No Education Found.
+                    <h2 className={classes["section-subtitle"]}>Education</h2>
+                    <div className={classes["dashboard__content-row"]}>
+                        {education.length > 0 ? (
+                            education.map((edu, id) => (
+                                <div key={id} className={classes._container}>
+                                    <h4 className={classes.school}>
+                                        {edu.school}
+                                    </h4>
+                                    <p className={classes.degree}>
+                                        <span>{edu.degree + ", "}</span>
+                                        <span>{edu.field}</span>
+                                    </p>
+                                    <p className={classes.date}>
+                                        {edu.from + "-" + edu.to}
+                                    </p>
+                                    <p className={classes.description}>
+                                        {edu.description}
+                                    </p>
+                                </div>
+                            ))
+                        ) : (
+                            <div className={classes._container}>
+                                No Experience is been added.
+                            </div>
+                        )}
+                    </div>
                 </div>
             </section>
         </Fragment>

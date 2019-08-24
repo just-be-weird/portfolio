@@ -111,6 +111,15 @@ body {
         width: 10rem;
     }
 }
+.section-subtitle {
+    @extend .section-title;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: darken($color: $color-dark-blue, $amount: 25%);
+    &:after {
+        height: 0.3rem;
+    }
+}
 .long-copy {
     font-size: 2.2rem;
     line-height: 145%;

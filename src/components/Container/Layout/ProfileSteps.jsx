@@ -5,85 +5,88 @@ import { connect } from "react-redux";
 import classes from "../../Sass/main.module.scss";
 import CustomInput from "../../UI/InputButtons/CustomInput";
 import { setProfile, uploadImage } from "../../actions/profile";
-import { isValidPinCode, containsTextOnly } from "../../Shared/Util";
+import { loadingUI } from "../../actions/ui";
+import {
+    isValidPinCode,
+    containsTextOnly,
+    commaSeperatedTextOnly,
+} from "../../Shared/Util";
 import MultiSelect from "../../UI/MultiSelect/MultiSelect";
 
-const ProfileSteps = ({ stepData, setProfile, uploadImage, history }) => {
+const ProfileSteps = ({
+    loadingUI,
+    profileData,
+    title,
+    subtitle,
+    setProfile,
+    uploadImage,
+    history,
+}) => {
     const [radioState, setRadioState] = useState({ id: "student" });
     const [dropdownState, setDropdownState] = useState(false);
-    let {
-        current_step,
-        step_completed,
-        profile_data,
-        title,
-        subtitle,
-    } = stepData;
 
     const handleChange = (e, ref, lineId, rowId, type) => {
-        const stateCopy = Object.assign({}, stepData);
+        const stateCopy = Array.from(profileData);
         if (type === "radio") {
             //e.preventDefault();//incase of radio we dont do it
             setRadioState({ id: e.target.value });
         } else {
             e.preventDefault();
-            stateCopy.profile_data[lineId].data[rowId] = {
-                ...stateCopy.profile_data[lineId].data[rowId],
+            stateCopy[lineId].data[rowId] = {
+                ...stateCopy[lineId].data[rowId],
                 [ref + "_a"]: e.target.value,
                 status: e.target.value ? 1 : 0,
             };
         }
-        setProfile(stateCopy);
+        setProfile({ profile_data: stateCopy });
     };
 
     const handleImageChange = (e, ref, lineId, rowId) => {
-        const stateCopy = Object.assign({}, stepData);
-        stateCopy.profile_data[lineId].data[rowId] = {
-            ...stateCopy.profile_data[lineId].data[rowId],
+        const stateCopy = Array.from(profileData);
+        stateCopy[lineId].data[rowId] = {
+            ...stateCopy[lineId].data[rowId],
             [ref + "_a"]: e.target.value,
         };
         const image = e.target.files[0];
         const formData = new FormData();
         formData.append("image", image, image.name);
         uploadImage(formData);
-        setProfile(stateCopy);
+        setProfile({ profile_data: stateCopy });
     };
 
     const submitHandler = async e => {
         e.preventDefault();
         //not found then only
-        current_step = step_completed.find(
-            step => step.id === history.location.pathname
-        );
-        if (current_step) {
-            step_completed.push(current_step);
-        }
-        const stateCopy = Object.assign({}, stepData);
+        // current_step = step_completed.find(
+        //     step => step.id === history.location.pathname
+        // );
+        // if (current_step) {
+        //     step_completed.push(current_step);
+        // }
+        const stateCopy = Array.from(profileData);
         //Hack for updating radio button values in database
-        stateCopy.profile_data[1].data[0].info_1_0_a =
-            radioState.id === "student";
-        stateCopy.profile_data[1].data[1].info_1_1_a =
-            radioState.id === "professional";
+        stateCopy[1].data[0].info_1_0_a = radioState.id === "student";
+        stateCopy[1].data[1].info_1_1_a = radioState.id === "professional";
+        loadingUI(true);
+        const res = await axios.post(`/notebook`, { profile_data: stateCopy });
+        setProfile({ profile_data: res.data.data.profile_data });
 
-        const res = await axios.post(`/notebook`, {
-            ...stateCopy,
-            current_step,
-            step_completed,
-        });
-        setProfile(res.data.data);
+        loadingUI();
+        history.push("/");
     };
 
     const setDDOption = (e, ref, isActive) => {
         e.preventDefault();
-        const stateCopy = Object.assign({}, stepData);
+        const stateCopy = Array.from(profileData);
         if (!isActive) {
-            stateCopy.profile_data[2].data[0] = {
-                ...stepData.profile_data[2].data[0],
+            stateCopy[2].data[0] = {
+                ...profileData[2].data[0],
                 [ref + "_a"]: e.target.innerText,
             };
         } else {
-            delete stateCopy.profile_data[2].data[0][ref + "_a"];
+            delete stateCopy[2].data[0][ref + "_a"];
         }
-        setProfile(stateCopy);
+        setProfile({ profile_data: stateCopy });
     };
 
     const dropdownOpendHandel = e => {
@@ -111,9 +114,9 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage, history }) => {
                     <h2 className={classes["heading-secondary"]}>
                         <span className={classes.highlight}> {title}</span>
                     </h2>
-                    <h4>{subtitle}</h4>
+                    <h3>{subtitle}</h3>
                 </div>
-                {profile_data.map((line, lineId) => {
+                {profileData.map((line, lineId) => {
                     const { id, data } = line;
                     let jsx = [];
                     return data.map((row, rowId) => {
@@ -138,10 +141,7 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage, history }) => {
                                     ? row[ref + "_a"]
                                     : row[ref].q;
 
-                                labeHolder = row[ref + "_a"]
-                                    ? row[ref].q
-                                    : null;
-
+                                labeHolder = row[ref + "_a"] && row[ref].label;
                                 break;
 
                             case "radio":
@@ -167,6 +167,8 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage, history }) => {
                                 regExHolder =
                                     ipidHolder === "postal_code"
                                         ? isValidPinCode
+                                        : ipidHolder === "skill-set"
+                                        ? commaSeperatedTextOnly
                                         : containsTextOnly;
                                 break;
                         }
@@ -209,10 +211,17 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage, history }) => {
                 })}
                 <div className={classes["form__group"]}>
                     <button
+                        className={classes["btn"] + " " + classes["btn--back"]}
+                        onClick={e => {
+                            e.stopPropagation();
+                            history.push("/");
+                        }}
+                    >
+                        Back
+                    </button>
+                    <button
                         className={classes["btn"] + " " + classes["btn--blue"]}
                     >
-                        {/* {profile_data[current_step].id !== 0
-                            ? "Back" */}
                         {"Next"}
                     </button>
                 </div>
@@ -222,15 +231,20 @@ const ProfileSteps = ({ stepData, setProfile, uploadImage, history }) => {
 };
 
 ProfileSteps.propTypes = {
-    stepData: PropTypes.object.isRequired,
+    profileData: PropTypes.array.isRequired,
     setProfile: PropTypes.func.isRequired,
+    loadingUI: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string.isRequired,
     uploadImage: PropTypes.func.isRequired,
 };
 const mapStateToProps = state => ({
-    stepData: state.profile,
+    profileData: state.profile.profile_data,
+    title: state.profile.title,
+    subtitle: state.profile.subtitle,
 });
 
 export default connect(
     mapStateToProps,
-    { setProfile, uploadImage }
+    { loadingUI, setProfile, uploadImage }
 )(ProfileSteps);
