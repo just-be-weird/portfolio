@@ -11,13 +11,13 @@ export default function GlobalNavigation() {
                     global__nav = document.getElementById("global__nav");
                 if (winTop > scrollDirection) {
                     if (winTop > global__nav.scrollHeight + 10) {
-                        global__nav.classList.add("sticky");
+                        global__nav.classList.add(classes.sticky);
                     } else {
-                        global__nav.classList.remove("sticky");
+                        global__nav.classList.remove(classes.sticky);
                         scrollDirection = window.scrollY;
                     }
                 } else {
-                    global__nav.classList.remove("sticky");
+                    global__nav.classList.remove(classes.sticky);
                     scrollDirection = window.scrollY;
                     return false;
                 }

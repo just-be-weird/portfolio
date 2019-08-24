@@ -284,6 +284,7 @@ nav {
     top: 0;
     width: 100%;
     z-index: 299;
+    transition: all .3s;
     @include respond(tab-port) {
         background-color: transparent;
         -webkit-box-shadow: none;
