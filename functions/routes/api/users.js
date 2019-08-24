@@ -132,7 +132,11 @@ router.get("/:userId/follow", Auth, async (req, res) => {
         if (notebook.exists) {
             notebookData = notebook.data();
             notebookData.userId = notebook.id;
-            if (followerDocument.empty) {
+            if (req.params.userId === req.user.user_id) {
+                return res
+                    .status(400)
+                    .json({ warning: `Can't follow your own profile.` });
+            } else if (followerDocument.empty) {
                 await db.collection("followers").add({
                     userId: req.params.userId,
                     handle: req.user.handle,
@@ -142,21 +146,60 @@ router.get("/:userId/follow", Auth, async (req, res) => {
                     followerCount: notebookData.followerCount,
                 });
                 return res.json(notebookData);
-            } else if (req.params.userId === req.user.user_id) {
-                return res
-                    .status(400)
-                    .json({ warning: `Can't follow your own profile.` });
             } else {
                 return res
                     .status(400)
-                    .json({ warning: `Already following ${req.user.handle}'s profile.` });
+                    .json({ warning: `Already following ${notebookData.handle}'s profile.` });
             }
         }
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Something went wrong!" });
     }
-    return res.status(404).json({ error: `${req.user.handle} has not created profile yet.` });
+    return res.status(404).json({ error: `${req.params.userId} has not created profile yet.` });
+});
+
+//@route    GET /user/:userId/unfollow
+//@desc     Unfollow an user
+//@access   Protected
+router.get("/:userId/unfollow", Auth, async (req, res) => {
+    try {
+        const followerDocument = await db
+            .collection("followers")
+            .where("handle", "==", req.user.handle)
+            .where("userId", "==", req.params.userId)
+            .limit(1)
+            .get();
+
+        const notebookDocument = await db.doc(
+            `/notebooks/${req.params.userId}`
+        );
+        let notebookData;
+        const notebook = await notebookDocument.get();
+        if (notebook.exists) {
+            notebookData = notebook.data();
+            notebookData.notebookId = notebook.id;
+            if (req.params.userId === req.user.user_id) {
+                return res
+                    .status(400)
+                    .json({ warning: `Can't unfollow your own profile.` });
+            } else if (followerDocument.empty) {
+                return res.status(400).json({ error: `Not following ${notebookData.handle}` });
+            } else {
+                await db.doc(`/followers/${followerDocument.docs[0].id}`).delete();
+                notebookData.followerCount--;
+                await notebookDocument.update({
+                    followerCount: notebookData.followerCount,
+                });
+
+                return res.json(notebookData);
+            }
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Something went wrong!" });
+    }
+    return res.status(404).json({ error: `${req.params.userId} has not created profile yet.` });
 });
 
 //@route    POST /user/image/uploads
