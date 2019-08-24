@@ -56,8 +56,6 @@ router.post("/signup", async (req, res) => {
     try {
         const { valid, errors } = validateSignUpData(newUser);
 
-        const noImage = "527717227600.svg";
-
         if (!valid) return res.status(400).json(errors);
 
         const doc = await db.doc(`/users/${newUser.handle}`).get();
@@ -76,9 +74,7 @@ router.post("/signup", async (req, res) => {
                     handle: newUser.handle,
                     email: newUser.email,
                     createdAt: new Date().toISOString(),
-                    imageUrl: `https://firebasestorage.googleapis.com/v0/b/${
-                        config.storageBucket
-                    }/o/${noImage}?alt=media`,
+                    imageUrl: `/assets/img/noImgM.svg`,
                     userId: data.user.uid,
                 };
 

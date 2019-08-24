@@ -8,9 +8,10 @@ export const STOP_LOADING_UI = "STOP_LOADING_UI";
 //User Reducer Types
 export const SET_USER = "SET_USER";
 
-//coche Reducer Types
+//profile Reducer Types
 export const GET_COCHE_DATA = "GET_COCHE_DATA";
 export const SET_COCHE_DATA = "SET_COCHE_DATA";
+export const RESET_COCHE_DATA = "RESET_COCHE_DATA";
 
 //Error Reducer Types
 export const SET_ERRORS = "SET_ERRORS";

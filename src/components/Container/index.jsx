@@ -3,7 +3,7 @@ import { withRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "../../axios.instance";
 import GlobalNavigation from "../GlobalNavigation/GlobalNavigation";
-import LandingPage from "../Landingpage/LandingPage";
+import UserAuthPage from "../Landingpage/UserAuthPage";
 import Routes from "../Routing/Routes";
 import SocialAction from "../Socials/SocialAction";
 import MultiActions from "../MultiActions/MultiActions";
@@ -52,7 +52,7 @@ function Index({
             {errors && <Notificaton clicked={clickHandler} />}
             <Switch>
                 {!isAuthenticated ? (
-                    <Route exact path='/' component={LandingPage} />
+                    <Route exact path='/' component={UserAuthPage} />
                 ) : (
                     <Route component={Routes} />
                 )}

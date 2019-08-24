@@ -11,7 +11,7 @@ import {
     containsTextOnly,
 } from "../Shared/Util";
 
-const LandingPage = ({ history, loginUser, signUpUser, isAuthenticated }) => {
+const UserAuthPage = ({ history, loginUser, signUpUser, isAuthenticated }) => {
     const [signUp, setSignUp] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -64,7 +64,7 @@ const LandingPage = ({ history, loginUser, signUpUser, isAuthenticated }) => {
             <img
                 className={classes.navigation__background_image}
                 src='/assets/img/landing_page.svg'
-                alt='LandingPage'
+                alt='UserAuthPage'
             />
             {!isAuthenticated && (
                 <div className={classes["login"]}>
@@ -200,7 +200,7 @@ const LandingPage = ({ history, loginUser, signUpUser, isAuthenticated }) => {
         </Fragment>
     );
 };
-LandingPage.propTypes = {
+UserAuthPage.propTypes = {
     isAuthenticated: PropTypes.bool,
     loginUser: PropTypes.func.isRequired,
     signUpUser: PropTypes.func.isRequired,
@@ -211,4 +211,4 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps,
     { loginUser, signUpUser }
-)(LandingPage);
+)(UserAuthPage);

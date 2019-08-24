@@ -4,6 +4,7 @@ import {
     CACHED_AUTH_SUCCESS,
     AUTH_SUCCESS,
     LOADING_UI,
+    RESET_COCHE_DATA,
     STOP_LOADING_UI,
     SET_ERRORS,
     CLEAR_ERRORS
@@ -54,6 +55,7 @@ export const logoutUser = () => dispatch => {
     localStorage.removeItem("_htua_tkn");
     localStorage.removeItem("_dtkn_exp");
     delete axios.defaults.headers.common["Authorization"];
+    dispatch({ type: RESET_COCHE_DATA });
     dispatch({ type: AUTH_LOGOUT });
 };
 
