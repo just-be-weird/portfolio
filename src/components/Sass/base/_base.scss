@@ -13,10 +13,12 @@ html {
     /* to set rem as unit*/
     font-size: 62.5%;
 
-    @include respond(tab-landscape) {// width < 1200px??
+    @include respond(tab-landscape) {
+        // width < 1200px??
         font-size: 56.25%; //I want 1 rem = 9px, which i can get by doing, 9/16 = 56.25%
     }
-    @include respond(tab-port) {// width < 900px??
+    @include respond(tab-port) {
+        // width < 900px??
         font-size: 50%; // I want 1 rem = 8px, which i can get by doing, 8/16 = 50%
     }
     @include respond(big-desktop) {
@@ -34,12 +36,17 @@ body {
         so by doing this we are forcing to all the elemets to inherit it whatever is set on body
     */
 
-    @include respond(tab-port) {// width < 900px??
+    @include respond(tab-port) {
+        // width < 900px??
         padding: 0;
     }
 }
 
-
 [class^="section-"] {
     outline: none;
+}
+
+ul {
+    color: $color-black;
+    list-style: none;
 }

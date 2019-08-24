@@ -114,7 +114,7 @@ const ProfileSteps = ({
                     <h2 className={classes["heading-secondary"]}>
                         <span className={classes.highlight}> {title}</span>
                     </h2>
-                    <h4>{subtitle}</h4>
+                    <h3>{subtitle}</h3>
                 </div>
                 {profileData.map((line, lineId) => {
                     const { id, data } = line;

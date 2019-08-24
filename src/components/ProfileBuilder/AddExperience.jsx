@@ -68,7 +68,7 @@ const AddExperience = ({ setProfile, stateData, history }) => {
                             Add Experience
                         </span>
                     </h2>
-                    <h4>Add your experience details</h4>
+                    <h3>Add your experience details</h3>
                 </div>
                 <CustomInput
                     ipid={"title"}

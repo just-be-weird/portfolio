@@ -38,7 +38,7 @@
     -webkit-animation: expand 0.7s ease-in;
     -moz-animation: expand 0.7s ease-in;
     &__msg {
-        font-size: 1.6rem;
+        font-size: $default-font-size;
     }
     .popup__close {
         font-size: 1.4rem;

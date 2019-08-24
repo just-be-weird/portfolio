@@ -70,7 +70,7 @@ const AddEducation = ({ setProfile, stateData, history }) => {
                             Add Education
                         </span>
                     </h2>
-                    <h4>Add your education details</h4>
+                    <h3>Add your education details</h3>
                 </div>
                 <CustomInput
                     ipid={"school"}

@@ -187,9 +187,9 @@ button {
     &__label {
         display: block;
         font-size: 1.2rem;
-        font-weight: 700;
-        margin-left: 5rem;
-        margin-top: 1rem;
+        font-weight: 500;
+        margin-left: 6.5rem;
+        margin-top: 0.5rem;
         transition: all 0.3s;
         @include respond(tab-port) {
             margin-left: 2rem;

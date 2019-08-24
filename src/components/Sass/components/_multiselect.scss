@@ -26,8 +26,6 @@
         border: 1px solid transparent;
         background: var(--background);
         transition: all 0.3s ease;
-        margin: 0;
-        width: 77%;
         &:before,
         &:after {
             content: "";
@@ -52,7 +50,6 @@
     ul {
         margin: 0;
         padding: 0;
-        list-style: none;
         opacity: 0;
         visibility: hidden;
         position: absolute;
@@ -201,7 +198,7 @@ select {
         display: none;
         & + span {
             padding-left: 38px;
-            font-size: 1.6rem;
+            font-size: $default-font-size;
             min-height: 20px;
             line-height: 20px;
             display: block;
