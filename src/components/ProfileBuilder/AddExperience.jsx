@@ -7,8 +7,9 @@ import CustomInput from "../UI/InputButtons/CustomInput";
 import { containsTextOnly } from "../Shared/Util";
 import CustomSwitch from "../UI/InputButtons/CustomSwitch";
 import { setProfile } from "../actions/profile";
+import { loadingUI } from "../actions/ui";
 
-const AddExperience = ({ setProfile, stateData, history }) => {
+const AddExperience = ({ loadingUI, setProfile, stateData, history }) => {
     const [experienceData, setExperienceData] = useState({
         company: "",
         title: "",
@@ -40,10 +41,12 @@ const AddExperience = ({ setProfile, stateData, history }) => {
     const submitHandler = async e => {
         e.preventDefault();
         stateData.experience.push(experienceData);
-        const res = await axios.post(`/notebook`, {
+        loadingUI(true);
+        const res = await axios.post(`/notebook/profile`, {
             ...stateData,
         });
         setProfile(res.data.data);
+        loadingUI();
         history.push("/");
     };
 
@@ -167,6 +170,7 @@ const AddExperience = ({ setProfile, stateData, history }) => {
 };
 
 AddExperience.propTypes = {
+    loadingUI: PropTypes.func.isRequired,
     setProfile: PropTypes.func.isRequired,
     stateData: PropTypes.object.isRequired,
 };
@@ -176,5 +180,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { setProfile }
+    { loadingUI, setProfile }
 )(AddExperience);
