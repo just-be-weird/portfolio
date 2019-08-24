@@ -2,13 +2,23 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import axios from "../../../axios.instance";
+import { loadingUI, setUIErrors } from "../../actions/ui";
 import classes from "../../Sass/main.module.scss";
 
-const Dashboard = ({ isAuthenticated, isloading, errors, profile }) => {
+const Dashboard = ({
+    isAuthenticated,
+    isloading,
+    errors,
+    profile,
+    loadingUI,
+    setUIErrors,
+}) => {
     const {
         imageUrl,
         location,
         handle,
+        userId,
         bio,
         email,
         website,
@@ -16,6 +26,19 @@ const Dashboard = ({ isAuthenticated, isloading, errors, profile }) => {
         experience,
         profile_data,
     } = profile;
+
+    const followHandler = async e => {
+        e.preventDefault();
+        try {
+            loadingUI(true);
+            await axios.get(`/user/${userId}/follow`);
+            loadingUI();
+        } catch (err) {
+            setUIErrors(err.response.data);
+            loadingUI();
+        }
+    };
+
     return (
         <Fragment>
             <section className={classes.wrap_container}>
@@ -70,13 +93,9 @@ const Dashboard = ({ isAuthenticated, isloading, errors, profile }) => {
                             </div>
 
                             <div className={classes["profile-follow-prompt"]}>
-                                <a
+                                <div
                                     className={classes["btn-text"]}
-                                    rel='tipsy'
-                                    data-signup-trigger=''
-                                    data-context='follow-user'
-                                    href={`/${handle}/followers`}
-                                    original-title='Follow Outcrowd '
+                                    onClick={followHandler}
                                 >
                                     <svg
                                         xmlns='http://www.w3.org/2000/svg'
@@ -89,30 +108,7 @@ const Dashboard = ({ isAuthenticated, isloading, errors, profile }) => {
                                     </svg>
 
                                     <span>Follow Me</span>
-                                </a>{" "}
-                                {/* <a
-                                className={classes["form-btn"]}
-                                href='/outcrowd/followers/outcrowd'
-                            >
-                                <svg
-                                    xmlns='http://www.w3.org/2000/svg'
-                                    enableBackground='new 0 0 24 24'
-                                    viewBox='0 0 24 24'
-                                    role='img'
-                                    className={classes.icon}
-                                >
-                                    <path d='m21.28 4.473c-.848-.721-2.109-.604-2.817.262l-8.849 10.835-4.504-3.064c-.918-.626-2.161-.372-2.773.566s-.364 2.205.555 2.83l7.494 5.098 11.151-13.653c.707-.866.592-2.152-.257-2.874z' />
-                                </svg>
-
-                                <span>Following</span>
-                            </a>{" "}
-                            <a
-                                className={classes["form-btn"]}
-                                data-hover='Unblock'
-                                href='/blocks/outcrowd'
-                            >
-                                <span>Blocked</span>
-                            </a> */}
+                                </div>{" "}
                             </div>
                         </div>
                         <div className={classes["profile-extra"]}>
@@ -307,6 +303,8 @@ const Dashboard = ({ isAuthenticated, isloading, errors, profile }) => {
 
 Dashboard.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
+    loadingUI: PropTypes.func.isRequired,
+    setUIErrors: PropTypes.func.isRequired,
     errors: PropTypes.object,
     profile: PropTypes.object.isRequired,
     isloading: PropTypes.bool,
@@ -318,4 +316,7 @@ const mapStateToProps = state => ({
     isloading: state.ui.loading,
 });
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(
+    mapStateToProps,
+    { loadingUI, setUIErrors }
+)(Dashboard);

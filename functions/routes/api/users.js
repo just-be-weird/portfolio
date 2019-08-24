@@ -26,6 +26,7 @@ router.post("/add-details", Auth, async (req, res) => {
 router.get("/get-details", Auth, async (req, res) => {
     let userData = {};
     const doc = await db.doc(`/users/${req.user.handle}`).get();
+    const notebookData = await db.doc(`notebooks/${req.user.user_id}`).get();
 
     try {
         if (doc.exists) {
@@ -62,9 +63,13 @@ router.get("/get-details", Auth, async (req, res) => {
                             notificationId: notification.id,
                         });
                     });
-                    return res.json(userData);
                 }
             }
+            if (notebookData.exists) {
+                userData.social = {};
+                userData.social = notebookData.data();
+            }
+            return res.json(userData);
         }
     } catch (err) {
         console.error(err);
