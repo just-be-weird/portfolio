@@ -6,7 +6,6 @@ button {
     background: transparent;
 }
 .btn {
-
     &--green {
         background-color: $color-primary;
         color: $color-white !important;
@@ -91,7 +90,7 @@ button {
         animation-duration: 1s;
         animation-timing-function: ease-out; */
     }
-    
+
     &--back {
         background-color: transparent;
         border: 1px solid $color-dark-blue;
@@ -165,8 +164,8 @@ button {
         @include respond(tab-port) {
             width: 100%;
         }
-        @include respond(mobile-landscape-n-up) {
-            width: 50%;
+        @include respond(phone) {
+            width: 90%;
         }
 
         &:focus {

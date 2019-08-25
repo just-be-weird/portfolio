@@ -15,7 +15,7 @@
         position: fixed;
         top: 6rem;
         right: 6rem;
-        z-index: 2000;
+        z-index: 18;
 
         @include respond(tab-port) {
             display: block;
@@ -35,9 +35,9 @@
         position: fixed;
         top: 6.5rem;
         right: 6.5rem;
-        background-image: radial-gradient($color-white, #f1d5b9);
+        background-image: radial-gradient(#f5f5f5, $color-white);
         display: none;
-        z-index: 1000;
+        z-index: 16;
 
         transition: transform 0.8s;
         @include respond(tab-port) {
@@ -50,22 +50,44 @@
             right: 3.5rem;
         }
         &_image {
-            @include respond(mobile-landscape-n-up) {
-                right: 0;
-                width: 45% !important;
-            }
-            @include respond(tab-port) {
-                width: 100%;
-                z-index: -1;
-                position: absolute;
-                bottom: 0
-            }
             @include respond(desktop-only) {
-                top: 0;
-                bottom: 0;
-                right: 0;
+                top: 166px;
+                right: 0px;
                 position: absolute;
-                height: 100vh;
+                height: 69vh;
+            }
+            @include respond(tab-landscape) {
+                position: absolute;
+                right: 0;
+                height: 42rem;
+                top: 36rem;
+            }
+            @media (max-width: 823px) {
+                height: 35rem;
+                top: 9.2rem;
+            }
+            @media (max-width: 812px) {
+                top: 6.5rem;
+            }
+            @media (max-width: $mq-tablet-portrait) {
+                top: 23.5rem;
+                height: 55rem;
+                right: 16rem;
+            }
+            @include respond(phone) {
+                width: 85%;
+                z-index: -1;
+                height: 43rem;
+                position: absolute;
+                top: 177px;
+                left: -20px;
+            }
+            @media (max-width: 320px) {
+                top: 160px;
+                height: 28rem;
+            }
+            @media only screen and (min-width: $mq-mobile-portrait + 1) and (max-width: 767px) {
+                display: none;
             }
         }
     }
@@ -78,7 +100,7 @@
             left: 0;
             top: 0;
             width: 0; // to make links disappear as opacity 0 only hides them but hover is still preset
-            z-index: 1500;
+            z-index: 17;
 
             transition: all 0.8s cubic-bezier(0.86, 0, 0.07, 1);
         }
@@ -268,8 +290,8 @@ nav {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 299;
-    transition: all .3s;
+    z-index: 20;
+    transition: all 0.3s;
     @include respond(tab-port) {
         background-color: transparent;
         -webkit-box-shadow: none;

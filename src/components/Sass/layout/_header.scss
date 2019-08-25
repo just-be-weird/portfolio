@@ -2,7 +2,7 @@
 
 header {
     position: relative;
-    z-index: 1;
+    z-index: 40;
 }
 .cta-container {
     text-align: center;
@@ -15,9 +15,9 @@ header {
     border-radius: 2rem;
     margin: 0 auto;
     width: 114rem;
-    
+
     @include respond(tab-landscape) {
-        width:95rem;
+        width: 95rem;
         margin: 0;
         padding: 10rem;
     }
@@ -51,15 +51,14 @@ header {
             width: 85%;
         }
 
-
         p {
             padding: 0px 2rem 1rem;
         }
         &:before {
-            content: '';
+            content: "";
             top: 0rem;
             left: -2rem;
-            content: '';
+            content: "";
             background: #ffffff;
             height: 2rem;
             display: inline-block;
@@ -78,14 +77,20 @@ header {
         position: absolute;
         top: 0.2rem;
         left: 10rem;
-        // background: #0db7ff;
         width: 3.8rem;
+        @media (max-width: 823px) {
+            top: 5rem;
+        }
         @include respond(tab-landscape) {
             left: 8rem;
         }
         @include respond(phone) {
             left: 2rem;
-            top: 2rem;
+            top: 5rem;
+        }
+        @media (min-width: 375px) {
+            height: 2.7rem;
+            width: 2.7rem;
         }
     }
     &-black-logo {

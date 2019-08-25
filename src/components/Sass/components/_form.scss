@@ -9,19 +9,53 @@
     width: 50%;
     margin: 4rem auto 0 6rem;
     text-align: center;
+    @include respond(tab-port) {
+        background-image: none;
+        margin: 19rem auto 0;
+        width: auto;
+    }
+    @media (max-width: 823px) {
+        margin: 0;
+    }
+    @include respond(phone) {
+        margin: 14rem auto 0;
+    }
+    @media (max-width: 320px) {
+        margin: 5rem auto 0;
+    }
+    @include respond(mobile-landscape-n-up) {
+        margin: 0;
+    }
+
     &__form {
-        height: 100vh;
-        // width: 40%;
+        height: 72vh;
         padding: 8rem;
 
         @include respond(tab-landscape) {
-            width: 70%;
+            height: 75vh;
+        }
+        @media (max-width: 823px) {
+            height: 58vh;
         }
         @include respond(tab-port) {
+            height: 56vh;
+        }
+        @include respond(phone) {
+            height: 40vh;
+            padding: 0;
             width: 100%;
         }
-        @include respond(mobile-landscape-n-up) {
-            padding: 0;
+        @media (max-width: 411px) {
+            height: 52vh;
+        }
+        @media (max-width: 360px) {
+            height: 40vh;
+        }
+        @media (max-width: 320px) {
+            height: 44vh;
+        }
+        @include respond(phone) {
+            padding: 5rem 0 0;
         }
     }
     .radio__group {
@@ -37,10 +71,21 @@
     text-align: center;
     padding: 0;
 }
+.active {
+    .form__group {
+        @include respond(phone) {
+            margin-bottom: 5rem;
+        }
+    }
+}
 .form__des {
     text-align: center;
     h2 {
         font-size: $default-font-size;
+        @include respond(tab-port) {
+            font-size: 2rem;
+            margin-top: 2rem;
+        }
     }
 }
 
