@@ -7,8 +7,9 @@ import CustomInput from "../UI/InputButtons/CustomInput";
 import { containsTextOnly, containsDotAtEnd } from "../Shared/Util";
 import CustomSwitch from "../UI/InputButtons/CustomSwitch";
 import { setProfile } from "../actions/profile";
+import { loadingUI } from "../actions/ui";
 
-const AddEducation = ({ setProfile, stateData, history }) => {
+const AddEducation = ({ setProfile, stateData, history, loadingUI }) => {
     const [educationData, setEducationData] = useState({
         degree: "",
         school: "",
@@ -42,10 +43,12 @@ const AddEducation = ({ setProfile, stateData, history }) => {
     const submitHandler = async e => {
         e.preventDefault();
         stateData.education.push(educationData);
-        const res = await axios.post(`/notebook`, {
+        loadingUI(true);
+        const res = await axios.post(`/notebook/profile`, {
             ...stateData,
         });
         setProfile(res.data.data);
+        loadingUI();
         history.push("/");
     };
 
@@ -171,6 +174,7 @@ const AddEducation = ({ setProfile, stateData, history }) => {
 
 AddEducation.propTypes = {
     setProfile: PropTypes.func.isRequired,
+    loadingUI: PropTypes.func.isRequired,
     stateData: PropTypes.object.isRequired,
 };
 const mapStateToProps = state => ({
@@ -179,5 +183,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { setProfile }
+    { setProfile, loadingUI }
 )(AddEducation);

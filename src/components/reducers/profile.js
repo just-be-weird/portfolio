@@ -1,5 +1,6 @@
 import {
     GET_COCHE_DATA,
+    RESET_COCHE_DATA,
     SET_COCHE_DATA
 } from '../actions/actionTypes';
 import { updateObject } from "../Shared/Util";
@@ -131,6 +132,9 @@ export default function (state = initialState, action) {
     switch (type) {
         case GET_COCHE_DATA:
             return updateObject(state, payload)
+
+        case RESET_COCHE_DATA:
+            return initialState;
 
         case SET_COCHE_DATA:
             return updateObject(state, payload)

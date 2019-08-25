@@ -3,7 +3,7 @@ import { withRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "../../axios.instance";
 import GlobalNavigation from "../GlobalNavigation/GlobalNavigation";
-import LandingPage from "../Landingpage/LandingPage";
+import UserAuthPage from "../UserAuthPage/UserAuthPage";
 import Routes from "../Routing/Routes";
 import SocialAction from "../Socials/SocialAction";
 import MultiActions from "../MultiActions/MultiActions";
@@ -31,7 +31,7 @@ function Index({
         if (token) {
             const expairy = localStorage.getItem("_dtkn_exp");
             if (expairy && expairy * 1000 < Date.now()) {
-                logoutUser();
+                logoutUser(history);
             } else {
                 axios.defaults.headers.common["Authorization"] = token;
                 cachedLogin();
@@ -46,21 +46,24 @@ function Index({
     };
     return (
         <Fragment>
-            <header className={classes["section-header"]} id='home'>
-                <GlobalNavigation />
-            </header>
+            {isAuthenticated && (
+                <Fragment>
+                    <header className={classes["section-header"]} id='home'>
+                        <GlobalNavigation />
+                    </header>
+                    <SocialAction />
+                </Fragment>
+            )}
+
             {errors && <Notificaton clicked={clickHandler} />}
             <Switch>
                 {!isAuthenticated ? (
-                    <Route exact path='/' component={LandingPage} />
+                    <Route exact path='/' component={UserAuthPage} />
                 ) : (
                     <Route component={Routes} />
                 )}
-
-                
             </Switch>
-            <MultiActions />
-            <SocialAction />
+            <MultiActions history={history} />
             <Loader isloading={isloading} />
             <Footer />
         </Fragment>

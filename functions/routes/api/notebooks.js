@@ -3,8 +3,8 @@ const { db } = require("../../Util/admin");
 const express = require("express");
 const router = express.Router();
 
-//@route    GET /notebooks
-//@desc     Gett all the notebooks
+//@route    GET /notebook/all
+//@desc     Gett all the profile notebooks
 //@access   Public
 router.get("/all", async (req, res) => {
     let notebooks = [];
@@ -35,38 +35,44 @@ router.get("/all", async (req, res) => {
 });
 
 //@route    POST /notebook
-//@desc     create a notebook for logged in user
+//@desc     create/update profile for a logged in user
 //@access   Protected
-router.post("/", Auth, async (req, res) => {
-    let notebook = {
-        ...req.body,
-        createdAt: new Date().toISOString(),
-        handle: req.user.handle,
-    };
-    let updatedData = null;
+router.post("/profile", Auth, async (req, res) => {
+    let updatedProfileData = null, updatedNotebook;
     try {
+        //Create/Update user profile
         const ref = await db.doc(`/users/${req.user.handle}`);
         const data = await ref.get();
         if (!data.exists) {
-            await ref.set(notebook);
-            updatedData = await ref.get();
+            await ref.set({ ...req.body });
+            updatedProfileData = await ref.get();
         } else {
-            await ref.update(notebook);
-            updatedData = await ref.get();
+            await ref.update({ ...req.body });
+            updatedProfileData = await ref.get();
         }
+        //set the data in notebook
+        await db.doc(`notebooks/${req.user.user_id}`).set({
+            createdAt: new Date().toISOString(),
+            handle: req.user.handle,
+            userImage: req.user.imageUrl,
+            likeCount: 0,
+            commentCount: 0,
+            followerCount: 0
+        });
+        updatedNotebook = await db.doc(`notebooks/${req.user.user_id}`).get();
     } catch (err) {
         console.error(err);
         return res.status(500).json({ error: "Something went wrong, while updating profile!" });
     }
     return res.status(200).json({
         message: "Profile Updated Successfully.",
-        data: updatedData.data()
+        data: { ...updatedProfileData.data(), ...updatedNotebook.data() }
     });
 });
 
 //@route    GET /notebook/:notebookId
-//@desc     Get a notebook for logged in user by ID
-//@access   Protected
+//@desc     Get a notebook of an user by notebookID
+//@access   Public
 router.get("/:notebookId", async (req, res) => {
     try {
         let notebookData = {};
@@ -131,7 +137,7 @@ router.post("/:notebookId/comment", Auth, async (req, res) => {
 });
 
 //@route    GET /notebook/:notebookId/like
-//@desc     Add a comment on notebook for logged in user by ID
+//@desc     Like a user notebook
 //@access   Protected
 router.get("/:notebookId/like", Auth, async (req, res) => {
     try {
@@ -174,7 +180,7 @@ router.get("/:notebookId/like", Auth, async (req, res) => {
 });
 
 //@route    GET /notebook/:notebookId/unlike
-//@desc     Add a comment on notebook for logged in user by ID
+//@desc     Unlike a user notebook
 //@access   Protected
 router.get("/:notebookId/unlike", Auth, async (req, res) => {
     try {

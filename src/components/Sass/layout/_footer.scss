@@ -2,10 +2,22 @@
     font-size: 1.4rem;
     padding: 2rem;
     position: relative;
-    // margin-top: 20rem;
-
+    @media (max-width: 823px) {
+        padding: 4.2rem 0 0;
+    }
+    @media (max-width: $mq-tablet-portrait) {
+        padding: 34rem 0 0;
+    }
     @include respond(tab-port) {
-        padding: 8rem 0;
+        .row .col-1-of-2:not(:last-child) {
+            margin-bottom: 0;
+        }
+    }
+    @include respond(phone) {
+        padding: 10rem 0 0;
+    }
+    @media (max-width: 736px) {
+        padding: 4.2rem 0 0;
     }
 
     &__logo-box {
@@ -21,6 +33,10 @@
     &__logo {
         height: 3.8rem;
         width: 3.8rem;
+        @media (min-width: 375px) {
+            height: 2.8rem;
+            width: 2.8rem;
+        }
     }
 
     &__navigation {
@@ -31,6 +47,7 @@
 
         @include respond(tab-port) {
             width: 100%;
+            border-top: none;
             text-align: center;
         }
     }
@@ -44,6 +61,12 @@
 
         &:not(:last-child) {
             margin-right: 1.5rem;
+            @include respond(tab-port) {
+                margin-bottom: 1.5rem;
+            }
+            @include respond(phone) {
+                margin-bottom: 0rem;
+            }
         }
     }
 

@@ -26,6 +26,7 @@ router.post("/add-details", Auth, async (req, res) => {
 router.get("/get-details", Auth, async (req, res) => {
     let userData = {};
     const doc = await db.doc(`/users/${req.user.handle}`).get();
+    const notebookData = await db.doc(`notebooks/${req.user.user_id}`).get();
 
     try {
         if (doc.exists) {
@@ -62,9 +63,13 @@ router.get("/get-details", Auth, async (req, res) => {
                             notificationId: notification.id,
                         });
                     });
-                    return res.json(userData);
                 }
             }
+            if (notebookData.exists) {
+                userData.social = {};
+                userData.social = notebookData.data();
+            }
+            return res.json(userData);
         }
     } catch (err) {
         console.error(err);
@@ -110,6 +115,97 @@ router.get("/:handle", async (req, res) => {
     return res.status(404).json({ error: "User dosn't exists." });
 });
 
+//@route    GET /user/:userId/follow
+//@desc     Follow user
+//@access   Protected
+router.get("/:userId/follow", Auth, async (req, res) => {
+    // console.log("req",req.params.userId)
+    try {
+        // Get the follower doc for requested user
+        const followerDocument = await db
+            .collection("followers")
+            .where("handle", "==", req.user.handle)
+            .where("userId", "==", req.params.userId)
+            .limit(1)
+            .get();
+        // Check if requested user has created profile yet?
+        const notebookDocument = await db.doc(
+            `/notebooks/${req.params.userId}`
+        );
+        let notebookData;
+        const notebook = await notebookDocument.get();
+        if (notebook.exists) {
+            notebookData = notebook.data();
+            notebookData.userId = notebook.id;
+            if (req.params.userId === req.user.user_id) {
+                return res
+                    .status(400)
+                    .json({ warning: `Can't follow your own profile.` });
+            } else if (followerDocument.empty) {
+                await db.collection("followers").add({
+                    userId: req.params.userId,
+                    handle: req.user.handle,
+                });
+                notebookData.followerCount++;
+                await notebookDocument.update({
+                    followerCount: notebookData.followerCount,
+                });
+                return res.json(notebookData);
+            } else {
+                return res
+                    .status(400)
+                    .json({ warning: `Already following ${notebookData.handle}'s profile.` });
+            }
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Something went wrong!" });
+    }
+    return res.status(404).json({ error: `${req.params.userId} has not created profile yet.` });
+});
+
+//@route    GET /user/:userId/unfollow
+//@desc     Unfollow an user
+//@access   Protected
+router.get("/:userId/unfollow", Auth, async (req, res) => {
+    try {
+        const followerDocument = await db
+            .collection("followers")
+            .where("handle", "==", req.user.handle)
+            .where("userId", "==", req.params.userId)
+            .limit(1)
+            .get();
+
+        const notebookDocument = await db.doc(
+            `/notebooks/${req.params.userId}`
+        );
+        let notebookData;
+        const notebook = await notebookDocument.get();
+        if (notebook.exists) {
+            notebookData = notebook.data();
+            notebookData.notebookId = notebook.id;
+            if (req.params.userId === req.user.user_id) {
+                return res
+                    .status(400)
+                    .json({ warning: `Can't unfollow your own profile.` });
+            } else if (followerDocument.empty) {
+                return res.status(400).json({ error: `Not following ${notebookData.handle}` });
+            } else {
+                await db.doc(`/followers/${followerDocument.docs[0].id}`).delete();
+                notebookData.followerCount--;
+                await notebookDocument.update({
+                    followerCount: notebookData.followerCount,
+                });
+
+                return res.json(notebookData);
+            }
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Something went wrong!" });
+    }
+    return res.status(404).json({ error: `${req.params.userId} has not created profile yet.` });
+});
 
 //@route    POST /user/image/uploads
 //@desc     Upload image for user profile

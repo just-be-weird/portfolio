@@ -57,7 +57,6 @@
     &-container {
         background: $color-light-grey;
         padding: 1rem 3rem;
-        width: 100vw;
         &:last-child {
             padding: 0 3rem 1rem;
         }
@@ -65,9 +64,8 @@
 }
 .wrap_container {
     background: $color-light-grey;
-    width: 100vw;
     padding: 0 3rem;
-    
+
     .dashboard {
         @extend .dashboard__content;
         background: $color-light-grey;
@@ -252,6 +250,15 @@
                 &-follow-prompt {
                     .btn-text {
                         @extend .btn-text;
+                        border-radius: 0.4rem;
+                        border: 1px solid #55c57a;
+                        width: 12rem;
+                        color: #2f3545;
+                        padding: 0.5rem 0.7rem;
+
+                        span {
+                            font-size: $default-font-size;
+                        }
                     }
                 }
                 &-extra {

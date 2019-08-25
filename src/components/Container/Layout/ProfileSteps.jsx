@@ -68,9 +68,8 @@ const ProfileSteps = ({
         stateCopy[1].data[0].info_1_0_a = radioState.id === "student";
         stateCopy[1].data[1].info_1_1_a = radioState.id === "professional";
         loadingUI(true);
-        const res = await axios.post(`/notebook`, { profile_data: stateCopy });
+        const res = await axios.post(`/notebook/profile`, { profile_data: stateCopy });
         setProfile({ profile_data: res.data.data.profile_data });
-
         loadingUI();
         history.push("/");
     };
