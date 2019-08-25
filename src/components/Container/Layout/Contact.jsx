@@ -21,7 +21,7 @@ export default function Contact() {
           <a
             className={classes["btn"]+" "+classes["btn--blue"]+" "+classes["btn-resume"]}
             target="_blank"
-            href="public/assets/docs/AbhishekPrajpati_Resume_2019_06.pdf"
+            href="public/assets/docs/AbhishekPrajpati_Resume_2019_07.pdf"
           >
             Resume
           </a>

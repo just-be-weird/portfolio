@@ -78,7 +78,7 @@ const MultiActions = ({ history, logoutUser, isAuthenticated }) => {
                 <li className={classes["section-multi-action__item"]}>
                     <a
                         className={classes["section-multi-action__anchor"]}
-                        href='/assets/docs/AbhishekPrajpati_Resume_2019_06.pdf'
+                        href='/assets/docs/AbhishekPrajpati_Resume_2019_07.pdf'
                         target='_blank'
                         rel='nofollow noopener noreferrer'
                     >
