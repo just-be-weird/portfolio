@@ -17,12 +17,7 @@
     @media (max-width: 823px) {
         margin: 0;
     }
-    @include respond(phone) {
-        margin: 14rem auto 0;
-    }
-    @media (max-width: 320px) {
-        margin: 5rem auto 0;
-    }
+
     @include respond(mobile-landscape-n-up) {
         margin: 0;
     }
@@ -31,28 +26,19 @@
         height: 72vh;
         padding: 8rem;
 
-        @include respond(tab-landscape) {
-            height: 75vh;
-        }
-        @media (max-width: 823px) {
-            height: 58vh;
-        }
         @include respond(tab-port) {
-            height: 56vh;
+            height: 61vh;
         }
         @include respond(phone) {
-            height: 40vh;
             padding: 0;
             width: 100%;
         }
-        @media (max-width: 411px) {
-            height: 52vh;
+        @media (max-width: 414px) {
+            height: 73vh;
         }
-        @media (max-width: 360px) {
-            height: 40vh;
-        }
+
         @media (max-width: 320px) {
-            height: 44vh;
+            height: 70vh;
         }
         @include respond(phone) {
             padding: 5rem 0 0;

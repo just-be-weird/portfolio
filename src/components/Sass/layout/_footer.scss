@@ -3,7 +3,7 @@
     padding: 2rem;
     position: relative;
     @media (max-width: 823px) {
-        padding: 0;
+        padding: 4.2rem 0 0;
     }
     @media (max-width: $mq-tablet-portrait) {
         padding: 34rem 0 0;
@@ -13,11 +13,11 @@
             margin-bottom: 0;
         }
     }
-    @media (max-width: 736px) {
-        padding: 0;
-    }
     @include respond(phone) {
-        padding: 6rem 0 0;
+        padding: 10rem 0 0;
+    }
+    @media (max-width: 736px) {
+        padding: 4.2rem 0 0;
     }
 
     &__logo-box {

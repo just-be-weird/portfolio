@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
 import classes from "../Sass/main.module.scss";
 
-export default function GlobalNavigation() {
+const GlobalNavigation = () => {
     useEffect(() => {
         if (
             !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -151,4 +151,5 @@ export default function GlobalNavigation() {
             </nav>
         </Fragment>
     );
-}
+};
+export default GlobalNavigation;

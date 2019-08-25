@@ -51,16 +51,16 @@
         }
         &_image {
             @include respond(desktop-only) {
-                top: 166px;
+                top: 21px;
                 right: 0px;
                 position: absolute;
-                height: 69vh;
+                height: 81vh;
             }
             @include respond(tab-landscape) {
                 position: absolute;
                 right: 0;
                 height: 42rem;
-                top: 36rem;
+                top: 28rem;
             }
             @media (max-width: 823px) {
                 height: 35rem;
@@ -139,7 +139,7 @@
         width: 100%;
     }
 
-    //     //icon
+    //icon
     &__icon {
         position: relative;
         margin-top: 3.5rem;

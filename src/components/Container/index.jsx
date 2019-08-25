@@ -3,7 +3,7 @@ import { withRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "../../axios.instance";
 import GlobalNavigation from "../GlobalNavigation/GlobalNavigation";
-import UserAuthPage from "../Landingpage/UserAuthPage";
+import UserAuthPage from "../UserAuthPage/UserAuthPage";
 import Routes from "../Routing/Routes";
 import SocialAction from "../Socials/SocialAction";
 import MultiActions from "../MultiActions/MultiActions";
@@ -46,9 +46,15 @@ function Index({
     };
     return (
         <Fragment>
-            <header className={classes["section-header"]} id='home'>
-                <GlobalNavigation />
-            </header>
+            {isAuthenticated && (
+                <Fragment>
+                    <header className={classes["section-header"]} id='home'>
+                        <GlobalNavigation />
+                    </header>
+                    <SocialAction />
+                </Fragment>
+            )}
+
             {errors && <Notificaton clicked={clickHandler} />}
             <Switch>
                 {!isAuthenticated ? (
@@ -58,7 +64,6 @@ function Index({
                 )}
             </Switch>
             <MultiActions history={history} />
-            <SocialAction />
             <Loader isloading={isloading} />
             <Footer />
         </Fragment>

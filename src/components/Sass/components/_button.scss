@@ -26,6 +26,7 @@ button {
     &:visited {
         border-radius: 10rem;
         /*for making round btn*/
+        color: $color-white;
         display: inline-block;
         /*Height weight property works now*/
         font-size: $default-font-size;
