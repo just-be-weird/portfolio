@@ -2,12 +2,7 @@
     z-index: 1;
     position: relative;
 }
-.section-contact {
-    padding-top: 2rem;
-    height: 100vh;
-}
 .section-about::after,
-.section-contact::after,
 .section-projects::after,
 .section-stones::after {
     -webkit-transform: skewY(-7deg);
@@ -22,7 +17,6 @@
 }
 @media (max-width: 56.25em) {
     .section-about::after,
-    .section-contact::after,
     .section-projects::after,
     .section-stones::after {
         content: none;
