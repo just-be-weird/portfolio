@@ -283,15 +283,14 @@ nav {
 }
 
 .sticky {
-    background-color: rgba(255, 255, 255, 0.98);
-    -webkit-box-shadow: 0 0.4rem 0.8rem $color-grey-dark-2;
-    box-shadow: 0 0.4rem 0.8rem $color-grey-dark-2;
+    background-color: $color-white;
+    @extend .shadow;
     left: 0;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 20;
-    transition: all 0.3s;
+    transition: all 0.4s;
     @include respond(tab-port) {
         background-color: transparent;
         -webkit-box-shadow: none;
