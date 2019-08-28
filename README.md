@@ -52,3 +52,12 @@ Next, to run the source version of the application locally using Node and Expres
                 ui: state.ui
             })`  or we can pass actions inline in `connect(mapStateToProps, { nameOfTheAction })()`
         3. Once done that define propTypes for each state and action
+
+#Todo
+1. clear input option
+2. minify js before upload to firebase
+3. add option for logout in nav with user face on click should show dropdown with optios available
+4. Build a page for viewing all users
+5. Intigrate notificatons for user actions
+6. Provide messaging platform for users
+7. Update the projects details
