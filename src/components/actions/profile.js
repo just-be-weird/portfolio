@@ -1,10 +1,10 @@
 import {
     SET_COCHE_DATA,
     GET_COCHE_DATA,
+    SET_ERRORS,
     LOADING_UI,
     STOP_LOADING_UI,
 } from './actionTypes';
-import { setUIErrors } from './ui'
 import axios from "../../axios.instance";
 
 export const getProfile = () => async dispatch => {
@@ -14,7 +14,10 @@ export const getProfile = () => async dispatch => {
         dispatch({ type: GET_COCHE_DATA, payload: res.data.credentials });
         dispatch({ type: STOP_LOADING_UI });
     } catch (err) {
-        setUIErrors(err.response.data);
+        dispatch({
+            type: SET_ERRORS,
+            payload: err.response.data
+        });
         dispatch({ type: STOP_LOADING_UI });
     }
 }
@@ -27,10 +30,16 @@ export const uploadImage = formData => async dispatch => {
     dispatch({ type: LOADING_UI });
     try {
         const res = await axios.post('/user/image/uploads', formData);
-        setUIErrors(res.data);
+        dispatch({
+            type: SET_ERRORS,
+            payload: res.data
+        });
         dispatch({ type: STOP_LOADING_UI });
     } catch (err) {
-        setUIErrors(err.response.data);
+        dispatch({
+            type: SET_ERRORS,
+            payload: err.response.data
+        });
         dispatch({ type: STOP_LOADING_UI });
     }
 };
