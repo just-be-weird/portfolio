@@ -9,7 +9,6 @@ button {
     &--green {
         background-color: $color-primary;
         color: $color-white !important;
-
         &:after {
             background-color: $color-primary;
         }
@@ -18,6 +17,16 @@ button {
         margin: 6rem 0 0 4rem;
         @include respond(tab-port) {
             margin: 0 0 0 2.5rem;
+        }
+    }
+    &--arrow {
+        background-color: $color-dark-blue;
+        padding: 0.4rem 0 !important;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        &:after {
+            background-color: $color-dark-blue;
         }
     }
 
@@ -34,8 +43,8 @@ button {
         position: relative;
         text-decoration: none;
         text-transform: uppercase;
-        -webkit-transition: all 0.2s;
-        transition: all 0.2s;
+        -webkit-transition: all 0.4s;
+        transition: all 0.4s;
 
         // change for <button>
         border: none;
@@ -123,7 +132,7 @@ button {
         font-size: $default-font-size;
         padding: 0.3rem;
         text-decoration: none;
-        transition: all 0.2s;
+        transition: all 0.4s;
     }
 
     &:hover {
@@ -158,7 +167,7 @@ button {
         font-family: inherit;
         font-size: 1.5rem;
         padding: 1.5rem 2rem;
-        transition: all 0.3s;
+        transition: all 0.4s;
         width: 80%;
         text-overflow: ellipsis;
 
@@ -190,7 +199,7 @@ button {
         font-weight: 500;
         margin-left: 6.5rem;
         margin-top: 0.5rem;
-        transition: all 0.3s;
+        transition: all 0.4s;
         @include respond(tab-port) {
             margin-left: 2rem;
             margin-top: 0.7rem;
@@ -254,12 +263,23 @@ button {
             position: absolute;
             top: 50%;
             transform: translate(-50%, -50%);
-            transition: all 0.3s;
+            transition: all 0.4s;
             width: 0.8rem;
         }
     }
 
     &__input:checked ~ &__label &__button::after {
         opacity: 1;
+    }
+}
+
+//SVG
+.svg- {
+    &arrow {
+        height: 2rem;
+        width: 3rem;
+        fill: currentColor;
+        color: $color-white;
+        transform: rotate(90deg);
     }
 }
