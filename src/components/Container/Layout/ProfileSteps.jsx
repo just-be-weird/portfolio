@@ -7,7 +7,7 @@ import CustomInput from "../../UI/InputButtons/CustomInput";
 import { setProfile, uploadImage } from "../../actions/profile";
 import { loadingUI } from "../../actions/ui";
 import {
-    isValidPinCode,
+    containsNumberBtn,
     containsTextOnly,
     commaSeperatedTextOnly,
 } from "../../Shared/Util";
@@ -68,7 +68,9 @@ const ProfileSteps = ({
         stateCopy[1].data[0].info_1_0_a = radioState.id === "student";
         stateCopy[1].data[1].info_1_1_a = radioState.id === "professional";
         loadingUI(true);
-        const res = await axios.post(`/notebook/profile`, { profile_data: stateCopy });
+        const res = await axios.post(`/notebook/profile`, {
+            profile_data: stateCopy,
+        });
         setProfile({ profile_data: res.data.data.profile_data });
         loadingUI();
         history.push("/");
@@ -165,7 +167,7 @@ const ProfileSteps = ({
 
                                 regExHolder =
                                     ipidHolder === "postal_code"
-                                        ? isValidPinCode
+                                        ? containsNumberBtn(4, 6)
                                         : ipidHolder === "skill-set"
                                         ? commaSeperatedTextOnly
                                         : containsTextOnly;

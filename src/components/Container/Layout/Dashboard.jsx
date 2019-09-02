@@ -1,19 +1,25 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import axios from "../../../axios.instance";
 import { loadingUI, setUIErrors } from "../../actions/ui";
+import { setProfile } from "../../actions/profile";
+import Modal from "../../UI/Modal/Modal";
+import CustomInput from "../../UI/InputButtons/CustomInput";
+import { matchAnyChar } from "../../Shared/Util";
 import classes from "../../Sass/main.module.scss";
 
 const Dashboard = ({
     isAuthenticated,
-    isloading,
-    errors,
+    setProfile,
     profile,
     loadingUI,
     setUIErrors,
 }) => {
+    const [hideModal, setHideModal] = useState(false);
+    const [editMdl, setEditMdl] = useState({});
+
     const {
         imageUrl,
         location,
@@ -38,6 +44,37 @@ const Dashboard = ({
             loadingUI();
         }
     };
+    const editHandler = async e => {
+        e.stopPropagation();
+        setHideModal(!hideModal);
+        setEditMdl({
+            label: e.currentTarget.attributes["data-action"].value,
+        });
+    };
+    const submitHandler = async e => {
+        e.preventDefault();
+        if (!editMdl.val) {
+            setUIErrors({
+                error: `User ${editMdl.label} is required.`.toUpperCase(),
+            });
+        } else {
+            if (editMdl.editing) {
+                loadingUI(true);
+                const res = await axios.post(`/notebook/profile`, {
+                    [editMdl.label]: editMdl.val,
+                });
+
+                setProfile({
+                    ...profile,
+                    [editMdl.label]: res.data.data[editMdl.label],
+                });
+                setHideModal(false);
+                loadingUI();
+            } else {
+                setProfile({ ...profile });
+            }
+        }
+    };
 
     return (
         <Fragment>
@@ -45,10 +82,50 @@ const Dashboard = ({
                 <div>
                     <h2 className={classes["section-title"]}>Dashboard</h2>
                 </div>
+                <Modal
+                    modalState={hideModal}
+                    hideModal={e => setHideModal(false)}
+                    id={"user-details_modal"}
+                >
+                    <CustomInput
+                        iptype='text'
+                        ipid='user-details'
+                        htmlFor='user-details'
+                        placeholderVal={`Enter Value For User ${editMdl.label}`}
+                        regEx={matchAnyChar(4, 100)}
+                        labelName={`User ${editMdl.label}`.toUpperCase()}
+                        isRequired={true}
+                        val={
+                            !editMdl.editing
+                                ? profile[editMdl.label]
+                                : editMdl.val
+                        }
+                        changeHandler={e =>
+                            setEditMdl({
+                                ...editMdl,
+                                val: e.target.value,
+                                editing: true,
+                            })
+                        }
+                    />
+                    <div className={classes["btn-wrapper"]}>
+                        <div
+                            className={
+                                classes.btn + " " + classes["btn--arrow"]
+                            }
+                            onClick={submitHandler}
+                        >
+                            <svg className={classes["svg-arrow"]}>
+                                <use
+                                    xlinkHref={"/assets/img/sprite.svg#arrow"}
+                                ></use>
+                            </svg>
+                        </div>
+                    </div>
+                </Modal>
                 <div className={classes.dashboard} role='main'>
                     <div className={classes.dashboard__sidebar}>
                         <h1 className={classes.vcard}>
-                            {/* <a className='url' rel='contact' href='/outcrowd'> */}
                             <picture>
                                 <img
                                     className='photo'
@@ -56,15 +133,66 @@ const Dashboard = ({
                                     src={imageUrl}
                                 />
                             </picture>
-                            <span className={classes.heading}>{handle}</span>
-                            {/* </a> */}
+                            <span
+                                className={
+                                    classes.heading + " " + classes.action_icon
+                                }
+                            >
+                                <svg
+                                    xmlns='http://www.w3.org/2000/svg'
+                                    enableBackground='new 0 0 32 32'
+                                    viewBox='0 0 32 32'
+                                    role='button'
+                                    aria-label='edit icon'
+                                    data-action='handle'
+                                    className={classes.icon}
+                                    onClick={editHandler}
+                                >
+                                    <path d='M27 0c2.761 0 5 2.239 5 5 0 1.126-0.372 2.164-1 3l-2 2-7-7 2-2c0.836-0.628 1.874-1 3-1zM2 23l-2 9 9-2 18.5-18.5-7-7-18.5 18.5zM22.362 11.362l-14 14-1.724-1.724 14-14 1.724 1.724z' />
+                                </svg>{" "}
+                                {handle}
+                            </span>
                             <span className={classes.location}>
-                                <span className={classes.locality}>
+                                <span
+                                    className={
+                                        classes.locality +
+                                        " " +
+                                        classes.action_icon
+                                    }
+                                >
+                                    <svg
+                                        xmlns='http://www.w3.org/2000/svg'
+                                        enableBackground='new 0 0 32 32'
+                                        viewBox='0 0 32 32'
+                                        role='button'
+                                        aria-label='edit icon'
+                                        data-action='location'
+                                        onClick={editHandler}
+                                        className={classes.icon}
+                                    >
+                                        <path d='M27 0c2.761 0 5 2.239 5 5 0 1.126-0.372 2.164-1 3l-2 2-7-7 2-2c0.836-0.628 1.874-1 3-1zM2 23l-2 9 9-2 18.5-18.5-7-7-18.5 18.5zM22.362 11.362l-14 14-1.724-1.724 14-14 1.724 1.724z' />
+                                    </svg>{" "}
                                     {location}
                                 </span>
                             </span>
                         </h1>
-                        <div className={classes.bio}>{bio}</div>
+                        <div
+                            className={classes.bio + " " + classes.action_icon}
+                        >
+                            <svg
+                                xmlns='http://www.w3.org/2000/svg'
+                                enableBackground='new 0 0 32 32'
+                                viewBox='0 0 32 32'
+                                role='button'
+                                aria-label='edit icon'
+                                data-action='bio'
+                                onClick={editHandler}
+                                className={classes.icon}
+                            >
+                                <path d='M27 0c2.761 0 5 2.239 5 5 0 1.126-0.372 2.164-1 3l-2 2-7-7 2-2c0.836-0.628 1.874-1 3-1zM2 23l-2 9 9-2 18.5-18.5-7-7-18.5 18.5zM22.362 11.362l-14 14-1.724-1.724 14-14 1.724 1.724z' />
+                            </svg>{" "}
+                            {bio}
+                        </div>
                         <div className={classes["profile-actions"]}>
                             <div className={classes["profile-message"]}>
                                 <a
@@ -127,7 +255,17 @@ const Dashboard = ({
                                         href={website}
                                         target='_blank'
                                         rel='nofollow noopener noreferrer'
+                                        className={classes.action_icon}
                                     >
+                                        <svg
+                                            xmlns='http://www.w3.org/2000/svg'
+                                            enableBackground='new 0 0 32 32'
+                                            viewBox='0 0 32 32'
+                                            role='img'
+                                            className={classes.icon}
+                                        >
+                                            <path d='M27 0c2.761 0 5 2.239 5 5 0 1.126-0.372 2.164-1 3l-2 2-7-7 2-2c0.836-0.628 1.874-1 3-1zM2 23l-2 9 9-2 18.5-18.5-7-7-18.5 18.5zM22.362 11.362l-14 14-1.724-1.724 14-14 1.724 1.724z' />
+                                        </svg>{" "}
                                         {website}
                                     </a>
                                 </li>
@@ -302,21 +440,16 @@ const Dashboard = ({
 };
 
 Dashboard.propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
     loadingUI: PropTypes.func.isRequired,
     setUIErrors: PropTypes.func.isRequired,
-    errors: PropTypes.object,
+    setProfile: PropTypes.func.isRequired,
     profile: PropTypes.object.isRequired,
-    isloading: PropTypes.bool,
 };
 const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated,
-    errors: state.ui.errors,
     profile: state.profile,
-    isloading: state.ui.loading,
 });
 
 export default connect(
     mapStateToProps,
-    { loadingUI, setUIErrors }
+    { loadingUI, setUIErrors, setProfile }
 )(Dashboard);

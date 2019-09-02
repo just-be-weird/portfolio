@@ -7,7 +7,7 @@ import Modal from "../UI/Modal/Modal";
 import { loginUser, signUpUser } from "../actions/auth";
 import {
     isValidEmail,
-    containsNumber6_8,
+    containsNumberBtn,
     containsTextOnly,
 } from "../Shared/Util";
 
@@ -152,7 +152,7 @@ const UserAuthPage = ({ history, loginUser, signUpUser, isAuthenticated }) => {
                                             ? "Password"
                                             : password
                                     }
-                                    regEx={containsNumber6_8}
+                                    regEx={containsNumberBtn(6,8)}
                                     labelName='Password'
                                     isRequired={true}
                                     val={password}
@@ -170,7 +170,7 @@ const UserAuthPage = ({ history, loginUser, signUpUser, isAuthenticated }) => {
                                                 ? "Confirm Password"
                                                 : rePassword
                                         }
-                                        regEx={containsNumber6_8}
+                                        regEx={containsNumberBtn(6,8)}
                                         labelName='Confirm Password'
                                         isRequired={true}
                                         val={rePassword}

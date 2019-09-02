@@ -9,7 +9,6 @@ button {
     &--green {
         background-color: $color-primary;
         color: $color-white !important;
-
         &:after {
             background-color: $color-primary;
         }
@@ -18,6 +17,16 @@ button {
         margin: 6rem 0 0 4rem;
         @include respond(tab-port) {
             margin: 0 0 0 2.5rem;
+        }
+    }
+    &--arrow {
+        background-color: $color-dark-blue;
+        padding: 0.4rem 0 !important;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        &:after {
+            background-color: $color-dark-blue;
         }
     }
 
@@ -261,5 +270,16 @@ button {
 
     &__input:checked ~ &__label &__button::after {
         opacity: 1;
+    }
+}
+
+//SVG
+.svg- {
+    &arrow {
+        height: 2rem;
+        width: 3rem;
+        fill: currentColor;
+        color: $color-white;
+        transform: rotate(90deg);
     }
 }
