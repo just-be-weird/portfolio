@@ -105,7 +105,9 @@ const UserAuthPage = ({ history, loginUser, signUpUser, isAuthenticated }) => {
                             hideModal={e => setHideModal(false)}
                             id={"login_modal"}
                         >
-                            <form className={classes["form"]}>
+                            <form className={classes["form"]}
+                                onSubmit={submitHandler}
+                            >
                                 {headingEl}
                                 {signUp && (
                                     <CustomInput
@@ -187,7 +189,6 @@ const UserAuthPage = ({ history, loginUser, signUpUser, isAuthenticated }) => {
                                             " " +
                                             classes["btn--blue"]
                                         }
-                                        onClick={submitHandler}
                                     >
                                         {signUp ? "Sign Up" : "Log In"}
                                     </button>
