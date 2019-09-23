@@ -16,8 +16,6 @@ import MultiSelect from "../../UI/MultiSelect/MultiSelect";
 const ProfileSteps = ({
     loadingUI,
     profileData,
-    title,
-    subtitle,
     setProfile,
     uploadImage,
     history,
@@ -113,9 +111,11 @@ const ProfileSteps = ({
                     }
                 >
                     <h2 className={classes["heading-secondary"]}>
-                        <span className={classes.highlight}> {title}</span>
+                        <span className={classes.highlight}>
+                            Tell's about your self,
+                        </span>
                     </h2>
-                    <h3>{subtitle}</h3>
+                    <h3>This makes easy for others to identify you</h3>
                 </div>
                 {profileData.map((line, lineId) => {
                     const { id, data } = line;
@@ -235,14 +235,10 @@ ProfileSteps.propTypes = {
     profileData: PropTypes.array.isRequired,
     setProfile: PropTypes.func.isRequired,
     loadingUI: PropTypes.func.isRequired,
-    title: PropTypes.string.isRequired,
-    subtitle: PropTypes.string.isRequired,
     uploadImage: PropTypes.func.isRequired,
 };
 const mapStateToProps = state => ({
     profileData: state.profile.profile_data,
-    title: state.profile.title,
-    subtitle: state.profile.subtitle,
 });
 
 export default connect(

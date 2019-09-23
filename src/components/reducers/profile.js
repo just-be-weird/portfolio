@@ -8,8 +8,6 @@ import { updateObject } from "../Shared/Util";
 
 const initialState = {
     current_step: {},
-    title: "Tell's about your self,",
-    subtitle: "This makes easy for others to identify you",
     step_completed: [{ id: 'step' }, { id: 'about' }, { id: 'experience' }, { id: 'stones' }, { id: 'projects' }, { contact: 'contact' }],
     profile_data: [
         {
