@@ -10,19 +10,21 @@ router.get("/all", async (req, res) => {
     let notebooks = [];
     try {
         const data = await db
-            .collection("notebooks")
+            .collection("users")
             .orderBy("createdAt", "desc")
             .get();
+
         if (data) {
             data.forEach(doc => {
                 notebooks.push({
-                    notebookId: doc.id,
-                    body: doc.data().body,
-                    handle: doc.data().handle,
+                    bio: doc.data().bio,
                     createdAt: doc.data().createdAt,
-                    commentCount: doc.data().commentCount,
-                    likeCount: doc.data().likeCount,
-                    userImage: doc.data().userImage
+                    email: doc.data().email,
+                    followerCount: doc.data().followerCount,
+                    handle: doc.data().handle,
+                    location: doc.data().location,
+                    notebookId: doc.data().userId,
+                    userImage: doc.data().imageUrl
                 });
             });
             return res.json(notebooks);
