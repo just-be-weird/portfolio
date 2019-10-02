@@ -118,8 +118,6 @@ const AddExperience = ({ loadingUI, setProfile, stateData, history }) => {
                         val={current}
                         switch_label={"Current Job"}
                         changeHandler={e => {
-                            console.log({ [e.target.name]: e.target.checked });
-
                             setExperienceData({
                                 ...experienceData,
                                 [e.target.name]: e.target.checked,

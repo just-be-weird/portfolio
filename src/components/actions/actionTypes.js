@@ -16,3 +16,5 @@ export const RESET_COCHE_DATA = "RESET_COCHE_DATA";
 //Error Reducer Types
 export const SET_ERRORS = "SET_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
+
+export const GET_USER_PROFILE = "GET_USER_PROFILE";
