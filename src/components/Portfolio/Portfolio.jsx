@@ -5,17 +5,13 @@ import axios from "../../axios.instance";
 import EditIcon from "../UI/CustomIcons/EditIcon";
 import classes from "../Sass/main.module.scss";
 
-const Portfolio = async ({
+const Portfolio = ({
     editHandler,
-    profile = {},
+    profile ={},
     loadingUI,
     setUIErrors,
     userHandle,
 }) => {
-    if (userHandle) {
-        const res = await axios.get(`user/${userHandle}`);
-        console.log(res);
-    }
 
     const {
         imageUrl,
@@ -362,7 +358,6 @@ const Portfolio = async ({
 Portfolio.propTypes = {
     loadingUI: PropTypes.func.isRequired,
     setUIErrors: PropTypes.func.isRequired,
-    setProfile: PropTypes.func.isRequired,
 };
 
 export default Portfolio;

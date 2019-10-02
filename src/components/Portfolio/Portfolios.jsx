@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "../../axios.instance";
+import { getProfile } from "../../components/actions/profile";
 import { connect } from "react-redux";
 import classes from "../Sass/main.module.scss";
 
-const Portfolios = ({ handle: activeHandle }) => {
+const Portfolios = ({ handle: activeHandle, getProfile }) => {
     let [portfolios, setPortfolioData] = useState([]);
     useEffect(() => {
+        getProfile();
         axios.get(`/notebook/all`).then(res => {
             setPortfolioData(res.data);
         });
-    }, [setPortfolioData]);
+    }, [setPortfolioData, getProfile]);
 
     const jsx =
         portfolios.length > 0 &&
         portfolios.map(portfolio => {
             const { notebookId, userImage, handle, followerCount } = portfolio;
-            console.log(">>", activeHandle  ,handle);
             const {
                 portfolio__content,
                 portfolio__row,
@@ -24,21 +25,23 @@ const Portfolios = ({ handle: activeHandle }) => {
                 portfolio__title,
             } = classes;
             //filter out the logged in user from all portfolios
-            return !activeHandle ? null : activeHandle !== handle && (
-                <div key={notebookId} className={portfolio__row}>
-                    <div className={portfolio__user_img}>
-                        <a href={`/portfolio/${handle}`}>
-                            <img src={userImage} alt='User' />
-                        </a>
-                    </div>
-                    <div className={portfolio__content}>
-                        <h4 className={portfolio__title}>
-                            <a href={`/portfolio/${handle}`}>{handle}</a>
-                        </h4>
-                        <p>Followers: {followerCount}</p>
-                    </div>
-                </div>
-            );
+            return !activeHandle
+                ? null
+                : activeHandle !== handle && (
+                      <div key={notebookId} className={portfolio__row}>
+                          <div className={portfolio__user_img}>
+                              <a href={`/portfolio/${handle}`}>
+                                  <img src={userImage} alt='User' />
+                              </a>
+                          </div>
+                          <div className={portfolio__content}>
+                              <h4 className={portfolio__title}>
+                                  <a href={`/portfolio/${handle}`}>{handle}</a>
+                              </h4>
+                              <p>Followers: {followerCount}</p>
+                          </div>
+                      </div>
+                  );
         });
 
     return (
@@ -53,10 +56,13 @@ const Portfolios = ({ handle: activeHandle }) => {
 
 Portfolios.propTypes = {
     handle: PropTypes.string,
+    getProfile: PropTypes.func.isRequired,
 };
 const mapStateToProps = state => ({
     handle: state.profile.handle,
 });
 
-
-export default connect(mapStateToProps,{})(Portfolios);
+export default connect(
+    mapStateToProps,
+    { getProfile }
+)(Portfolios);

@@ -1,7 +1,8 @@
 import {
     GET_COCHE_DATA,
     RESET_COCHE_DATA,
-    SET_COCHE_DATA
+    SET_COCHE_DATA,
+    GET_USER_PROFILE
 } from '../actions/actionTypes';
 import { updateObject } from "../Shared/Util";
 
@@ -136,6 +137,9 @@ export default function (state = initialState, action) {
 
         case SET_COCHE_DATA:
             return updateObject(state, payload)
+
+        case GET_USER_PROFILE:
+            return updateObject(state, { ...payload.user, notebooks: { ...payload.notebooks } });
 
         default:
             return state;

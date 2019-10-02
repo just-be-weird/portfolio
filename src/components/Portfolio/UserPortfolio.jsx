@@ -1,9 +1,9 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import axios from "../../axios.instance";
 import { loadingUI, setUIErrors } from "../actions/ui";
-import { setProfile } from "../actions/profile";
+import { getProfile, setProfile, gerReqUserPorfile } from "../actions/profile";
 import Portfolio from "./Portfolio";
 import Modal from "../UI/Modal/Modal";
 import CustomInput from "../UI/InputButtons/CustomInput";
@@ -11,18 +11,27 @@ import { matchAnyChar } from "../Shared/Util";
 import classes from "../Sass/main.module.scss";
 
 const UserPortfolio = ({
+    getProfile,
     setProfile,
-    profile,
+    gerReqUserPorfile,
+    profile = {},
     loadingUI,
     setUIErrors,
     match,
 }) => {
     const [hideModal, setHideModal] = useState(false);
     const [editMdl, setEditMdl] = useState({});
-
     const {
         params: { userHandle },
     } = match;
+
+    useEffect(() => {
+        if (userHandle) {
+            gerReqUserPorfile(userHandle);
+        } else {
+            getProfile();
+        }
+    }, [userHandle, gerReqUserPorfile, getProfile]);
 
     const { btn } = classes;
 
@@ -33,7 +42,7 @@ const UserPortfolio = ({
             label: e.currentTarget.attributes["data-action"].value,
         });
     };
-    
+
     const submitHandler = async e => {
         e.preventDefault();
         if (!editMdl.val) {
@@ -113,7 +122,9 @@ const UserPortfolio = ({
 UserPortfolio.propTypes = {
     loadingUI: PropTypes.func.isRequired,
     setUIErrors: PropTypes.func.isRequired,
+    getProfile: PropTypes.func.isRequired,
     setProfile: PropTypes.func.isRequired,
+    gerReqUserPorfile: PropTypes.func.isRequired,
     profile: PropTypes.object.isRequired,
 };
 const mapStateToProps = state => ({
@@ -122,5 +133,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { loadingUI, setUIErrors, setProfile }
+    { loadingUI, setUIErrors, setProfile, gerReqUserPorfile, getProfile }
 )(UserPortfolio);

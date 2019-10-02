@@ -13,7 +13,6 @@ import classes from "../Sass/main.module.scss";
 import PrivateRoute from "./PrivateRoute";
 import Portfolios from "../Portfolio/Portfolios";
 import UserPortfolio from "../Portfolio/UserPortfolio";
-import Portfolio from "../Portfolio/Portfolio";
 
 export default function Routes() {
     return (
@@ -23,7 +22,7 @@ export default function Routes() {
                 <PrivateRoute exact path='/edit-profile' component={ProfileSteps} />
                 <PrivateRoute exact path='/add-experience' component={AddExperience} />
                 <PrivateRoute exact path='/add-education' component={AddEducation} />
-                <PrivateRoute exact path='/portfolio/:userHandle' component={Portfolio} />
+                <PrivateRoute exact path='/portfolio/:userHandle' component={UserPortfolio} />
                 <Route exact path='/about' component={About} />
                 <Route exact path='/experience' component={Experience} />
                 <Route exact path='/stones' component={InfinityStones} />

@@ -12,7 +12,6 @@ import Footer from "./Layout/Footer";
 import PropTypes from "prop-types";
 import { cachedLogin, logoutUser } from "../actions/auth";
 import { clearUIErrors } from "../actions/ui";
-import { getProfile } from "../actions/profile";
 import Loader from "../UI/Loader/Loader";
 import Notificaton from "../UI/Notification/Notificaton";
 
@@ -20,7 +19,6 @@ function Index({
     cachedLogin,
     clearUIErrors,
     errors,
-    getProfile,
     history,
     isAuthenticated,
     isloading,
@@ -35,10 +33,9 @@ function Index({
             } else {
                 axios.defaults.headers.common["Authorization"] = token;
                 cachedLogin();
-                getProfile();
             }
         }
-    }, [cachedLogin, getProfile, history, logoutUser]);
+    }, [cachedLogin, history, logoutUser]);
 
     const clickHandler = e => {
         e.preventDefault();
@@ -73,7 +70,6 @@ Index.propTypes = {
     cachedLogin: PropTypes.func.isRequired,
     clearUIErrors: PropTypes.func.isRequired,
     errors: PropTypes.object,
-    getProfile: PropTypes.func.isRequired,
     isloading: PropTypes.bool.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
     logoutUser: PropTypes.func.isRequired,
@@ -85,5 +81,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
     mapStateToProps,
-    { cachedLogin, clearUIErrors, logoutUser, getProfile }
+    { cachedLogin, clearUIErrors, logoutUser }
 )(withRouter(Index));

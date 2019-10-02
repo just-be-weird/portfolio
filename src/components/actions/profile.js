@@ -4,6 +4,7 @@ import {
     SET_ERRORS,
     LOADING_UI,
     STOP_LOADING_UI,
+    GET_USER_PROFILE
 } from './actionTypes';
 import axios from "../../axios.instance";
 
@@ -43,3 +44,18 @@ export const uploadImage = formData => async dispatch => {
         dispatch({ type: STOP_LOADING_UI });
     }
 };
+
+export const gerReqUserPorfile = userHandle => async (dispatch) => {
+    try {
+        dispatch({ type: LOADING_UI });
+        const res = await axios.get(`user/${userHandle}`);
+        dispatch({ type: GET_USER_PROFILE, payload: res.data });
+        dispatch({ type: STOP_LOADING_UI });
+    } catch (err) {
+        dispatch({
+            type: SET_ERRORS,
+            payload: err.response.data
+        });
+        dispatch({ type: STOP_LOADING_UI });
+    }
+}

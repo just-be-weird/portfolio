@@ -22,7 +22,6 @@ const AddEducation = ({ setProfile, stateData, history, loadingUI }) => {
     const [toDateDisabled, toggleDisabled] = useState(false);
 
     const onChange = e => {
-        console.log({ [e.target.name]: e.target.value });
         setEducationData({
             ...educationData,
             [e.target.name]: e.target.value,
@@ -38,7 +37,6 @@ const AddEducation = ({ setProfile, stateData, history, loadingUI }) => {
         current,
         description,
     } = educationData;
-    console.log(educationData);
 
     const submitHandler = async e => {
         e.preventDefault();
@@ -120,8 +118,6 @@ const AddEducation = ({ setProfile, stateData, history, loadingUI }) => {
                         val={current}
                         switch_label={"Current School / Bootcamp"}
                         changeHandler={e => {
-                            console.log({ [e.target.name]: e.target.checked });
-
                             setEducationData({
                                 ...educationData,
                                 [e.target.name]: e.target.checked,
