@@ -7,12 +7,11 @@ import classes from "../Sass/main.module.scss";
 
 const Portfolio = ({
     editHandler,
-    profile ={},
+    profile = {},
     loadingUI,
     setUIErrors,
     userHandle,
 }) => {
-
     const {
         imageUrl,
         location,
@@ -36,7 +35,6 @@ const Portfolio = ({
         date,
         dashboard__sidebar,
         heading,
-        experience: experience1,
         wrap_container,
         notification,
         degree,
@@ -48,7 +46,6 @@ const Portfolio = ({
         school,
         description,
         dashboard,
-        education: education1,
         contact,
         skill__item,
         action_icon,
@@ -288,12 +285,7 @@ const Portfolio = ({
                 </div>
             </section>
             <section className={classes["dashboard__content-container"]}>
-                <div
-                    className={
-                        classes["dashboard__content"] + " " + experience1
-                    }
-                    style={{ display: "block", width: "56%" }}
-                >
+                <div className={classes["dashboard__content"]}>
                     <h2 className={classes["section-subtitle"]}>Experience</h2>
                     <div className={classes["dashboard__content-row"]}>
                         {experience.length > 0 ? (
@@ -321,10 +313,7 @@ const Portfolio = ({
                 </div>
             </section>
             <section className={classes["dashboard__content-container"]}>
-                <div
-                    className={classes["dashboard__content"] + " " + education1}
-                    style={{ display: "block", width: "56%" }}
-                >
+                <div className={classes["dashboard__content"]}>
                     <h2 className={classes["section-subtitle"]}>Education</h2>
                     <div className={classes["dashboard__content-row"]}>
                         {education.length > 0 ? (

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import axios from "../../axios.instance";
 import { loadingUI, setUIErrors } from "../actions/ui";
-import { getProfile, setProfile, gerReqUserPorfile } from "../actions/profile";
+import { getProfile, setProfile, gerReqUserProfile } from "../actions/profile";
 import Portfolio from "./Portfolio";
 import Modal from "../UI/Modal/Modal";
 import CustomInput from "../UI/InputButtons/CustomInput";
@@ -13,7 +13,7 @@ import classes from "../Sass/main.module.scss";
 const UserPortfolio = ({
     getProfile,
     setProfile,
-    gerReqUserPorfile,
+    gerReqUserProfile,
     profile = {},
     loadingUI,
     setUIErrors,
@@ -27,11 +27,11 @@ const UserPortfolio = ({
 
     useEffect(() => {
         if (userHandle) {
-            gerReqUserPorfile(userHandle);
+            gerReqUserProfile(userHandle);
         } else {
             getProfile();
         }
-    }, [userHandle, gerReqUserPorfile, getProfile]);
+    }, [userHandle, gerReqUserProfile, getProfile]);
 
     const { btn } = classes;
 
@@ -124,7 +124,7 @@ UserPortfolio.propTypes = {
     setUIErrors: PropTypes.func.isRequired,
     getProfile: PropTypes.func.isRequired,
     setProfile: PropTypes.func.isRequired,
-    gerReqUserPorfile: PropTypes.func.isRequired,
+    gerReqUserProfile: PropTypes.func.isRequired,
     profile: PropTypes.object.isRequired,
 };
 const mapStateToProps = state => ({
@@ -133,5 +133,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { loadingUI, setUIErrors, setProfile, gerReqUserPorfile, getProfile }
+    { loadingUI, setUIErrors, setProfile, gerReqUserProfile, getProfile }
 )(UserPortfolio);
