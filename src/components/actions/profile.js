@@ -45,7 +45,7 @@ export const uploadImage = formData => async dispatch => {
     }
 };
 
-export const gerReqUserPorfile = userHandle => async (dispatch) => {
+export const gerReqUserProfile = userHandle => async (dispatch) => {
     try {
         dispatch({ type: LOADING_UI });
         const res = await axios.get(`user/${userHandle}`);

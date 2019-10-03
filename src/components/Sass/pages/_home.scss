@@ -48,9 +48,20 @@
     margin: 0 4rem;
     display: flex;
     border-radius: 0.6rem;
+    @include respond(tab-port) {
+        flex-direction: column;
+        margin: 0;
+    }
     &-container {
         background: $color-light-grey;
         padding: 1rem 3rem;
+        .dashboard__content {
+            display: block;
+            width: 56%;
+            @include respond(tab-port) {
+                width: auto;
+            }
+        }
         &:last-child {
             padding: 0 3rem 1rem;
         }
@@ -73,6 +84,10 @@
             border-radius: 0.6rem;
             margin-left: 1rem;
             background: $color-white;
+            @include respond(tab-port) {
+                width: auto;
+                margin: 1rem 0 0 0;
+            }
             &-action {
                 display: flex;
                 margin: 2rem auto 0;
@@ -135,12 +150,18 @@
                 &s-list {
                     display: flex;
                     margin-left: 3rem;
+                    @include respond(tab-port) {
+                        margin-left: 0.5rem;
+                    }
                     li {
                         display: inline-block;
                         border: 1px solid $color-border;
                         margin-left: 0.8rem;
                         border-radius: 0.6rem;
                         transition: all 0.2s ease-out;
+                        @include respond(tab-port) {
+                            margin-left: 0.8rem;
+                        }
                         &:hover {
                             @extend .btn-text:hover;
                             color: $color-black;
@@ -179,6 +200,10 @@
             padding-top: 2rem;
             text-align: center;
             width: 60%;
+            @include respond(tab-port) {
+                width: auto;
+                align-self: auto;
+            }
             img {
                 display: block;
                 border: 1px solid $color-border;
