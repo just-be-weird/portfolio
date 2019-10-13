@@ -40,7 +40,7 @@ export default function Contact() {
                             classes["btn-resume"]
                         }
                         target='_blank'
-                        href='public/assets/docs/AbhishekPrajpati_Resume_2019_07.pdf'
+                        href='/assets/docs/AbhishekPrajpati_Resume_2019_07.pdf'
                     >
                         Resume
                     </a>
