@@ -14,6 +14,30 @@ Open the project folder at the root in the terminal and run `npm install` to dow
 
 Next, to run the source version of the application locally using Node and Express run command `npm start` and navigate to [localhost:3000](http://localhost:3000/) in your browser.
 
+#### Firebase credential setup
+
+- We need `firebase` installed globally. Then run `firbase login` which will open login window in crome where we need to provide the login credentials. Run `firebase init` command after this.
+
+- we need to provide the `.env`, `firebase.ini.defaults.sh` with following details:
+.env example data: which we can get from firebase console > project details > config object
+
+`REACT_APP_FIREBASE_API_KEY=fwioejrnrio3tfo893453kn4o83u4tk4t
+REACT_APP_FIREBASE_AUTH_DOMAIN=mycool-app.firebaseapp.com
+REACT_APP_FIREBASE_DATABASE_URL=https://mycool-app.firebaseio.com
+REACT_APP_FIREBASE_PROJECT_ID=mycool-app
+REACT_APP_FIREBASE_STORAGE_BUCKET=mycool-app.appspot.com
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=23838327302387
+REACT_APP_FIREBASE_APP_ID=1:23838327302387:web:389404jk932e4k4`
+
+Same data needs to be provided inside firebase.ini.defaults.sh but with following format
+
+`export apiKey=fwioejrnrio3tfo893453kn4o83u4tk4t,
+export authDomain=mycool-app.firebaseapp.com,
+export appId=1...`
+
+- cd into functions root dir and run following command to setup `.runtimeconfig.json`
+`firebase functions:config:get > .runtimeconfig.json`
+
 ---
 
 ### Firebase Issues-
