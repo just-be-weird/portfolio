@@ -142,7 +142,7 @@ export default function Projects() {
 				</h3>
 				<div className={classes.popup__content__container}>
 					<img
-						src={`./assets/img/projects/${selectedCardstate.id}_snap.jpg`}
+						src={`/assets/img/projects/${selectedCardstate.id}_snap.jpg`}
 						alt='project'
 						className={classes.popup__img}
 					/>
