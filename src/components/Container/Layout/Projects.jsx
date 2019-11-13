@@ -156,7 +156,12 @@ export default function Projects() {
 					</div>
 				</div>
 				<p className={classes.popup__text}>{selectedCardstate.project_data.description}</p>
-				<a href={selectedCardstate.project_data.url} className={classes['btn'] + ' ' + classes['btn--blue']}>
+				<a
+					href={selectedCardstate.project_data.url}
+					className={classes['btn'] + ' ' + classes['btn--blue']}
+					target='_blank'
+					rel='noopener noreferrer'
+				>
 					Visit Now
 				</a>
 			</Modal>
