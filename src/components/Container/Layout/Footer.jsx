@@ -25,7 +25,7 @@ const Footer = () => {
 				{!isMobile ? (
 					<div className={classes['col-1-of-2']}>
 						<div className={classes.footer__copyright + ' ' + classes.footer__about_creator}>
-							<Link className={classes.btn__noborder} to='/about'>
+							<Link className={classes.btn__noborder} to='/creator'>
 								About creator
 							</Link>
 						</div>
