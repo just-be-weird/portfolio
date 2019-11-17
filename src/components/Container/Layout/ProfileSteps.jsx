@@ -221,7 +221,7 @@ const ProfileSteps = ({
                         Back
                     </button>
                     <button
-                        className={classes["btn"] + " " + classes["btn--blue"]}
+                        className={classes["btn"] + " " + classes["btn__blue"]}
                     >
                         {"Next"}
                     </button>

@@ -98,7 +98,7 @@ const UserPortfolio = ({
                 />
                 <div className={classes["btn-wrapper"]}>
                     <div
-                        className={btn + " " + classes["btn--arrow"]}
+                        className={btn + " " + classes["btn__arrow"]}
                         onClick={submitHandler}
                     >
                         <svg className={classes["svg-arrow"]}>

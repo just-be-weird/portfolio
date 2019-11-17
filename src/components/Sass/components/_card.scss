@@ -190,14 +190,6 @@
         text-align: center;
         transform: translate(-50%, -50%);
         width: 90%;
-        & > .btn--blue {
-            background: $color-white;
-            color: $color-black;
-            &::after {
-                background: $color-white;
-                color: $color-black;
-            }
-        }
     }
 
 

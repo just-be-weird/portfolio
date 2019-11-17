@@ -158,7 +158,7 @@ const AddEducation = ({ setProfile, stateData, history, loadingUI }) => {
                         Back
                     </button>
                     <button
-                        className={classes["btn"] + " " + classes["btn--blue"]}
+                        className={classes["btn"] + " " + classes["btn__blue"]}
                     >
                         {"Submit"}
                     </button>
