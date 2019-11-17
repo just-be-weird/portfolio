@@ -4,8 +4,8 @@
     --text: #3f4656;
     --border: #d6d6d6;
     --borderActive: #23c4f8;
-    --arrow: #6c7486;
-    --arrowActive: #e4ecfa;
+    __arrow: #6c7486;
+    __arrowActive: #e4ecfa;
     --listText: #99a3ba;
     --listBackground: #fff;
     --listActive: #e4ecfa;
@@ -36,7 +36,7 @@
             border-radius: 1px;
             top: 50%;
             right: 15px;
-            background: var(--arrow);
+            background: var(__arrow);
             transition: all 0.3s ease;
         }
         &:before {

@@ -157,7 +157,7 @@ const AddExperience = ({ loadingUI, setProfile, stateData, history }) => {
                         Back
                     </button>
                     <button
-                        className={classes["btn"] + " " + classes["btn--blue"]}
+                        className={classes["btn"] + " " + classes["btn__blue"]}
                     >
                         {"Submit"}
                     </button>

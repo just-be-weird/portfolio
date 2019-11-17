@@ -93,7 +93,7 @@ const UserAuthPage = ({ history, loginUser, signUpUser, isAuthenticated }) => {
                         <div className={classes["form__group"]}>
                             <button
                                 className={
-                                    classes["btn"] + " " + classes["btn--blue"]
+                                    classes["btn"] + " " + classes["btn__blue"]
                                 }
                                 onClick={authHandler}
                             >
@@ -187,7 +187,7 @@ const UserAuthPage = ({ history, loginUser, signUpUser, isAuthenticated }) => {
                                         className={
                                             classes["btn"] +
                                             " " +
-                                            classes["btn--blue"]
+                                            classes["btn__blue"]
                                         }
                                     >
                                         {signUp ? "Sign Up" : "Log In"}

@@ -20,9 +20,9 @@ export default function Contact() {
                     </span>{" "}
                     to hear.
                 </p>
-                <div className={classes["cta-container"]}>
+                <div className={classes["cta__container"]}>
                     <a
-                        className={classes["btn"] + " " + classes["btn--blue"]}
+                        className={classes["btn"] + " " + classes["btn__blue"]}
                         href='mailto:abhi.chandresh@gmail.com'
                     >
                         Say Hi{" "}
@@ -35,7 +35,7 @@ export default function Contact() {
                         className={
                             classes["btn"] +
                             " " +
-                            classes["btn--blue"] +
+                            classes["btn__blue"] +
                             " " +
                             classes["btn-resume"]
                         }

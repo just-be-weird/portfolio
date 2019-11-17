@@ -46,8 +46,8 @@ export default function Experience() {
             <div className={classes["section-wrapper"]} id="experience">
                 <h2 className={classes["section-title"]}>Experience</h2>
                 <ContentSwitcher data={data} />
-                <div className={classes["cta-container"]}>
-                    <Link className={classes["btn"] + " " + classes["btn--blue"] + " " + classes["btn--animated"]} to="/stones">My Infinity Stones</Link>
+                <div className={classes["cta__container"]}>
+                    <Link className={classes["btn"] + " " + classes["btn__blue"] + " " + classes["btn__animated"]} to="/stones">My Infinity Stones</Link>
                 </div>
             </div>
         </section>

@@ -123,9 +123,9 @@ export default function Projects() {
 				<div className={classes['section-wrapper']} id='projects'>
 					<h2 className={classes['section-title']}>Projects</h2>
 					{jsx}
-					<div className={classes['cta-container']}>
+					<div className={classes['cta__container']}>
 						<Link
-							className={classes['btn'] + ' ' + classes['btn--blue'] + ' ' + classes['btn--animated']}
+							className={classes['btn'] + ' ' + classes['btn__blue'] + ' ' + classes['btn__animated']}
 							to='/contact'
 						>
 							Contact
@@ -156,7 +156,12 @@ export default function Projects() {
 					</div>
 				</div>
 				<p className={classes.popup__text}>{selectedCardstate.project_data.description}</p>
-				<a href={selectedCardstate.project_data.url} className={classes['btn'] + ' ' + classes['btn--blue']}>
+				<a
+					href={selectedCardstate.project_data.url}
+					className={classes['btn'] + ' ' + classes['btn__blue']}
+					target='_blank'
+					rel='noopener noreferrer'
+				>
 					Visit Now
 				</a>
 			</Modal>
