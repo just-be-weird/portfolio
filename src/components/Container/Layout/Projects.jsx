@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
 import Modal from '../../UI/Modal/Modal';
 import Card from '../../UI/Card/Card';
 import classes from '../../Sass/main.module.scss';
@@ -123,14 +122,7 @@ export default function Projects() {
 				<div className={classes['section-wrapper']} id='projects'>
 					<h2 className={classes['section-title']}>Projects</h2>
 					{jsx}
-					<div className={classes['cta__container']}>
-						<Link
-							className={classes['btn'] + ' ' + classes['btn__blue'] + ' ' + classes['btn__animated']}
-							to='/contact'
-						>
-							Contact
-						</Link>
-					</div>
+					<div className={classes.spacer}></div>
 				</div>
 			</section>
 			<Modal id='poroject' modalState={mstate} hideModal={hideModalHandler}>

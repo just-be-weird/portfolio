@@ -24,6 +24,8 @@ html {
     @include respond(big-desktop) {
         font-size: 75%; //I want 1 rem = 12px, which i can get by doing, 8/16 = 50%
     }
+    //To change default scroll behaviour
+    scroll-behavior: smooth;
 }
 
 body {

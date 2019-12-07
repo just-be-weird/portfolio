@@ -4,7 +4,7 @@ const express = require("express");
 const router = express.Router();
 
 //@route    GET /notebook/all
-//@desc     Gett all the profile notebooks
+//@desc     Get all the profile notebooks
 //@access   Public
 router.get("/all", async (req, res) => {
     let notebooks = [];

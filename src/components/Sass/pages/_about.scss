@@ -1,13 +1,66 @@
 /*About*/
+#about {
+  display: inline-block;
+}
+
 .section-about {
-    z-index: 1;
-    text-align: justify;
-    @include respond(tab-port) {
-        padding: 0 0 10rem;
-        height: auto;
+  z-index: 1;
+  text-align: justify;
+  @include respond(tab-port) {
+    padding: 0 0 10rem;
+    height: auto;
+  }
+
+  .long-copy {
+    margin-top: 2rem;
+  }
+}
+
+.section_about {
+  height: 70vh;
+
+  @include respond(tab-port) {
+    height: 90vh;
+  }
+
+  &_intro {
+    height: 100vh;
+    @media (max-width: 320px) {
+      height: auto;
     }
-    .long-copy {
-        margin-bottom: 14rem;
-        margin-top: 20rem;
-    }
+  }
+}
+
+.down__arrow {
+  height: 56px;
+  width: 56px;
+  bottom: -25px;
+  left: 50%;
+  margin: 0 0 50px -28px;
+  background: rgba(34, 34, 34, 0.35);
+  visibility: visible;
+  position: fixed;
+  z-index: 10;
+  cursor: pointer;
+  background-size: 24px;
+  border-radius: 100%;
+  -webkit-transition: all .15s ease-out;
+  -moz-transition: all .15s ease-out;
+  transition: all .15s ease-out;
+
+  &_icon {
+    height: 24px;
+    width: 24px;
+    top: 50%;
+    left: 50%;
+    margin: -12px;
+    position: absolute;
+  }
+
+  &:hover {
+    height: 70px;
+    width: 70px;
+    margin: 0 0 38px -35px;
+    background: rgba(34, 34, 34, 0.5);
+  }
 }

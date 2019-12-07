@@ -1,131 +1,153 @@
+#experience {
+  display: inline-block;
+}
+
 .section-experience {
-    // height: 100vh;
-    margin: 2rem 20rem 8rem;
+  height: 100vh;
+  background-color: lighten($color-grey-light-3, 3%);
+  margin: 2rem 20rem 8rem;
+  @include respond(tab-port) {
+    margin: 0;
+    padding: 8rem 0 20rem;
+    height: auto;
+  }
+
+  &-selector {
+    display: flex;
+    margin-top: 6rem;
+    max-width: 120rem;
+    justify-content: space-evenly;
+    flex-direction: row;
     @include respond(tab-port) {
-        margin: 0;
-        padding: 8rem 0 20rem;
-        height: auto;
+      flex-direction: column;
     }
-    &-selector {
-        display: flex;
-        margin-top: 6rem;
-        max-width: 120rem;
-        justify-content: space-evenly;
-        flex-direction: row;
+
+    &-tab {
+      @include respond(tab-port) {
+        margin: 0 auto;
+      }
+
+      li {
+        border-left: 2px solid $color-grey-dark-3;
+        list-style: none;
+        padding-left: 0.1rem;
+        margin: 0 4rem 0 0;
         @include respond(tab-port) {
+          margin: 0 auto;
+        }
+
+        button {
+          outline: none;
+          text-decoration-skip-ink: auto;
+          position: relative;
+          cursor: pointer;
+          border: none;
+          background-color: transparent;
+          height: 4.6rem;
+          font-size: 2rem;
+          width: 20rem;
+          text-decoration: none;
+          padding: 0px 2rem 0.2rem;
+          transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+        }
+
+        &.active {
+          border-left: 2px solid $color-grey-dark-3;
+          @extend .grd-color;
+
+          span {
+            color: #fff;
+          }
+        }
+
+        &:hover {
+          padding-left: 0rem;
+          border-left: 3px solid $color-grey-dark-3;
+          background-color: $color-grey-light-2;
+        }
+      }
+    }
+
+    &-job-desc {
+      .job__content {
+        outline: none;
+      }
+
+      [id^="job"] {
+        ul {
+          @extend .ul_list;
+        }
+
+        .job__title {
+          @include respond(tab-port) {
+            text-align: center;
+            display: flex;
             flex-direction: column;
-        }
-        &-tab {
+            margin-top: 4rem;
+          }
+
+          span {
+            font-size: $default-font-size;
             @include respond(tab-port) {
-                margin: 0 auto;
+              font-size: 2.6rem;
             }
-            li {
-                border-left: 2px solid $color-grey-dark-3;
-                list-style: none;
-                padding-left: 0.1rem;
-                margin: 0 4rem 0 0;
-                @include respond(tab-port) {
-                    margin: 0 auto;
-                }
-                button {
-                    outline: none;
-                    text-decoration-skip-ink: auto;
-                    position: relative;
-                    cursor: pointer;
-                    border: none;
-                    background-color: transparent;
-                    height: 4.6rem;
-                    font-size: 2rem;
-                    width: 20rem;
-                    text-decoration: none;
-                    padding: 0px 2rem 0.2rem;
-                    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1)
-                        0s;
-                }
-                &.active {
-                    border-left: 2px solid $color-grey-dark-3;
-                    @extend .grd-color;
-                    span {
-                        color: #fff;
-                    }
-                }
-                &:hover {
-                    padding-left: 0rem;
-                    border-left: 3px solid $color-grey-dark-3;
-                    background-color: $color-grey-light-2;
-                }
-            }
+          }
         }
-        &-job-desc {
-            .job__content {
-                outline: none;
-            }
-            [id^="job"] {
-                ul {
-                    @extend .ul_list;
-                }
-                .job__title {
-                    @include respond(tab-port) {
-                        text-align: center;
-                        display: flex;
-                        flex-direction: column;
-                        margin-top: 4rem;
-                    }
-                    span {
-                        font-size: $default-font-size;
-                        @include respond(tab-port) {
-                            font-size: 2.6rem;
-                        }
-                    }
-                }
-                .job__span {
-                    font-size: 1.2rem;
-                    color: $color-grey-dark;
-                    @include respond(tab-port) {
-                        text-align: center;
-                        font-size: $default-font-size;
-                    }
-                }
-                .ul-selector {
-                    li {
-                        padding: 2rem 3rem;
-                        font-size: $default-font-size;
-                        position: relative;
-                        padding: 2.5rem 10rem;
-                        .experience-box__icon {
-                            position: absolute;
-                            height: 2rem;
-                            width: 2rem;
-                            left: 5.2rem;
-                            top: 3.2rem;
-                        }
-                        @include respond(tab-port) {
-                            svg {
-                                top: 3rem;
-                                left: 3rem;
-                            }
-                            p {
-                                font-size: 2rem;
-                            }
-                        }
-                    }
-                }
-                .job__company {
-                    a {
-                        font-size: 2.6rem;
-                        @include respond(tab-port) {
-                            font-size: 3.6rem;
-                        }
-                    }
-                }
-                &.active {
-                    display: block;
-                }
-            }
+
+        .job__span {
+          font-size: 1.2rem;
+          color: $color-grey-dark;
+          @include respond(tab-port) {
+            text-align: center;
+            font-size: $default-font-size;
+          }
         }
+
+        .ul-selector {
+          li {
+            padding: 2rem 3rem;
+            font-size: $default-font-size;
+            position: relative;
+            padding: 2.5rem 10rem;
+
+            .experience-box__icon {
+              position: absolute;
+              height: 2rem;
+              width: 2rem;
+              left: 5.2rem;
+              top: 3.2rem;
+            }
+
+            @include respond(tab-port) {
+              svg {
+                top: 3rem;
+                left: 3rem;
+              }
+              p {
+                font-size: 2rem;
+              }
+            }
+          }
+        }
+
+        .job__company {
+          a {
+            font-size: 2.6rem;
+            @include respond(tab-port) {
+              font-size: 3.6rem;
+            }
+          }
+        }
+
+        &.active {
+          display: block;
+        }
+      }
     }
-    .cta__container {
-        margin: 46px 0 0rem 0;
-        text-align: center;
-    }
+  }
+
+  .cta__container {
+    margin: 46px 0 0rem 0;
+    text-align: center;
+  }
 }

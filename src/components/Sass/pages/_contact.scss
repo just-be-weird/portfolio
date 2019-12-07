@@ -1,28 +1,35 @@
-.section-contact {
-    height: 74vh;
-    padding-top: 2rem;
-
-    @media (max-width: $mq-tablet-portrait) {
-        height: 56vh;
-    }
-    @include respond(phone) {
-        height: 74vh;
-    }
+#contact {
+  display: inline-block;
 }
+
+.section-contact {
+  background-color: lighten($color-grey-light-3, 3%);
+  position: relative;
+  height: 100vh;
+  padding-top: 2rem;
+
+  @media (max-width: $mq-tablet-portrait) {
+    height: 56vh;
+  }
+  @include respond(phone) {
+    height: 74vh;
+  }
+}
+
 .contact__image {
-    bottom: 95px;
-    right: 0px;
-    position: absolute;
-    height: 45vh;
-    z-index: 2;
+  bottom: 95px;
+  right: 0px;
+  position: absolute;
+  height: 45vh;
+  z-index: 2;
 
-    @media (max-width: $mq-tablet-portrait) {
-        bottom: 330px;
-    }
+  @media (max-width: $mq-tablet-portrait) {
+    bottom: 330px;
+  }
 
-    @include respond(phone) {
-        width: 85%;
-        top: 260px;
-        left: 32px;
-    }
+  @include respond(phone) {
+    width: 85%;
+    top: 260px;
+    left: 32px;
+  }
 }
