@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import ContentSwitcher from '../../UI/ContentSwitcher/ContentSwitcher';
 import classes from '../../Sass/main.module.scss'
 
@@ -46,9 +45,6 @@ export default function Experience() {
             <div className={classes["section-wrapper"]} id="experience">
                 <h2 className={classes["section-title"]}>Experience</h2>
                 <ContentSwitcher data={data} />
-                <div className={classes["cta__container"]}>
-                    <Link className={classes["btn"] + " " + classes["btn__blue"] + " " + classes["btn__animated"]} to="/stones">My Infinity Stones</Link>
-                </div>
             </div>
         </section>
     )

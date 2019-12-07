@@ -1,6 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import classes from '../../Sass/main.module.scss'
+import React from 'react';
+import classes from '../../Sass/main.module.scss';
 
 
 export default function InfinityStones() {
@@ -59,7 +58,7 @@ export default function InfinityStones() {
                 "stoneText": "Granted me ability to alter reality of websites on also create any type of alternate reality the user wishes.",
                 "stoneList": [
                     "Layouts/BEM",
-                    "Floats and Flexbox",
+                    "Floats and FlexBox",
                     "Bootstrap"
                 ]
             },
@@ -98,12 +97,9 @@ export default function InfinityStones() {
     )));
     return (
         <section className={classes["section-stones"]}>
-            <div className={classes["section-wrapper"]} id="stones">
+            <div className={classes["section-wrapper"]} id={classes.stones}>
                 <h2 className={classes["section-title"]}>My Infinity Stones</h2>
                 {jsx}
-                <div className={classes["cta__container"]}>
-                    <Link className={classes["btn"] + " " + classes["btn__blue"] + " " + classes["btn__animated"]} to="/projects">Projects</Link>
-                </div>
             </div>
         </section>
     )

@@ -1,5 +1,9 @@
+#projects {
+  display: inline-block;
+}
+
 .section-projects {
-    @include respond(tab-port) {
-        height: auto;
-    }
+  @include respond(tab-port) {
+    height: auto;
+  }
 }

@@ -9,7 +9,7 @@ export default function Contact() {
                 src='/assets/img/contact.svg'
                 alt='UserAuthPage'
             />
-            <div className={classes["section-wrapper"]} id='contact'>
+            <div className={classes["section-wrapper"]} id={classes.contact}>
                 <h2 className={classes["section-title"]}>Contact</h2>
                 <p className={classes["long-copy"]}>
                     Let`s build something unique. If you've some cool project,
