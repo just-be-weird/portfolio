@@ -3,10 +3,10 @@
   padding: 2rem;
   position: relative;
   @media (max-width: 823px) {
-    padding: 4.2rem 0 0;
+    padding: 4.2rem 0 0.9rem
   }
   @media (max-width: $mq-tablet-portrait) {
-    padding: 34rem 0 0;
+    padding: 34rem 0 0.9rem;
   }
   @include respond(tab-port) {
     .row .col-1-of-2:not(:last-child) {
@@ -17,7 +17,7 @@
     padding: 10rem 0 0;
   }
   @media (max-width: 736px) {
-    padding: 4.2rem 0 0;
+    padding: 4.2rem 0 0.9rem;
   }
 
   &__logo-box {
