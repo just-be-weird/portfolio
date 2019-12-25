@@ -77,7 +77,7 @@ header {
 
 .just-be-weird {
   &-logo {
-    @extend .rainbow-anm;
+		@extend .grd-color;
     height: 3.8rem;
     border-radius: 50%;
     position: absolute;
@@ -97,6 +97,9 @@ header {
     @media (min-width: 375px) {
       height: 2.7rem;
       width: 2.7rem;
+    }
+    &:hover {
+      @extend .rainbow-anm;
     }
   }
 

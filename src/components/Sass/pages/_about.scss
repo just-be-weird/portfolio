@@ -12,12 +12,15 @@
   }
 
   .long-copy {
-    margin-top: 2rem;
+    padding: 23rem 0;
+    @include respond(tab-port) {
+      padding: 8rem 0;
+    }
   }
 }
 
 .section_about {
-  height: 70vh;
+  height: auto;
 
   @include respond(tab-port) {
     height: 90vh;
