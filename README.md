@@ -16,7 +16,7 @@ Next, to run the source version of the application locally using Node and Expres
 
 #### Firebase credential setup
 
-- We need `firebase` installed globally. Then run `firbase login` which will open login window in crome where we need to provide the login credentials. Run `firebase init` command after this.
+- We need `firebase` installed globally. Use `npm install -g firebase-tools`, then run `firbase login` which will open login window in crome where we need to provide the login credentials. Run `firebase init` command after this. Choose `Functions and hosting`
 
 - we need to provide the `.env`, `firebase.ini.defaults.sh` with following details:
 .env example data: which we can get from firebase console > project details > config object
