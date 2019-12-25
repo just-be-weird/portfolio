@@ -75,10 +75,10 @@ export default function InfinityStones() {
             }
         ]
     ];
-    const jsx = (data && data.map((row, indx) => (
-        <div key={indx} className={classes.row + " " + (indx && indx === 1 ? classes[`row--${indx + 1}`] : '')}>
+    const jsx = (data && data.map((row, index) => (
+        <div key={index} className={classes.row + " " + (index && index === 1 ? classes[`row--${index + 1}`] : '')}>
             {(row.map(stone => (
-                <div key={stone.stoneId} className={classes[(indx && indx === 1 ? "col-1-of-2" : "col-1-of-4")]}>
+                <div key={stone.stoneId} className={classes[(index && index === 1 ? "col-1-of-2" : "col-1-of-4")]}>
                     <div className={classes["stones-box"] + " " + classes[`stones-box--${stone.stoneId}`]}>
                         <svg className={classes["stones-box__icon"]}>
                             <use xlinkHref={`/assets/img/sprite.svg#icon-${stone.stoneIcon}`}></use>
@@ -97,7 +97,7 @@ export default function InfinityStones() {
     )));
     return (
         <section className={classes["section-stones"]}>
-            <div className={classes["section-wrapper"]} id={classes.stones}>
+            <div className={classes["section-wrapper"]} id='stones'>
                 <h2 className={classes["section-title"]}>My Infinity Stones</h2>
                 {jsx}
             </div>
