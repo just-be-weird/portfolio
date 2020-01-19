@@ -116,7 +116,7 @@ const UserAuthPage = ({ history, loginUser, signUpUser, isAuthenticated }) => {
                                         htmlFor='user-handle'
                                         placeholderVal={
                                             handle.length === 0
-                                                ? "Enter A Cool User ID"
+                                                ? "Enter name (Eg: Darth Vader)"
                                                 : handle
                                         }
                                         regEx={containsTextOnly}
@@ -124,7 +124,7 @@ const UserAuthPage = ({ history, loginUser, signUpUser, isAuthenticated }) => {
                                         isRequired={true}
                                         val={handle}
                                         changeHandler={e =>
-                                            setHandle(e.target.value)
+                                            setHandle(e.target.value && e.target.value.split(' ')[0])
                                         }
                                     />
                                 )}
@@ -134,7 +134,7 @@ const UserAuthPage = ({ history, loginUser, signUpUser, isAuthenticated }) => {
                                     htmlFor='user-email'
                                     placeholderVal={
                                         email.length === 0
-                                            ? "abc@example.com"
+                                            ? "Enter email (Eg: starlord@gog.com)"
                                             : email
                                     }
                                     regEx={isValidEmail}
