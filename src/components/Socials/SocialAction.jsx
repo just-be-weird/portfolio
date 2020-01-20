@@ -21,7 +21,7 @@ export default function SocialAction() {
             document.execCommand("copy");
             document.body.removeChild(inp);
         }
-        setEmailCopyState({ ...sa_data, msg: "Copied!😊" });
+        setEmailCopyState({ ...sa_data, msg: "Sweet! 🤩" });
     };
 
     const outToolTip = c => {
