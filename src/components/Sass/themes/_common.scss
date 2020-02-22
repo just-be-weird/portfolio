@@ -1,120 +1,122 @@
 .ul_list {
-    list-style: none;
-    counter-reset: section;
-    li {
-        position: relative;
-        svg {
-            position: absolute;
-            height: 2rem;
-            left: -3rem;
-            top: 2.5rem;
-        }
-        &.stones-box__list-item::before {
-            content: "▹";
-            position: absolute;
-            left: 0px;
-            color: rgb(100, 255, 218);
-            line-height: 20px;
-        }
+  list-style: none;
+  counter-reset: section;
+
+  li {
+    position: relative;
+
+    svg {
+      position: absolute;
+      height: 2rem;
+      left: -3rem;
+      top: 2.5rem;
     }
+
+    &.stones-box__list-item::before {
+      content: "▹";
+      position: absolute;
+      left: 0px;
+      color: rgb(100, 255, 218);
+      line-height: 20px;
+    }
+  }
 }
 
 .rainbow-anm {
-    background: linear-gradient(
-        270deg,
-        #0600ff,
-        #00ffdf,
-        #45ff00,
-        #fffa00,
-        #ff9400,
-        #ff0200
-    );
-    background-size: 1200% 1200%;
-    -webkit-animation: rainbow-effect 2s ease infinite;
-    -moz-animation: rainbow-effect 2s ease infinite;
-    animation: rainbow-effect 2s ease infinite;
+  background: linear-gradient(
+                  270deg,
+                  #0600ff,
+                  #00ffdf,
+                  #45ff00,
+                  #fffa00,
+                  #ff9400,
+                  #ff0200
+  );
+  background-size: 1200% 1200%;
+  -webkit-animation: rainbow-effect 2s ease infinite;
+  -moz-animation: rainbow-effect 2s ease infinite;
+  animation: rainbow-effect 2s ease infinite;
 
-    @-webkit-keyframes rainbow-effect {
-        0% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
-        }
+  @-webkit-keyframes rainbow-effect {
+    0% {
+      background-position: 0% 50%;
     }
-    @-moz-keyframes rainbow-effect {
-        0% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
-        }
+    50% {
+      background-position: 100% 50%;
     }
-    @keyframes rainbow-effect {
-        0% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
-        }
+    100% {
+      background-position: 0% 50%;
     }
+  }
+  @-moz-keyframes rainbow-effect {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  @keyframes rainbow-effect {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 }
+
 .grd-color {
-    background: -webkit-gradient(
-            linear,
-            left top,
-            right top,
-            from(#ff8a00),
-            to(#da1b60)
-        )
-        left bottom transparent no-repeat;
-    background: linear-gradient(to right, #ff8a00, #da1b60) left bottom
-        transparent no-repeat;
+  background: -webkit-gradient(
+                  linear,
+                  left top,
+                  right top,
+                  from(#ff8a00),
+                  to(#da1b60)
+  ) left bottom transparent no-repeat;
+  background: linear-gradient(to right, #ff8a00, #da1b60) left bottom transparent no-repeat;
 }
 
 .highlight {
-    @extend .grd-color;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
-    text-shadow: none;
+  @extend .grd-color;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  text-shadow: none;
 }
 
 .grd-border-btm {
-    @extend .grd-color;
-    background-size: 100% 3px;
+  @extend .grd-color;
+  background-size: 100% 3px;
 }
 
 //svg icons
 .icon {
-    color: $color-black;
-    display: inline-block;
-    fill: currentColor;
-    height: 1.3rem;
-    margin-right: 0.5rem;
-    stroke: currentColor;
-    stroke-width: 0;
-    width: 1.3rem;
+  color: $color-black;
+  display: inline-block;
+  fill: currentColor;
+  height: 1.3rem;
+  margin-right: 0.5rem;
+  stroke: currentColor;
+  stroke-width: 0;
+  width: 1.3rem;
 }
 
 .shadow {
-    box-shadow: 0 2px 6px 0 rgba($color-black, 0.12), inset 0 -1px 0 0 #dadce0;
-    -webkit-box-shadow: 0 2px 6px 0 rgba($color-black, 0.12),
-        inset 0 -1px 0 0 #dadce0;
-    -moz-box-shadow: 0 2px 6px 0 rgba($color-black, 0.12), inset 0 -1px 0 0 #dadce0;
+  box-shadow: 0 2px 6px 0 rgba($color-black, 0.12), inset 0 -1px 0 0 #dadce0;
+  -webkit-box-shadow: 0 2px 6px 0 rgba($color-black, 0.12),
+  inset 0 -1px 0 0 #dadce0;
+  -moz-box-shadow: 0 2px 6px 0 rgba($color-black, 0.12), inset 0 -1px 0 0 #dadce0;
 }
 
 .spacer {
-    margin-bottom: 20rem;
+  margin-bottom: 20rem;
 }

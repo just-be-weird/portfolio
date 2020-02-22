@@ -1,49 +1,55 @@
 .profile {
-    .form {
-        width: 80%;
-        margin: 3rem auto;
-        .file,
-        .custom_input {
-            &__group {
-                width: 50%;
-                margin: 0 auto 2rem;
+  .form {
+    width: 80%;
+    margin: 3rem auto;
 
-                .switch {
-                    @extend .custom_input__label;
-                    width: auto;
-                }
-            }
+    .file,
+    .custom_input {
+      &__group {
+        width: 50%;
+        margin: 0 auto 2rem;
+
+        .switch {
+          @extend .custom_input__label;
+          width: auto;
         }
-        .radio__group {
-            margin: 1rem 2rem 2rem 33rem;
-            text-align: start;
-            display: inline-block;
-        }
+      }
     }
+
+    .radio__group {
+      margin: 1rem 2rem 2rem 33rem;
+      text-align: start;
+      display: inline-block;
+    }
+  }
 }
 
 // Dashboard
 .dashboard__content {
-    .section-subtitle {
-        margin-left: 1rem;
-        width: 100%;
-        text-align: left;
-        &::after {
-            margin: 0;
-        }
+  .section-subtitle {
+    margin-left: 1rem;
+    width: 100%;
+    text-align: left;
+
+    &::after {
+      margin: 0;
     }
-    &-row {
-        ._container {
-            padding: 0 2rem 1rem;
-            font-size: $default-font-size;
-            .degree,
-            .company,
-            .date {
-                font-size: 1.2rem;
-            }
-            .description {
-                font-size: 1.4rem;
-            }
-        }
+  }
+
+  &-row {
+    ._container {
+      padding: 0 2rem 1rem;
+      font-size: $default-font-size;
+
+      .degree,
+      .company,
+      .date {
+        font-size: 1.2rem;
+      }
+
+      .description {
+        font-size: 1.4rem;
+      }
     }
+  }
 }

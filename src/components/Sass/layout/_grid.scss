@@ -1,96 +1,98 @@
 .container {
-    // background-color: $color-white;
-    @media only screen and (max-width: $bp-largest) {
-        margin: 0;
-        max-width: 100%;
-        width: 100%;
-    }
+  // background-color: $color-white;
+  @media only screen and (max-width: $bp-largest) {
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+  }
 }
 
 // attribute selector
 .col-selector {
-    // background-color: orangered;//uncomment to test it
-    float: left;
+  // background-color: orangered;//uncomment to test it
+  float: left;
 
-    &:not(:last-child) {
-        margin-right: $gutter-horizontal;
-
-        @include respond(tab-port) {
-            margin-right: 0; //as on phone we are using content row-wise not col-wise
-            margin-bottom: $gutter-vertical-small;
-        }
-    }
+  &:not(:last-child) {
+    margin-right: $gutter-horizontal;
 
     @include respond(tab-port) {
-        width: 100% !important;
+      margin-right: 0; //as on phone we are using content row-wise not col-wise
+      margin-bottom: $gutter-vertical-small;
     }
+  }
+
+  @include respond(tab-port) {
+    width: 100% !important;
+  }
 }
+
 .row {
-    margin: 0 auto;
-    max-width: $grid-width;
+  margin: 0 auto;
+  max-width: $grid-width;
 
-    &--2 {
-        display: flex;
-        justify-content: space-evenly;
-        @include respond(tab-port) {
-            flex-direction: column;
-        }
+  &--2 {
+    display: flex;
+    justify-content: space-evenly;
+    @include respond(tab-port) {
+      flex-direction: column;
     }
-    /*
-        using max-width if width is less then specified width then it will occupy simply avialable width
-    */
+  }
 
-    @include respond(phone) {
-        max-width: 50rem;
-        padding: 0 5.2rem;
+  /*
+      using max-width if width is less then specified width then it will occupy simply avialable width
+  */
+
+  @include respond(phone) {
+    max-width: 50rem;
+    padding: 0 5.2rem;
+  }
+
+  /*apply to every row except for last child*/
+  &:not(:last-child) {
+    margin-bottom: $gutter-vertical;
+
+    @include respond(tab-port) {
+      margin-bottom: $gutter-vertical-small;
     }
+  }
 
-    /*apply to every row except for last child*/
-    &:not(:last-child) {
-        margin-bottom: $gutter-vertical;
+  @include clearfix;
 
-        @include respond(tab-port) {
-            margin-bottom: $gutter-vertical-small;
-        }
-    }
+  .col-1-of-2 {
+    width: calc((100% - #{$gutter-horizontal}) / 2);
+    @extend .col-selector;
+  }
 
-    @include clearfix;
+  .col-1-of-3 {
+    width: calc((100% - 2 * #{$gutter-horizontal}) / 3);
+    @extend .col-selector;
+  }
 
-    .col-1-of-2 {
-        width: calc((100% - #{$gutter-horizontal}) / 2);
-        @extend .col-selector;
-    }
+  .col-1-of-4 {
+    width: calc((100% - 3 * #{$gutter-horizontal}) / 4);
+    @extend .col-selector;
+  }
 
-    .col-1-of-3 {
-        width: calc((100% - 2 *#{$gutter-horizontal}) / 3);
-        @extend .col-selector;
-    }
-
-    .col-1-of-4 {
-        width: calc((100% - 3 *#{$gutter-horizontal}) / 4);
-        @extend .col-selector;
-    }
-
-    .col-2-of-3 {
-        // we get this block by two col's of 1 of 3 + gutter width
-        width: calc(
+  .col-2-of-3 {
+    // we get this block by two col's of 1 of 3 + gutter width
+    width: calc(
             2 * ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal}
-        );
-        @extend .col-selector;
-    }
+    );
+    @extend .col-selector;
+  }
 
-    .col-2-of-4 {
-        //
-        width: calc(
-            2 * ((100% - 3 *#{$gutter-horizontal}) / 4) + #{$gutter-horizontal}
-        );
-        @extend .col-selector;
-    }
+  .col-2-of-4 {
+    //
+    width: calc(
+            2 * ((100% - 3 * #{$gutter-horizontal}) / 4) + #{$gutter-horizontal}
+    );
+    @extend .col-selector;
+  }
 
-    .col-3-of-4 {
-        width: calc(
-            (3 * (100% - 3 *#{$gutter-horizontal}) / 4) + 2 * #{$gutter-horizontal}
-        );
-        @extend .col-selector;
-    }
+  .col-3-of-4 {
+    width: calc(
+            (3 * (100% - 3 * #{$gutter-horizontal}) / 4) + 2 * #{$gutter-horizontal}
+    );
+    @extend .col-selector;
+  }
 }

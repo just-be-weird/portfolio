@@ -1,81 +1,93 @@
 .anm {
-    content: "";
-    display: block;
-    margin: 0.6rem auto;
-    height: 5rem;
-    width: 0.3rem;
-    background: $color-grey-dark-3;
-    &:hover {
-        @extend .rainbow-anm;
-        -webkit-animation: rainbow-effect 4s ease infinite;
-        -moz-animation: rainbow-effect 4s ease infinite;
-        animation: rainbow-effect 4s ease infinite;
-    }
-}
-.section-sidebar {
-    position: fixed;
-    bottom: 10rem;
-    left: 4rem;
-    z-index: 10;
-    @include respond(tab-port) {
-        left: 2rem;
-    }
-    &__container {
-    }
-    &__item {
-        list-style: none;
-        transition: 0.4s all ease-out;
-        &:hover,
-        &:active {
-            margin-bottom: 0.6rem;
-            transform: scale(1.2);
-        }
-    }
-    &__anchor {
-        &:hover,
-        &:active {
-            border-bottom: none;
-        }
-    }
-    &__icon {
-        font-size: 3rem;
-        height: 2rem;
-        width: 2rem;
-        color: $color-black;
-        fill: currentColor;
-        transition: 0.2s all ease-out;
+  content: "";
+  display: block;
+  margin: 0.6rem auto;
+  height: 5rem;
+  width: 0.3rem;
+  background: $color-grey-dark-3;
 
-        &--linkedin {
-            &:hover {
-                color: rgb(228, 49, 18);
-            }
-        }
-        &--github {
-            &:hover {
-                color: #9b17e7;
-            }
-        }
-        &--envelope {
-            &:hover {
-                color: #cc0000;
-            }
-        }
-        &--wordpress {
-            &:hover {
-                color: $color-primary-dark;
-            }
-        }
-        &--skype {
-            &:hover {
-                color: $color-tertiary-light;
-            }
-        }
+  &:hover {
+    @extend .rainbow-anm;
+    -webkit-animation: rainbow-effect 4s ease infinite;
+    -moz-animation: rainbow-effect 4s ease infinite;
+    animation: rainbow-effect 4s ease infinite;
+  }
+}
+
+.section-sidebar {
+  position: fixed;
+  bottom: 10rem;
+  left: 4rem;
+  z-index: 10;
+  @include respond(tab-port) {
+    left: 2rem;
+  }
+
+  &__container {
+  }
+
+  &__item {
+    list-style: none;
+    transition: 0.4s all ease-out;
+
+    &:hover,
+    &:active {
+      margin-bottom: 0.6rem;
+      transform: scale(1.2);
     }
-    
-    &:after {
-        @extend .anm;
+  }
+
+  &__anchor {
+    &:hover,
+    &:active {
+      border-bottom: none;
     }
-    &:before {
-        @extend .anm;
+  }
+
+  &__icon {
+    font-size: 3rem;
+    height: 2rem;
+    width: 2rem;
+    color: $color-black;
+    fill: currentColor;
+    transition: 0.2s all ease-out;
+
+    &--linkedin {
+      &:hover {
+        color: rgb(228, 49, 18);
+      }
     }
+
+    &--github {
+      &:hover {
+        color: #9b17e7;
+      }
+    }
+
+    &--envelope {
+      &:hover {
+        color: #cc0000;
+      }
+    }
+
+    &--wordpress {
+      &:hover {
+        color: $color-primary-dark;
+      }
+    }
+
+    &--skype {
+      &:hover {
+        color: $color-tertiary-light;
+      }
+    }
+  }
+
+  &:after {
+    @extend .anm;
+  }
+
+  &:before {
+    @extend .anm;
+  }
 }

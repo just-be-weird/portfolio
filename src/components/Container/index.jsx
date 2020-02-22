@@ -16,7 +16,7 @@ import Loader from '../UI/Loader/Loader';
 import Notificaton from '../UI/Notification/Notificaton';
 import About from './Layout/About';
 
-function Index({cachedLogin, clearUIErrors, errors, history, isAuthenticated, isloading, logoutUser}) {
+function Index({cachedLogin, clearUIErrors, errors, history, isAuthenticated, isLoading, logoutUser}) {
   const data = [
     {
       id: 'home',
@@ -95,7 +95,7 @@ function Index({cachedLogin, clearUIErrors, errors, history, isAuthenticated, is
         <Route excat to='/about' component={About}/>
       </Switch>
       <MultiActions history={history}/>
-      <Loader isloading={isloading}/>
+      <Loader isLoading={isLoading}/>
       <Footer/>
     </Fragment>
   );
@@ -105,13 +105,13 @@ Index.propTypes = {
   cachedLogin: PropTypes.func.isRequired,
   clearUIErrors: PropTypes.func.isRequired,
   errors: PropTypes.object,
-  isloading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   logoutUser: PropTypes.func.isRequired
 };
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   errors: state.ui.errors,
-  isloading: state.ui.loading
+  isLoading: state.ui.loading
 });
 export default connect(mapStateToProps, {cachedLogin, clearUIErrors, logoutUser})(withRouter(Index));
