@@ -12,4 +12,4 @@ firebase.initializeApp(config);
 const db = firebase.firestore(); //modern firestore
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-export { firebase, googleAuthProvider, db as default };
+export {firebase, googleAuthProvider, db as default};

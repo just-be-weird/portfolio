@@ -5,6 +5,9 @@ import InfinityStones from './InfinityStones';
 import Projects from './Projects';
 import Contact from './Contact';
 
+
+const {about, down__arrow, down__arrow_icon, section_about_intro} = classes;
+
 export default function About() {
   const [atBottom, setAtBottom] = useState(false);
   const [elmVisible, setElmVisible] = useState(0);
@@ -36,12 +39,12 @@ export default function About() {
     }
     // Go down logic
     if (!atBottom && elmVisible < 5) {
-    // Checking if the element is at the bottom
-    if (elmVisible === 4) {
+      // Checking if the element is at the bottom
+      if (elmVisible === 4) {
         setElmVisible(3);
         setAtBottom(true);
       } else {
-      // If not at bottom then keep moving focus to down
+        // If not at bottom then keep moving focus to down
         setElmVisible(elmVisible + 1);
         setAtBottom(false);
       }
@@ -54,14 +57,14 @@ export default function About() {
 
   return (
     <div className="content_tracker">
-      <div className={classes.down__arrow} onClick={handleOnClick}>
-        <svg className={classes.down__arrow_icon}>
-          <use xlinkHref={`/assets/img/sprite.svg#down-arrow`}></use>
+      <div className={down__arrow} onClick={handleOnClick}>
+        <svg className={down__arrow_icon}>
+          <use xlinkHref={`/assets/img/sprite.svg#down-arrow`}/>
         </svg>
       </div>
       <section className={classes['section-about'] + ' ' + classes['container']}>
-        <div className={classes['section-wrapper']} id={classes.about}>
-          <div className={classes.section_about_intro}>
+        <div className={classes['section-wrapper']} id={about}>
+          <div className={section_about_intro}>
             <h2 className={classes['section-title']}>About Creator</h2>
             <div className={classes['hero-text-box'] + ' ' + classes['heading-primary']}>
               <h2 className={classes['heading-primary'] + ' ' + classes['heading-primary--sub']}>
@@ -81,7 +84,7 @@ export default function About() {
             </div>
           </div>
           <p className={classes['long-copy'] + ' ' + classes.section_about} id='description'>
-            <span className={classes.highlight}>Fullstack developer</span> at Adapty Inc. Loves to bring up{' '}
+            <span className={classes.highlight}>FullStack developer</span> at Nivoda LLP. Loves to bring up{' '}
             <span className={classes.highlight}>
 							fast, reliable, engaging & responsive websites powered{' '}
 						</span>
@@ -96,7 +99,6 @@ export default function About() {
             using the <span className={classes.highlight}>latest STACK</span> that meets the requirements of
             modern time.
           </p>
-          <p></p>
         </div>
       </section>
       <Experience/>
@@ -104,8 +106,4 @@ export default function About() {
       <Projects/>
       <Contact/>
     </div>)
-}
-
-/* #Todo
-- If at botoom then reverse the go down arraw to up
-*/
+};

@@ -2,101 +2,109 @@
 @import "../../UI/Tooltip/tooltip.module";
 //Overrides
 #sign-out {
-    .tooltiptext {
-        width: 5rem;
-        left: 90%;
-        &:after {
-            border-color: #ff921d transparent transparent transparent;
-            right: -4px;
-            margin-left: 44px;
-        }
+  .tooltiptext {
+    width: 5rem;
+    left: 90%;
+
+    &:after {
+      border-color: #ff921d transparent transparent transparent;
+      right: -4px;
+      margin-left: 44px;
     }
+  }
 }
 
 // Notificatons
 .notification {
-    border-radius: 0.5rem;
-    -moz-border-radius: 0.5rem;
-    -webkit-border-radius: 0.5rem;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    -moz-transition: all 0.5s ease-out;
-    transition: all 0.5s ease-out;
-    -webkit-transition: all 0.5s ease-out;
-    color: $color-white;
-    width: auto;
-    margin: 10px auto;
-    min-height: 50px;
-    padding: 0 3rem;
-    position: fixed;
-    transform: translate(-50%);
-    top: 12.5%;
-    left: 50%;
-    z-index: 101;
-    animation: expand 0.7s ease-in;
-    -webkit-animation: expand 0.7s ease-in;
-    -moz-animation: expand 0.7s ease-in;
-    &__msg {
-        font-size: $default-font-size;
-    }
+  border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  color: $color-white;
+  width: auto;
+  margin: 10px auto;
+  min-height: 50px;
+  padding: 0 3rem;
+  position: fixed;
+  transform: translate(-50%);
+  top: 12.5%;
+  left: 50%;
+  z-index: 101;
+  animation: expand 0.7s ease-in;
+  -webkit-animation: expand 0.7s ease-in;
+  -moz-animation: expand 0.7s ease-in;
+
+  &__msg {
+    font-size: $default-font-size;
+  }
+
+  .popup__close {
+    font-size: 1.4rem;
+    top: 0.1rem;
+    right: 0.6rem;
+    color: transparent;
+  }
+
+  &-success {
+    background: $color-primary;
+    box-shadow: 0 1rem 2rem rgba(9, 95, 15, 0.22);
+    display: flex;
+    -moz-box-shadow: 0 1rem 2rem rgba(9, 95, 15, 0.22);
+    -webkit-box-shadow: 0 1rem 2rem rgba(9, 95, 15, 0.22);
+  }
+
+  &-fail {
+    background: $color-error;
+    box-shadow: 0 1rem 2rem rgba(109, 1, 1, 0.22);
+    display: flex;
+    -moz-box-shadow: 0 1rem 2rem rgba(109, 1, 1, 0.22);
+    -webkit-box-shadow: 0 1rem 2rem rgba(109, 1, 1, 0.22);
+  }
+
+  &:hover {
     .popup__close {
-        font-size: 1.4rem;
-        top: 0.1rem;
-        right: 0.6rem;
-        color: transparent;
+      color: $color-white;
     }
-    &-success {
-        background: $color-primary;
-        box-shadow: 0 1rem 2rem rgba(9, 95, 15, 0.22);
-        display: flex;
-        -moz-box-shadow: 0 1rem 2rem rgba(9, 95, 15, 0.22);
-        -webkit-box-shadow: 0 1rem 2rem rgba(9, 95, 15, 0.22);
-    }
-    &-fail {
-        background: $color-error;
-        box-shadow: 0 1rem 2rem rgba(109, 1, 1, 0.22);
-        display: flex;
-        -moz-box-shadow: 0 1rem 2rem rgba(109, 1, 1, 0.22);
-        -webkit-box-shadow: 0 1rem 2rem rgba(109, 1, 1, 0.22);
-    }
-    &:hover {
-        .popup__close {
-            color: $color-white;
-        }
-    }
+  }
 }
+
 @keyframes expand {
-    0% {
-        top: -15%;
-    }
-    40% {
-        top: -10%;
-    }
-    50% {
-        top: 5%;
-    }
-    90% {
-        top: 12.5%;
-    }
-    100% {
-        top: 12%;
-    }
+  0% {
+    top: -15%;
+  }
+  40% {
+    top: -10%;
+  }
+  50% {
+    top: 5%;
+  }
+  90% {
+    top: 12.5%;
+  }
+  100% {
+    top: 12%;
+  }
 }
+
 @-webkit-keyframes expand {
-    0% {
-        top: -15%;
-    }
-    40% {
-        top: -10%;
-    }
-    50% {
-        top: 5%;
-    }
-    90% {
-        top: 12.5%;
-    }
-    100% {
-        top: 12%;
-    }
+  0% {
+    top: -15%;
+  }
+  40% {
+    top: -10%;
+  }
+  50% {
+    top: 5%;
+  }
+  90% {
+    top: 12.5%;
+  }
+  100% {
+    top: 12%;
+  }
 }
