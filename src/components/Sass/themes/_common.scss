@@ -24,13 +24,13 @@
 
 .rainbow-anm {
   background: linear-gradient(
-                  270deg,
-                  #0600ff,
-                  #00ffdf,
-                  #45ff00,
-                  #fffa00,
-                  #ff9400,
-                  #ff0200
+    270deg,
+    #0600ff,
+    #00ffdf,
+    #45ff00,
+    #fffa00,
+    #ff9400,
+    #ff0200
   );
   background-size: 1200% 1200%;
   -webkit-animation: rainbow-effect 2s ease infinite;
@@ -74,13 +74,15 @@
 
 .grd-color {
   background: -webkit-gradient(
-                  linear,
-                  left top,
-                  right top,
-                  from(#ff8a00),
-                  to(#da1b60)
-  ) left bottom transparent no-repeat;
-  background: linear-gradient(to right, #ff8a00, #da1b60) left bottom transparent no-repeat;
+      linear,
+      left top,
+      right top,
+      from(#ff8a00),
+      to(#da1b60)
+    )
+    left bottom transparent no-repeat;
+  background: linear-gradient(to right, #ff8a00, #da1b60) left bottom
+    transparent no-repeat;
 }
 
 .highlight {
@@ -113,8 +115,9 @@
 .shadow {
   box-shadow: 0 2px 6px 0 rgba($color-black, 0.12), inset 0 -1px 0 0 #dadce0;
   -webkit-box-shadow: 0 2px 6px 0 rgba($color-black, 0.12),
-  inset 0 -1px 0 0 #dadce0;
-  -moz-box-shadow: 0 2px 6px 0 rgba($color-black, 0.12), inset 0 -1px 0 0 #dadce0;
+    inset 0 -1px 0 0 #dadce0;
+  -moz-box-shadow: 0 2px 6px 0 rgba($color-black, 0.12),
+    inset 0 -1px 0 0 #dadce0;
 }
 
 .spacer {

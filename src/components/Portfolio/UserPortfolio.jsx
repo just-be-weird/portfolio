@@ -1,28 +1,28 @@
-import React, {Fragment, useState, useEffect} from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import axios from "../../axios.instance";
-import {loadingUI, setUIErrors} from "../actions/ui";
-import {getProfile, setProfile, gerReqUserProfile} from "../actions/profile";
+import { loadingUI, setUIErrors } from "../actions/ui";
+import { getProfile, setProfile, gerReqUserProfile } from "../actions/profile";
 import Portfolio from "./Portfolio";
 import Modal from "../UI/Modal/Modal";
 import CustomInput from "../UI/InputButtons/CustomInput";
-import {matchAnyChar} from "../Shared/Util";
+import { matchAnyChar } from "../Shared/Util";
 import classes from "../Sass/main.module.scss";
 
 const UserPortfolio = ({
-                         getProfile,
-                         setProfile,
-                         gerReqUserProfile,
-                         profile = {},
-                         loadingUI,
-                         setUIErrors,
-                         match,
-                       }) => {
+  getProfile,
+  setProfile,
+  gerReqUserProfile,
+  profile = {},
+  loadingUI,
+  setUIErrors,
+  match
+}) => {
   const [hideModal, setHideModal] = useState(false);
   const [editMdl, setEditMdl] = useState({});
   const {
-    params: {userHandle},
+    params: { userHandle }
   } = match;
 
   useEffect(() => {
@@ -33,13 +33,13 @@ const UserPortfolio = ({
     }
   }, [userHandle, gerReqUserProfile, getProfile]);
 
-  const {btn} = classes;
+  const { btn } = classes;
 
   const editHandler = async e => {
     e.stopPropagation();
     setHideModal(!hideModal);
     setEditMdl({
-      label: e.currentTarget.attributes["data-action"].value,
+      label: e.currentTarget.attributes["data-action"].value
     });
   };
 
@@ -47,23 +47,23 @@ const UserPortfolio = ({
     e.preventDefault();
     if (!editMdl.val) {
       setUIErrors({
-        error: `User ${editMdl.label} is required.`.toUpperCase(),
+        error: `User ${editMdl.label} is required.`.toUpperCase()
       });
     } else {
       if (editMdl.editing) {
         loadingUI(true);
         const res = await axios.post(`/notebook/profile`, {
-          [editMdl.label]: editMdl.val,
+          [editMdl.label]: editMdl.val
         });
 
         setProfile({
           ...profile,
-          [editMdl.label]: res.data.data[editMdl.label],
+          [editMdl.label]: res.data.data[editMdl.label]
         });
         setHideModal(false);
         loadingUI();
       } else {
-        setProfile({...profile});
+        setProfile({ ...profile });
       }
     }
   };
@@ -72,7 +72,7 @@ const UserPortfolio = ({
     setEditMdl({
       ...editMdl,
       val: e.target.value,
-      editing: true,
+      editing: true
     });
   };
 
@@ -84,16 +84,14 @@ const UserPortfolio = ({
         id={"user-details_modal"}
       >
         <CustomInput
-          iptype='text'
-          ipid='user-details'
-          htmlFor='user-details'
+          iptype="text"
+          ipid="user-details"
+          htmlFor="user-details"
           placeholderVal={`Enter Value For User ${editMdl.label}`}
           regEx={matchAnyChar(4, 100)}
           labelName={`User ${editMdl.label}`.toUpperCase()}
           isRequired={true}
-          val={
-            !editMdl.editing ? profile[editMdl.label] : editMdl.val
-          }
+          val={!editMdl.editing ? profile[editMdl.label] : editMdl.val}
           changeHandler={changeHandler}
         />
         <div className={classes["btn-wrapper"]}>
@@ -102,7 +100,7 @@ const UserPortfolio = ({
             onClick={submitHandler}
           >
             <svg className={classes["svg-arrow"]}>
-              <use xlinkHref={"/assets/img/sprite.svg#arrow"}/>
+              <use xlinkHref={"/assets/img/sprite.svg#arrow"} />
             </svg>
           </div>
         </div>
@@ -125,13 +123,16 @@ UserPortfolio.propTypes = {
   getProfile: PropTypes.func.isRequired,
   setProfile: PropTypes.func.isRequired,
   gerReqUserProfile: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
-  profile: state.profile,
+  profile: state.profile
 });
 
-export default connect(
-  mapStateToProps,
-  {loadingUI, setUIErrors, setProfile, gerReqUserProfile, getProfile}
-)(UserPortfolio);
+export default connect(mapStateToProps, {
+  loadingUI,
+  setUIErrors,
+  setProfile,
+  gerReqUserProfile,
+  getProfile
+})(UserPortfolio);

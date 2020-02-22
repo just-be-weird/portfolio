@@ -1,15 +1,15 @@
-import React, {useState} from "react";
-import {connect} from "react-redux";
+import React, { useState } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import axios from "../../axios.instance";
 import classes from "../Sass/main.module.scss";
 import CustomInput from "../UI/InputButtons/CustomInput";
-import {containsTextOnly, containsDotAtEnd} from "../Shared/Util";
+import { containsTextOnly, containsDotAtEnd } from "../Shared/Util";
 import CustomSwitch from "../UI/InputButtons/CustomSwitch";
-import {setProfile} from "../actions/profile";
-import {loadingUI} from "../actions/ui";
+import { setProfile } from "../actions/profile";
+import { loadingUI } from "../actions/ui";
 
-const AddEducation = ({setProfile, stateData, history, loadingUI}) => {
+const AddEducation = ({ setProfile, stateData, history, loadingUI }) => {
   const [educationData, setEducationData] = useState({
     degree: "",
     school: "",
@@ -17,14 +17,14 @@ const AddEducation = ({setProfile, stateData, history, loadingUI}) => {
     from: "",
     to: "",
     current: false,
-    description: "",
+    description: ""
   });
   const [toDateDisabled, toggleDisabled] = useState(false);
 
   const onChange = e => {
     setEducationData({
       ...educationData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -35,7 +35,7 @@ const AddEducation = ({setProfile, stateData, history, loadingUI}) => {
     from,
     to,
     current,
-    description,
+    description
   } = educationData;
 
   const submitHandler = async e => {
@@ -43,7 +43,7 @@ const AddEducation = ({setProfile, stateData, history, loadingUI}) => {
     stateData.education.push(educationData);
     loadingUI(true);
     const res = await axios.post(`/notebook/profile`, {
-      ...stateData,
+      ...stateData
     });
     setProfile(res.data.data);
     loadingUI();
@@ -53,23 +53,18 @@ const AddEducation = ({setProfile, stateData, history, loadingUI}) => {
   return (
     <section className={classes.profile}>
       <form
-        action='#'
+        action="#"
         className={classes["form"]}
         onSubmit={submitHandler}
         id={classes.education}
       >
         <div
           className={
-            classes["u-margin-bottom-medium"] +
-            " " +
-            classes["form__des"]
+            classes["u-margin-bottom-medium"] + " " + classes["form__des"]
           }
         >
           <h2 className={classes["heading-secondary"]}>
-                        <span className={classes.highlight}>
-                            {" "}
-                          Add Education
-                        </span>
+            <span className={classes.highlight}> Add Education</span>
           </h2>
           <h3>Add your education details</h3>
         </div>
@@ -120,7 +115,7 @@ const AddEducation = ({setProfile, stateData, history, loadingUI}) => {
             changeHandler={e => {
               setEducationData({
                 ...educationData,
-                [e.target.name]: e.target.checked,
+                [e.target.name]: e.target.checked
               });
               toggleDisabled(!toDateDisabled);
             }}
@@ -148,7 +143,7 @@ const AddEducation = ({setProfile, stateData, history, loadingUI}) => {
         />
         <div className={classes["form__group"]}>
           <button
-            type='button'
+            type="button"
             className={classes["btn"] + " " + classes["btn--back"]}
             onClick={e => {
               e.stopPropagation();
@@ -157,9 +152,7 @@ const AddEducation = ({setProfile, stateData, history, loadingUI}) => {
           >
             Back
           </button>
-          <button
-            className={classes["btn"] + " " + classes["btn__blue"]}
-          >
+          <button className={classes["btn"] + " " + classes["btn__blue"]}>
             {"Submit"}
           </button>
         </div>
@@ -171,13 +164,12 @@ const AddEducation = ({setProfile, stateData, history, loadingUI}) => {
 AddEducation.propTypes = {
   setProfile: PropTypes.func.isRequired,
   loadingUI: PropTypes.func.isRequired,
-  stateData: PropTypes.object.isRequired,
+  stateData: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
-  stateData: state.profile,
+  stateData: state.profile
 });
 
-export default connect(
-  mapStateToProps,
-  {setProfile, loadingUI}
-)(AddEducation);
+export default connect(mapStateToProps, { setProfile, loadingUI })(
+  AddEducation
+);

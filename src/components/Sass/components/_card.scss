@@ -6,15 +6,14 @@
   perspective: 80rem;
   position: relative;
 
-
   &__side {
     //element
     background-color: orangered;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border-radius: .3rem;
-    -webkit-box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
-    box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+    border-radius: 0.3rem;
+    -webkit-box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
     color: $color-white;
     font-size: 5rem;
     height: 25rem;
@@ -22,14 +21,13 @@
     position: absolute; //this causes parent to lose its height as in case of floats to fix this we need to provide same to height to its parent.
     top: 0;
     left: 0;
-    -webkit-transition: all .8s ease;
-    transition: all .8s ease;
+    -webkit-transition: all 0.8s ease;
+    transition: all 0.8s ease;
     width: 100%;
 
     &--front {
       //modifier for card__side
       background-color: $color-white;
-
     }
 
     &--back {
@@ -39,20 +37,49 @@
       transform: rotateY(180deg);
 
       &-1 {
-        background-image: -webkit-gradient(linear, left top, right bottom, from($color-secondary-light), to($color-secondary-dark));
-        background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+        background-image: -webkit-gradient(
+          linear,
+          left top,
+          right bottom,
+          from($color-secondary-light),
+          to($color-secondary-dark)
+        );
+        background-image: linear-gradient(
+          to right bottom,
+          $color-secondary-light,
+          $color-secondary-dark
+        );
       }
 
       &-2 {
-        background-image: -webkit-gradient(linear, left top, right bottom, from($color-primary-light), to($color-primary-dark));
-        background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+        background-image: -webkit-gradient(
+          linear,
+          left top,
+          right bottom,
+          from($color-primary-light),
+          to($color-primary-dark)
+        );
+        background-image: linear-gradient(
+          to right bottom,
+          $color-primary-light,
+          $color-primary-dark
+        );
       }
 
       &-3 {
-        background-image: -webkit-gradient(linear, left top, right bottom, from($color-tertiary-light), to($color-tertiary-dark));
-        background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark);
+        background-image: -webkit-gradient(
+          linear,
+          left top,
+          right bottom,
+          from($color-tertiary-light),
+          to($color-tertiary-dark)
+        );
+        background-image: linear-gradient(
+          to right bottom,
+          $color-tertiary-light,
+          $color-tertiary-dark
+        );
       }
-
     }
   }
 
@@ -79,36 +106,66 @@
     height: 10rem;
 
     &--1 {
-      background-image: -webkit-gradient(linear, left top, right bottom, from($color-secondary-light), to($color-secondary-dark)), -webkit-image-set(
-                      url(/assets/img/IDR_THEME_NTP_BACKGROUND@1x.png) 1x,
-                      url(/assets/img/IDR_THEME_NTP_BACKGROUND@2x.png) 2x
-      );
-      background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), image-set(
-                      url(/assets/img/IDR_THEME_NTP_BACKGROUND@1x.png) 1x,
-                      url(/assets/img/IDR_THEME_NTP_BACKGROUND@2x.png) 2x
-      );
+      background-image: -webkit-gradient(
+          linear,
+          left top,
+          right bottom,
+          from($color-secondary-light),
+          to($color-secondary-dark)
+        ),
+        -webkit-image-set(url(/assets/img/IDR_THEME_NTP_BACKGROUND@1x.png) 1x, url(/assets/img/IDR_THEME_NTP_BACKGROUND@2x.png)
+              2x);
+      background-image: linear-gradient(
+          to right bottom,
+          $color-secondary-light,
+          $color-secondary-dark
+        ),
+        image-set(
+          url(/assets/img/IDR_THEME_NTP_BACKGROUND@1x.png) 1x,
+          url(/assets/img/IDR_THEME_NTP_BACKGROUND@2x.png) 2x
+        );
     }
 
     &--2 {
-      background-image: -webkit-gradient(linear, left top, right bottom, from($color-primary-light), to($color-primary-dark)), -webkit-image-set(
-                      url(/assets/img/IDR_THEME_NTP_BACKGROUND@1x.png) 1x,
-                      url(/assets/img/IDR_THEME_NTP_BACKGROUND@2x.png) 2x
-      );
-      background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark), image-set(
-                      url(/assets/img/IDR_THEME_NTP_BACKGROUND@1x.png) 1x,
-                      url(/assets/img/IDR_THEME_NTP_BACKGROUND@2x.png) 2x
-      );
+      background-image: -webkit-gradient(
+          linear,
+          left top,
+          right bottom,
+          from($color-primary-light),
+          to($color-primary-dark)
+        ),
+        -webkit-image-set(url(/assets/img/IDR_THEME_NTP_BACKGROUND@1x.png) 1x, url(/assets/img/IDR_THEME_NTP_BACKGROUND@2x.png)
+              2x);
+      background-image: linear-gradient(
+          to right bottom,
+          $color-primary-light,
+          $color-primary-dark
+        ),
+        image-set(
+          url(/assets/img/IDR_THEME_NTP_BACKGROUND@1x.png) 1x,
+          url(/assets/img/IDR_THEME_NTP_BACKGROUND@2x.png) 2x
+        );
     }
 
     &--3 {
-      background-image: -webkit-gradient(linear, left top, right bottom, from($color-tertiary-light), to($color-tertiary-dark)), -webkit-image-set(
-                      url(/assets/img/IDR_THEME_NTP_BACKGROUND@1x.png) 1x,
-                      url(/assets/img/IDR_THEME_NTP_BACKGROUND@2x.png) 2x
-      );
-      background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark), image-set(
-                      url(/assets/img/IDR_THEME_NTP_BACKGROUND@1x.png) 1x,
-                      url(/assets/img/IDR_THEME_NTP_BACKGROUND@2x.png) 2x
-      );
+      background-image: -webkit-gradient(
+          linear,
+          left top,
+          right bottom,
+          from($color-tertiary-light),
+          to($color-tertiary-dark)
+        ),
+        -webkit-image-set(url(/assets/img/IDR_THEME_NTP_BACKGROUND@1x.png) 1x, url(/assets/img/IDR_THEME_NTP_BACKGROUND@2x.png)
+              2x);
+      background-image: linear-gradient(
+          to right bottom,
+          $color-tertiary-light,
+          $color-tertiary-dark
+        ),
+        image-set(
+          url(/assets/img/IDR_THEME_NTP_BACKGROUND@1x.png) 1x,
+          url(/assets/img/IDR_THEME_NTP_BACKGROUND@2x.png) 2x
+        );
     }
   }
 
@@ -131,33 +188,48 @@
     box-decoration-break: clone; //to apply padding and all other styles declared to line breaked element of heading such that they both are two different blocks
 
     &--1 {
-      background-image: -webkit-gradient(linear,
-              left top, right bottom,
-              from(rgba($color-secondary-light, .85)),
-              to(rgba($color-secondary-dark, .85)));
-      background-image: linear-gradient(to right bottom,
-              rgba($color-secondary-light, .85),
-              rgba($color-secondary-dark, .85))
+      background-image: -webkit-gradient(
+        linear,
+        left top,
+        right bottom,
+        from(rgba($color-secondary-light, 0.85)),
+        to(rgba($color-secondary-dark, 0.85))
+      );
+      background-image: linear-gradient(
+        to right bottom,
+        rgba($color-secondary-light, 0.85),
+        rgba($color-secondary-dark, 0.85)
+      );
     }
 
     &--2 {
-      background-image: -webkit-gradient(linear,
-              left top, right bottom,
-              from(rgba($color-primary-light, .85)),
-              to(rgba($color-primary-dark, .85)));
-      background-image: linear-gradient(to right bottom,
-              rgba($color-primary-light, .85),
-              rgba($color-primary-dark, .85))
+      background-image: -webkit-gradient(
+        linear,
+        left top,
+        right bottom,
+        from(rgba($color-primary-light, 0.85)),
+        to(rgba($color-primary-dark, 0.85))
+      );
+      background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.85),
+        rgba($color-primary-dark, 0.85)
+      );
     }
 
     &--3 {
-      background-image: -webkit-gradient(linear,
-              left top, right bottom,
-              from(rgba($color-tertiary-light, .85)),
-              to(rgba($color-tertiary-dark, .85)));
-      background-image: linear-gradient(to right bottom,
-              rgba($color-tertiary-light, .85),
-              rgba($color-tertiary-dark, .85))
+      background-image: -webkit-gradient(
+        linear,
+        left top,
+        right bottom,
+        from(rgba($color-tertiary-light, 0.85)),
+        to(rgba($color-tertiary-dark, 0.85))
+      );
+      background-image: linear-gradient(
+        to right bottom,
+        rgba($color-tertiary-light, 0.85),
+        rgba($color-tertiary-dark, 0.85)
+      );
     }
   }
 
@@ -193,12 +265,11 @@
     width: 90%;
   }
 
-
   @include respond(tab-port) {
-    border-radius: .3rem;
+    border-radius: 0.3rem;
     background-color: $color-white;
-    -webkit-box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
-    box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+    -webkit-box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
     height: auto;
 
     &__side {

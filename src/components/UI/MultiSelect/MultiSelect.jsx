@@ -2,17 +2,17 @@ import React from "react";
 import classes from "../../Sass/main.module.scss";
 
 const MultiSelect = ({
-                       title,
-                       list,
-                       dropDownHandel,
-                       rfid,
-                       selectedLi,
-                       show,
-                       dropdownOpend,
-                       labelName,
-                       ipid,
-                       isRequired,
-                     }) => {
+  title,
+  list,
+  dropDownHandel,
+  rfid,
+  selectedLi,
+  show,
+  dropdownOpend,
+  labelName,
+  ipid,
+  isRequired
+}) => {
   const isActive = id => {
     return id === selectedLi ? classes.active : "";
   };
@@ -33,31 +33,25 @@ const MultiSelect = ({
         ))}
       </select>
 
-      <span
-        className={classes.custom_input__input}
-        onClick={dropdownOpend}
-      >
-                {title}
+      <span className={classes.custom_input__input} onClick={dropdownOpend}>
+        {title}
         <ul>
-                    {list.map((opt, i) => (
-                      <li key={i} data-id={i} className={isActive(opt)}>
-                            <span tabIndex={i}
-                                  onClick={e =>
-                                    dropDownHandel(e, rfid, isActive(opt))
-                                  }
-                            >
-                                {opt}
-                            </span>
-                      </li>
-                    ))}
-                </ul>
-            </span>
+          {list.map((opt, i) => (
+            <li key={i} data-id={i} className={isActive(opt)}>
+              <span
+                tabIndex={i}
+                onClick={e => dropDownHandel(e, rfid, isActive(opt))}
+              >
+                {opt}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </span>
       {labelName && (
         <label htmlFor={ipid} className={classes.custom_input__label}>
           {labelName}
-          {isRequired && (
-            <span className={classes.highlight}> *</span>
-          )}
+          {isRequired && <span className={classes.highlight}> *</span>}
         </label>
       )}
     </div>

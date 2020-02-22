@@ -1,19 +1,19 @@
 import React from "react";
 import classes from "../../Sass/main.module.scss";
-import {containsSpaceDeLimTextOnly} from "../../Shared/Util";
+import { containsSpaceDeLimTextOnly } from "../../Shared/Util";
 
 export default function CustomInput({
-                                      ipid = "text",
-                                      iptype = "text",
-                                      labelName = "No data provided",
-                                      placeholderVal = "No placeholder",
-                                      isRequired = false,
-                                      changeHandler,
-                                      regEx = containsSpaceDeLimTextOnly, //Excepet only Alpha chars
-                                      isChecked = null,
-                                      isDisabled = null,
-                                      val = "",
-                                    }) {
+  ipid = "text",
+  iptype = "text",
+  labelName = "No data provided",
+  placeholderVal = "No placeholder",
+  isRequired = false,
+  changeHandler,
+  regEx = containsSpaceDeLimTextOnly, //Excepet only Alpha chars
+  isChecked = null,
+  isDisabled = null,
+  val = ""
+}) {
   let classHolder = "",
     labelHolder = "",
     inputHolder = "";
@@ -54,12 +54,12 @@ export default function CustomInput({
         disabled={isDisabled}
         style={{
           color: val ? "#333" : "#989494",
-          background: isDisabled ? "#dedede" : "#f3f3f3",
+          background: isDisabled ? "#dedede" : "#f3f3f3"
         }}
       />
       <label htmlFor={ipid} className={labelHolder}>
         {iptype && iptype === "radio" ? (
-          <span className={classes["radio__button"]}/>
+          <span className={classes["radio__button"]} />
         ) : null}
         {labelName}
         {isRequired && <span className={classes.highlight}> *</span>}

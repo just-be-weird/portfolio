@@ -1,15 +1,15 @@
-import React, {useState} from "react";
-import {connect} from "react-redux";
+import React, { useState } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import axios from "../../axios.instance";
 import classes from "../Sass/main.module.scss";
 import CustomInput from "../UI/InputButtons/CustomInput";
-import {containsTextOnly} from "../Shared/Util";
+import { containsTextOnly } from "../Shared/Util";
 import CustomSwitch from "../UI/InputButtons/CustomSwitch";
-import {setProfile} from "../actions/profile";
-import {loadingUI} from "../actions/ui";
+import { setProfile } from "../actions/profile";
+import { loadingUI } from "../actions/ui";
 
-const AddExperience = ({loadingUI, setProfile, stateData, history}) => {
+const AddExperience = ({ loadingUI, setProfile, stateData, history }) => {
   const [experienceData, setExperienceData] = useState({
     company: "",
     title: "",
@@ -17,14 +17,14 @@ const AddExperience = ({loadingUI, setProfile, stateData, history}) => {
     from: "",
     to: "",
     current: false,
-    description: "",
+    description: ""
   });
   const [toDateDisabled, toggleDisabled] = useState(false);
 
   const onChange = e => {
     setExperienceData({
       ...experienceData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -35,7 +35,7 @@ const AddExperience = ({loadingUI, setProfile, stateData, history}) => {
     from,
     to,
     current,
-    description,
+    description
   } = experienceData;
 
   const submitHandler = async e => {
@@ -43,7 +43,7 @@ const AddExperience = ({loadingUI, setProfile, stateData, history}) => {
     stateData.experience.push(experienceData);
     loadingUI(true);
     const res = await axios.post(`/notebook/profile`, {
-      ...stateData,
+      ...stateData
     });
     setProfile(res.data.data);
     loadingUI();
@@ -53,23 +53,18 @@ const AddExperience = ({loadingUI, setProfile, stateData, history}) => {
   return (
     <section className={classes.profile}>
       <form
-        action='#'
+        action="#"
         className={classes["form"]}
         onSubmit={submitHandler}
         id={classes.experience}
       >
         <div
           className={
-            classes["u-margin-bottom-medium"] +
-            " " +
-            classes["form__des"]
+            classes["u-margin-bottom-medium"] + " " + classes["form__des"]
           }
         >
           <h2 className={classes["heading-secondary"]}>
-                        <span className={classes.highlight}>
-                            {" "}
-                          Add Experience
-                        </span>
+            <span className={classes.highlight}> Add Experience</span>
           </h2>
           <h3>Add your experience details</h3>
         </div>
@@ -120,7 +115,7 @@ const AddExperience = ({loadingUI, setProfile, stateData, history}) => {
             changeHandler={e => {
               setExperienceData({
                 ...experienceData,
-                [e.target.name]: e.target.checked,
+                [e.target.name]: e.target.checked
               });
               toggleDisabled(!toDateDisabled);
             }}
@@ -156,9 +151,7 @@ const AddExperience = ({loadingUI, setProfile, stateData, history}) => {
           >
             Back
           </button>
-          <button
-            className={classes["btn"] + " " + classes["btn__blue"]}
-          >
+          <button className={classes["btn"] + " " + classes["btn__blue"]}>
             {"Submit"}
           </button>
         </div>
@@ -170,13 +163,12 @@ const AddExperience = ({loadingUI, setProfile, stateData, history}) => {
 AddExperience.propTypes = {
   loadingUI: PropTypes.func.isRequired,
   setProfile: PropTypes.func.isRequired,
-  stateData: PropTypes.object.isRequired,
+  stateData: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
-  stateData: state.profile,
+  stateData: state.profile
 });
 
-export default connect(
-  mapStateToProps,
-  {loadingUI, setProfile}
-)(AddExperience);
+export default connect(mapStateToProps, { loadingUI, setProfile })(
+  AddExperience
+);

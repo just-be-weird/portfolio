@@ -3,13 +3,19 @@ import {
   RESET_COCHE_DATA,
   SET_COCHE_DATA,
   GET_USER_PROFILE
-} from '../actions/actionTypes';
-import {updateObject} from "../Shared/Util";
-
+} from "../actions/actionTypes";
+import { updateObject } from "../Shared/Util";
 
 const initialState = {
   current_step: {},
-  step_completed: [{id: 'step'}, {id: 'about'}, {id: 'experience'}, {id: 'stones'}, {id: 'projects'}, {contact: 'contact'}],
+  step_completed: [
+    { id: "step" },
+    { id: "about" },
+    { id: "experience" },
+    { id: "stones" },
+    { id: "projects" },
+    { contact: "contact" }
+  ],
   profile_data: [
     {
       id: 0,
@@ -21,10 +27,9 @@ const initialState = {
           info_0_0_type: "text",
           placeholder0: "Enter Country",
           req: true,
-          status: 0,
+          status: 0
         }
-      ],
-
+      ]
     },
     {
       id: 1,
@@ -37,7 +42,7 @@ const initialState = {
           info_1_0_val: "student",
           info_1_0_a: true,
           req: false,
-          status: 1,
+          status: 1
         },
         {
           info_1_1: "Working professional",
@@ -46,7 +51,7 @@ const initialState = {
           info_1_1_val: "professional",
           info_1_1_a: false,
           req: false,
-          status: 1,
+          status: 1
         },
         {
           info_1_2: "Github User ID",
@@ -54,7 +59,7 @@ const initialState = {
           placeholder2: "Enter Github user ID",
           info_1_2_id: "github_id",
           req: false,
-          status: 0,
+          status: 0
         },
         {
           info_1_3: "Company",
@@ -62,7 +67,7 @@ const initialState = {
           info_1_3_id: "company",
           req: false,
           placeholder3: "Enter company name",
-          status: 0,
+          status: 0
         }
       ]
     },
@@ -87,10 +92,10 @@ const initialState = {
               "Student",
               "HR professional",
               "Others"
-            ],
+            ]
           },
           req: true,
-          status: 0,
+          status: 0
         }
       ]
     },
@@ -104,7 +109,7 @@ const initialState = {
           info_3_0: "Professional Skills",
           placeholder0: "Add your professional skills",
           req: false,
-          status: 0,
+          status: 0
         }
       ]
     },
@@ -117,29 +122,32 @@ const initialState = {
           info_4_0_type: "file",
           info_4_0: "Update Photo",
           req: false,
-          status: 0,
+          status: 0
         }
       ]
-    },
+    }
   ],
   experience: [],
   education: []
-}
+};
 
-export default function (state = initialState, action) {
-  const {type, payload} = action;
+export default function(state = initialState, action) {
+  const { type, payload } = action;
   switch (type) {
     case GET_COCHE_DATA:
-      return updateObject(state, payload)
+      return updateObject(state, payload);
 
     case RESET_COCHE_DATA:
       return initialState;
 
     case SET_COCHE_DATA:
-      return updateObject(state, payload)
+      return updateObject(state, payload);
 
     case GET_USER_PROFILE:
-      return updateObject(state, {...payload.user, notebooks: {...payload.notebooks}});
+      return updateObject(state, {
+        ...payload.user,
+        notebooks: { ...payload.notebooks }
+      });
 
     default:
       return state;

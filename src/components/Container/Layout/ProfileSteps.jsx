@@ -1,55 +1,55 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import axios from "../../../axios.instance";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import classes from "../../Sass/main.module.scss";
 import CustomInput from "../../UI/InputButtons/CustomInput";
-import {setProfile, uploadImage} from "../../actions/profile";
-import {loadingUI} from "../../actions/ui";
+import { setProfile, uploadImage } from "../../actions/profile";
+import { loadingUI } from "../../actions/ui";
 import {
   containsNumberBtn,
   containsTextOnly,
-  commaSeperatedTextOnly,
+  commaSeperatedTextOnly
 } from "../../Shared/Util";
 import MultiSelect from "../../UI/MultiSelect/MultiSelect";
 
 const ProfileSteps = ({
-                        loadingUI,
-                        profileData,
-                        setProfile,
-                        uploadImage,
-                        history,
-                      }) => {
-  const [radioState, setRadioState] = useState({id: "student"});
+  loadingUI,
+  profileData,
+  setProfile,
+  uploadImage,
+  history
+}) => {
+  const [radioState, setRadioState] = useState({ id: "student" });
   const [dropdownState, setDropdownState] = useState(false);
 
   const handleChange = (e, ref, lineId, rowId, type) => {
     const stateCopy = Array.from(profileData);
     if (type === "radio") {
       //e.preventDefault();//incase of radio we dont do it
-      setRadioState({id: e.target.value});
+      setRadioState({ id: e.target.value });
     } else {
       e.preventDefault();
       stateCopy[lineId].data[rowId] = {
         ...stateCopy[lineId].data[rowId],
         [ref + "_a"]: e.target.value,
-        status: e.target.value ? 1 : 0,
+        status: e.target.value ? 1 : 0
       };
     }
-    setProfile({profile_data: stateCopy});
+    setProfile({ profile_data: stateCopy });
   };
 
   const handleImageChange = (e, ref, lineId, rowId) => {
     const stateCopy = Array.from(profileData);
     stateCopy[lineId].data[rowId] = {
       ...stateCopy[lineId].data[rowId],
-      [ref + "_a"]: e.target.value,
+      [ref + "_a"]: e.target.value
     };
     const image = e.target.files[0];
     const formData = new FormData();
     formData.append("image", image, image.name);
     uploadImage(formData);
-    setProfile({profile_data: stateCopy});
+    setProfile({ profile_data: stateCopy });
   };
 
   const submitHandler = async e => {
@@ -67,9 +67,9 @@ const ProfileSteps = ({
     stateCopy[1].data[1].info_1_1_a = radioState.id === "professional";
     loadingUI(true);
     const res = await axios.post(`/notebook/profile`, {
-      profile_data: stateCopy,
+      profile_data: stateCopy
     });
-    setProfile({profile_data: res.data.data.profile_data});
+    setProfile({ profile_data: res.data.data.profile_data });
     loadingUI();
     history.push("/");
   };
@@ -80,12 +80,12 @@ const ProfileSteps = ({
     if (!isActive) {
       stateCopy[2].data[0] = {
         ...profileData[2].data[0],
-        [ref + "_a"]: e.target.innerText,
+        [ref + "_a"]: e.target.innerText
       };
     } else {
       delete stateCopy[2].data[0][ref + "_a"];
     }
-    setProfile({profile_data: stateCopy});
+    setProfile({ profile_data: stateCopy });
   };
 
   const dropdownOpendHandel = e => {
@@ -98,27 +98,19 @@ const ProfileSteps = ({
       className={classes.profile}
       onClick={e => dropdownState && setDropdownState(false)}
     >
-      <form
-        action='#'
-        className={classes["form"]}
-        onSubmit={submitHandler}
-      >
+      <form action="#" className={classes["form"]} onSubmit={submitHandler}>
         <div
           className={
-            classes["u-margin-bottom-medium"] +
-            " " +
-            classes["form__des"]
+            classes["u-margin-bottom-medium"] + " " + classes["form__des"]
           }
         >
           <h2 className={classes["heading-secondary"]}>
-                        <span className={classes.highlight}>
-                            Tell's about your self,
-                        </span>
+            <span className={classes.highlight}>Tell's about your self,</span>
           </h2>
           <h3>This makes easy for others to identify you</h3>
         </div>
         {profileData.map((line, lineId) => {
-          const {id, data} = line;
+          const { id, data } = line;
           let jsx = [];
           return data.map((row, rowId) => {
             const ref = "info_" + id + "_" + rowId,
@@ -133,14 +125,11 @@ const ProfileSteps = ({
               isCheckedHolder = undefined,
               regExHolder = "",
               valHolder = row[ref + "_a"] ? row[ref + "_a"] : "",
-              fnHolder = e =>
-                handleChange(e, ref, lineId, rowId, type);
+              fnHolder = e => handleChange(e, ref, lineId, rowId, type);
 
             switch (type) {
               case "select":
-                titleHolder = row[ref + "_a"]
-                  ? row[ref + "_a"]
-                  : row[ref].q;
+                titleHolder = row[ref + "_a"] ? row[ref + "_a"] : row[ref].q;
 
                 labeHolder = row[ref + "_a"] && row[ref].label;
                 break;
@@ -151,19 +140,15 @@ const ProfileSteps = ({
                     ? radioState.id
                     : row[ref + "_val"];
 
-                isCheckedHolder =
-                  radioState.id === row[ref + "_val"];
+                isCheckedHolder = radioState.id === row[ref + "_val"];
                 break;
 
               case "file":
-                fnHolder = e =>
-                  handleImageChange(e, ref, lineId, rowId);
+                fnHolder = e => handleImageChange(e, ref, lineId, rowId);
                 break;
 
               default:
-                valHolder = row[ref + "_a"]
-                  ? row[ref + "_a"]
-                  : "";
+                valHolder = row[ref + "_a"] ? row[ref + "_a"] : "";
 
                 regExHolder =
                   ipidHolder === "postal_code"
@@ -220,9 +205,7 @@ const ProfileSteps = ({
           >
             Back
           </button>
-          <button
-            className={classes["btn"] + " " + classes["btn__blue"]}
-          >
+          <button className={classes["btn"] + " " + classes["btn__blue"]}>
             {"Next"}
           </button>
         </div>
@@ -235,13 +218,12 @@ ProfileSteps.propTypes = {
   profileData: PropTypes.array.isRequired,
   setProfile: PropTypes.func.isRequired,
   loadingUI: PropTypes.func.isRequired,
-  uploadImage: PropTypes.func.isRequired,
+  uploadImage: PropTypes.func.isRequired
 };
 const mapStateToProps = state => ({
-  profileData: state.profile.profile_data,
+  profileData: state.profile.profile_data
 });
 
-export default connect(
-  mapStateToProps,
-  {loadingUI, setProfile, uploadImage}
-)(ProfileSteps);
+export default connect(mapStateToProps, { loadingUI, setProfile, uploadImage })(
+  ProfileSteps
+);

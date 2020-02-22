@@ -1,7 +1,6 @@
 /* ----- LINKS ----- */
 
 a {
-
   &:link,
   &:visited {
     // border-bottom: 1px solid $color-black;
@@ -9,8 +8,8 @@ a {
     font-size: 1.8rem;
     // padding-bottom: .2rem;
     text-decoration: none;
-    -webkit-transition: border-bottom .2s, color .2s;
-    transition: border-bottom .2s, color .2s;
+    -webkit-transition: border-bottom 0.2s, color 0.2s;
+    transition: border-bottom 0.2s, color 0.2s;
   }
 
   &:hover,

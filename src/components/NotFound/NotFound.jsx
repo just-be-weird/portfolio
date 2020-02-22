@@ -1,4 +1,4 @@
-import React, {useState, Fragment} from "react";
+import React, { useState, Fragment } from "react";
 import Board from "./Board";
 import classes from "../Sass/main.module.scss";
 
@@ -6,11 +6,11 @@ const NotFound = () => {
   const [boardState, setBoardState] = useState({
     history: [
       {
-        squares: Array(9).fill(null),
-      },
+        squares: Array(9).fill(null)
+      }
     ],
     stepNumber: 0,
-    xIsNext: true,
+    xIsNext: true
   });
   const calculateWinner = squares => {
     const lines = [
@@ -21,7 +21,7 @@ const NotFound = () => {
       [1, 4, 7],
       [2, 5, 8],
       [0, 4, 8],
-      [2, 4, 6],
+      [2, 4, 6]
     ];
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
@@ -47,18 +47,18 @@ const NotFound = () => {
       ...boardState,
       history: history.concat([
         {
-          squares: squares,
-        },
+          squares: squares
+        }
       ]),
       stepNumber: history.length,
-      xIsNext: !boardState.xIsNext,
+      xIsNext: !boardState.xIsNext
     });
   };
   const jumpTo = step => {
     setBoardState({
       ...boardState,
       stepNumber: step,
-      xIsNext: step % 2 === 0,
+      xIsNext: step % 2 === 0
     });
   };
   const current = boardState.history[boardState.stepNumber];
@@ -83,9 +83,7 @@ const NotFound = () => {
   return (
     <Fragment>
       <h1
-        className={
-          classes["heading-primary"] + " " + classes.notfound_heading
-        }
+        className={classes["heading-primary"] + " " + classes.notfound_heading}
       >
         <span className={classes.highlight}>Page Not Found</span>
       </h1>
@@ -95,10 +93,7 @@ const NotFound = () => {
       </p>
       <div className={classes.game}>
         <div className={classes["game-board"]}>
-          <Board
-            squares={current.squares}
-            onClick={i => handleClick(i)}
-          />
+          <Board squares={current.squares} onClick={i => handleClick(i)} />
         </div>
         <div className={classes["game-info"]}>
           <div>{status}</div>

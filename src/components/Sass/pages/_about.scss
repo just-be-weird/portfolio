@@ -47,9 +47,9 @@
   cursor: pointer;
   background-size: 24px;
   border-radius: 100%;
-  -webkit-transition: all .15s ease-out;
-  -moz-transition: all .15s ease-out;
-  transition: all .15s ease-out;
+  -webkit-transition: all 0.15s ease-out;
+  -moz-transition: all 0.15s ease-out;
+  transition: all 0.15s ease-out;
 
   &_icon {
     height: 24px;

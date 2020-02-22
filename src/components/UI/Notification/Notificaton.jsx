@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classes from "../../Sass/main.module.scss";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
-const Notificaton = ({errors, clicked}) => {
+const Notificaton = ({ errors, clicked }) => {
   let notification_class =
     errors &&
     (~Object.keys(errors)[0].indexOf("err") ||
@@ -30,10 +30,10 @@ const Notificaton = ({errors, clicked}) => {
 };
 
 Notificaton.propTypes = {
-  errors: PropTypes.object,
+  errors: PropTypes.object
 };
 const mapStateToProps = state => ({
-  errors: state.ui.errors,
+  errors: state.ui.errors
 });
 
 export default connect(mapStateToProps)(Notificaton);

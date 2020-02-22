@@ -3,14 +3,14 @@ import {
   CLEAR_ERRORS,
   LOADING_UI,
   STOP_LOADING_UI
-} from '../actions/actionTypes';
+} from "../actions/actionTypes";
 
 const initialState = {
   loading: false,
   errors: null
 };
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case SET_ERRORS:
       return {
