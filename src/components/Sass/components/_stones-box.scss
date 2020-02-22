@@ -1,92 +1,103 @@
 .stones-box {
-    background-color: rgba($color-white, 0.8);
-    // background: linear-gradient(to right, rgb(85, 255, 1), rgb(155, 255, 1));
-    border-radius: 0.3rem;
-    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
-    font-size: 1.5rem;
-    padding: 2.2rem 2.5rem;
-    text-align: center;
-    transition: transform 0.2s;
+  background-color: rgba($color-white, 0.8);
+  // background: linear-gradient(to right, rgb(85, 255, 1), rgb(155, 255, 1));
+  border-radius: 0.3rem;
+  box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+  font-size: 1.5rem;
+  padding: 2.2rem 2.5rem;
+  text-align: center;
+  transition: transform 0.2s;
 
-    &:hover {
-        transform: translateY(-1.5rem) scale(1.03);
-    }
+  &:hover {
+    transform: translateY(-1.5rem) scale(1.03);
+  }
 
+  @include respond(tab-port) {
+    padding: 2rem;
+  }
+
+  &__icon {
+    // background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+    // background-clip: text;
+    // -webkit-background-clip: text;
+    // color: transparent;
+    // font-size: 6rem;
+    // margin-bottom: .5rem;
+    // @include respond(tab-port) {
+    //     margin-bottom: 0;
+    // }
+    height: 8rem;
+    width: 8rem;
+  }
+
+  &__text {
+    font-size: $default-font-size;
+    padding: 0.5rem 0 1rem;
     @include respond(tab-port) {
-        padding: 2rem;
+      font-size: 1.8rem;
     }
+  }
 
-    &__icon {
-        // background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
-        // background-clip: text;
-        // -webkit-background-clip: text;
-        // color: transparent;
-        // font-size: 6rem;
-        // margin-bottom: .5rem;
-        // @include respond(tab-port) {
-        //     margin-bottom: 0;
-        // }
-        height: 8rem;
-        width: 8rem;
-    }
+  &__list {
+    @extend .ul_list;
 
-    &__text {
-        font-size: $default-font-size;
-        padding: 0.5rem 0 1rem;
-        @include respond(tab-port) {
-            font-size: 1.8rem;
-        }
+    li {
+      &::before {
+        color: rgb(0, 0, 0) !important;
+      }
+
+      text-align: initial;
+      padding: 0 0 0 1.5rem;
+      color: #002300;
+      @include respond(tab-port) {
+        font-size: 1.8rem;
+      }
     }
-    &__list {
-        @extend .ul_list;
-        li {
-            &::before {
-                color: rgb(0, 0, 0) !important;
-            }
-            text-align: initial;
-            padding: 0 0 0 1.5rem;
-            color: #002300;
-            @include respond(tab-port) {
-                font-size: 1.8rem;
-            }
-        }
+  }
+
+  &--soul {
+    &:hover {
+      background: linear-gradient(to right, #ff5722, #ff9800);
     }
-    &--soul {
-        &:hover {
-            background: linear-gradient(to right, #ff5722, #ff9800);
-        }
+  }
+
+  &--time {
+    &:hover {
+      background-image: linear-gradient(to right, #28b485, #7ed56f);
     }
-    &--time {
-        &:hover {
-            background-image: linear-gradient(to right, #28b485, #7ed56f);
-        }
+  }
+
+  &--space {
+    &:hover {
+      background-image: linear-gradient(to right, #00bcd4, #86dce6);
     }
-    &--space {
-        &:hover {
-            background-image: linear-gradient(to right, #00bcd4, #86dce6);
-        }
+  }
+
+  &--mind {
+    &:hover {
+      background-image: linear-gradient(to right, #f3b506, #fbff00);
     }
-    &--mind {
-        &:hover {
-            background-image: linear-gradient(to right, #f3b506, #fbff00);
-        }
+  }
+
+  &--reality {
+    &:hover {
+      color: #f1c3c0;
+      background-image: linear-gradient(to right, #dc4338, #ff1201);
+
+      li {
+        color: #f7dad8;
+      }
     }
-    &--reality {
-        &:hover {
-            color: #f1c3c0;
-            background-image: linear-gradient(to right, #dc4338, #ff1201);
-            li {
-                color: #f7dad8;
-            }
-        }
+  }
+
+  &--power {
+    &:hover {
+      color: #d3c1f3;
+      background-image: linear-gradient(to right, #673ab7, #9c27b0);
+
+      li {
+        color: #e1d4f7;
+      }
     }
-    &--power {
-        &:hover {
-            color: #d3c1f3;
-            background-image: linear-gradient(to right, #673ab7, #9c27b0);
-            li {
-                color: #e1d4f7;
-            }
-        }
-    }
+  }
 }

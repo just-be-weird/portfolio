@@ -8,7 +8,7 @@ const GlobalNavigation = ({data: navData, isAuthenticated, location}) => {
   useEffect(() => {
     if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       let scrollDirection = 0;
-      window.addEventListener('scroll', (e) => {
+      window.addEventListener('scroll', () => {
         let winTop = window.scrollY,
           global__nav = document.getElementById('global__nav');
         if (winTop > scrollDirection) {
@@ -41,7 +41,7 @@ const GlobalNavigation = ({data: navData, isAuthenticated, location}) => {
 
   const jsx =
     navData.length > 0 &&
-    navData.map(({id, nav_class, svg_icon, svg, nav_to, nav_title}) => {
+    navData.map(({id, nav_class, svg_icon, svg, nav_title}) => {
       return (
         <li
           key={id}

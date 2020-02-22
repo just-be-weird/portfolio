@@ -1,15 +1,16 @@
 .tooltip {
   position: relative;
   display: inline-block;
+
   &text {
     visibility: hidden;
     width: 8rem;
     background-image: -webkit-gradient(
-      linear,
-      left top,
-      right bottom,
-      from(#ffb900),
-      to(#ff7730)
+                    linear,
+                    left top,
+                    right bottom,
+                    from(#ffb900),
+                    to(#ff7730)
     );
     background-image: linear-gradient(to right bottom, #ffb900, #ff7730);
     color: #ffffff;
@@ -25,6 +26,7 @@
     margin-left: -75px;
     opacity: 0;
     transition: opacity 0.3s;
+
     &:after {
       content: "";
       position: absolute;
@@ -36,6 +38,7 @@
       border-color: #ffb900 transparent transparent transparent;
     }
   }
+
   &:hover &text {
     visibility: visible;
     opacity: 1;

@@ -1,23 +1,23 @@
 @mixin clearfix {
-    &:after {
-        clear: both;
-        content: '';
-        display: table;
-    }
+  &:after {
+    clear: both;
+    content: '';
+    display: table;
+  }
 }
 
 @mixin absCenter {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-$mq-mobile-portrait		: 414px !default;
-$mq-mobile-landscape	: 480px !default;
-$mq-tablet-portrait		: 768px !default;
-$mq-tablet-landscape	: 1024px !default;
-$mq-desktop				: 1382px !default;
+$mq-mobile-portrait: 414px !default;
+$mq-mobile-landscape: 480px !default;
+$mq-tablet-portrait: 768px !default;
+$mq-tablet-landscape: 1024px !default;
+$mq-desktop: 1382px !default;
 
 /*
 
@@ -60,29 +60,41 @@ $mq-desktop				: 1382px !default;
 // 1em =16px
 
 @mixin respond($breakpoint) {
-    @if $breakpoint == phone {
-        @media (max-width: 37.5em ) { @content }; //600px
-    }
-    
-    @if $breakpoint == tab-port {
-        @media (max-width: 56.25em ) { @content };//900px
-    }
-    
-    @if $breakpoint == tab-landscape {
-        @media (max-width: 75em) { @content };//till 1200 not above //1200px
-    }
+  @if $breakpoint == phone {
+    @media (max-width: 37.5em) {
+      @content
+    }; //600px
+  }
 
-    @if $breakpoint == desktop-only {
-        @media (min-width: 75em) { @content };//till 1200 not above //1200px
-    }
+  @if $breakpoint == tab-port {
+    @media (max-width: 56.25em) {
+      @content
+    }; //900px
+  }
 
-    @if $breakpoint == mobile-landscape-n-up {
-        @media only screen and (min-width : $mq-mobile-portrait + 1) and (max-width : $mq-tablet-portrait){ @content };//till 1200 not above //1200px
-    }
+  @if $breakpoint == tab-landscape {
+    @media (max-width: 75em) {
+      @content
+    }; //till 1200 not above //1200px
+  }
 
-    @if $breakpoint == big-desktop {
-        @media (min-width: 112.5em ) { @content };//above 1800 not below  //1800px
-    }
+  @if $breakpoint == desktop-only {
+    @media (min-width: 75em) {
+      @content
+    }; //till 1200 not above //1200px
+  }
+
+  @if $breakpoint == mobile-landscape-n-up {
+    @media only screen and (min-width: $mq-mobile-portrait + 1) and (max-width: $mq-tablet-portrait) {
+      @content
+    }; //till 1200 not above //1200px
+  }
+
+  @if $breakpoint == big-desktop {
+    @media (min-width: 112.5em) {
+      @content
+    }; //above 1800 not below  //1800px
+  }
 }
 
 /*

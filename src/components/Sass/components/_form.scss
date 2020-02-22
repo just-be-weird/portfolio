@@ -1,80 +1,84 @@
 .login {
-    background-image: linear-gradient(
-        105deg,
-        rgba(255, 255, 255, 0.7) 0%,
-        rgba(255, 255, 255, 0.7) 50%,
-        transparent 50%
-    );
-    background-size: 100%;
-    width: 50%;
-    margin: 4rem auto 0 6rem;
-    text-align: center;
+  background-image: linear-gradient(
+                  105deg,
+                  rgba(255, 255, 255, 0.7) 0%,
+                  rgba(255, 255, 255, 0.7) 50%,
+                  transparent 50%
+  );
+  background-size: 100%;
+  width: 50%;
+  margin: 4rem auto 0 6rem;
+  text-align: center;
+  @include respond(tab-port) {
+    background-image: none;
+    margin: 19rem auto 0;
+    width: auto;
+  }
+  @media (max-width: 823px) {
+    margin: 0;
+  }
+
+  @include respond(mobile-landscape-n-up) {
+    margin: 0;
+  }
+
+  &__form {
+    height: 72vh;
+    padding: 8rem;
+
     @include respond(tab-port) {
-        background-image: none;
-        margin: 19rem auto 0;
-        width: auto;
+      height: 61vh;
     }
-    @media (max-width: 823px) {
-        margin: 0;
+    @include respond(phone) {
+      padding: 0;
+      width: 100%;
     }
-
-    @include respond(mobile-landscape-n-up) {
-        margin: 0;
+    @media (max-width: 414px) {
+      height: 76.2vh;
     }
 
-    &__form {
-        height: 72vh;
-        padding: 8rem;
-
-        @include respond(tab-port) {
-            height: 61vh;
-        }
-        @include respond(phone) {
-            padding: 0;
-            width: 100%;
-        }
-        @media (max-width: 414px) {
-            height: 76.2vh;
-        }
-
-        @media (max-width: 320px) {
-            height: 70vh;
-        }
-        @include respond(phone) {
-            padding: 5rem 0 0;
-        }
+    @media (max-width: 320px) {
+      height: 70vh;
     }
-    .radio__group {
-        display: inline-block;
-        padding-left: 1rem;
-        padding-bottom: 2rem;
-        width: auto;
-        margin: 0;
+    @include respond(phone) {
+      padding: 5rem 0 0;
     }
+  }
+
+  .radio__group {
+    display: inline-block;
+    padding-left: 1rem;
+    padding-bottom: 2rem;
+    width: auto;
+    margin: 0;
+  }
 }
 
 .form__group {
-    text-align: center;
-    padding: 0;
+  text-align: center;
+  padding: 0;
 }
+
 .active {
-    .form__group {
-        @include respond(phone) {
-            margin-bottom: 5rem;
-        }
+  .form__group {
+    @include respond(phone) {
+      margin-bottom: 5rem;
     }
+  }
 }
+
 .form__des {
-    text-align: center;
-    h2 {
-        font-size: $default-font-size;
-        @include respond(tab-port) {
-            font-size: 2rem;
-            margin-top: 2rem;
-        }
+  text-align: center;
+
+  h2 {
+    font-size: $default-font-size;
+    @include respond(tab-port) {
+      font-size: 2rem;
+      margin-top: 2rem;
     }
+  }
 }
 
 .custom_input__label {
-    text-align: start;
+  text-align: start;
 }
