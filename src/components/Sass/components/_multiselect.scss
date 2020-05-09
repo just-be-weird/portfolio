@@ -4,8 +4,8 @@
   --text: #3f4656;
   --border: #d6d6d6;
   --borderActive: #23c4f8;
-  __arrow: #6c7486;
-  __arrowactive: #e4ecfa;
+  --arrow: #6c7486;
+  --arrowactive: #e4ecfa;
   --listText: #99a3ba;
   --listBackground: #fff;
   --listActive: #e4ecfa;
@@ -31,7 +31,7 @@
 
     &:before,
     &:after {
-      content: "";
+      content: '';
       display: block;
       position: absolute;
       width: 8px;
@@ -102,7 +102,7 @@
           &:before,
           &:after {
             --scale: 0.6;
-            content: "";
+            content: '';
             display: block;
             width: 10px;
             height: 2px;
@@ -239,7 +239,7 @@ select {
 
       &:before,
       &:after {
-        content: "";
+        content: '';
         display: block;
         position: absolute;
         border-radius: 10px;
