@@ -7,8 +7,7 @@
     "express": "^4.17.1",
     "express-validator": "^6.1.1",
     "firebase": "^7.14.0",
-    "firebase-admin": "^8.10.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -23,7 +22,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "server": "firebase.ini.defaults.sh && firebase serve --only functions",
+    "server": ". ./firebase.ini.defaults.sh && firebase serve --only functions",
     "dev": "concurrently \"npm run server\" \"npm run start\""
   },
   "eslintConfig": {
@@ -42,7 +41,7 @@
     ]
   },
   "devDependencies": {
-    "concurrently": "^4.1.1"
+    "concurrently": "^5.2.0"
   },
   "proxy": "https://asia-east2-notebook-portfolio.cloudfunctions.net/api"
 }
